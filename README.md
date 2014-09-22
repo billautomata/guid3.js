@@ -12,6 +12,7 @@ sliders
 * uses d3 scales internally
 * getValue
 * setValue
+* with and without handles or backgrounds
 
 buttons
 * toggle
