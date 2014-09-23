@@ -11,8 +11,7 @@ a simple toolkit for UI components for mobile and desktop created with D3.js
 - [ ] radial slider
 - [ ] toggle button
 - [ ] momentary button
-- [ ] radio button group
-
+- [ ] radio button group (quantile scales?)
 
 ```javascript
 var obj = { value: 3 }  // the target object
@@ -30,7 +29,7 @@ slider.connect(obj, 'value')
 // s.connect(obj.value) // try to get this to work
 
 slider.scale(d3.scale.pow().exponent(4)
-          .domain([0,n.width()])
+          .domain([0,64])
           .range([10,100000])
           .clamp(true))
 
