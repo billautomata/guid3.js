@@ -5,7 +5,7 @@ GUId3.js
 
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
-#### features
+#### UI elements
 - [x] horizontal slider
 - [x] vertical slider
 - [ ] radial slider
@@ -55,5 +55,5 @@ slider.create(d3.select('div#foo_slider'))
 
 * uses d3 scales internally
 * two way communication that monitors the target value using Object.observe
-* or use as a proxy to mulitple values setting a callback function
+* or use as a proxy to multiple values setting a callback function
 * with and without handles or backgrounds
