@@ -26,7 +26,7 @@ var slider = new GUId3.horizontalSlider(optionalCallback)     // or...
 var slider = new GUId3.horizontalSlider(obj,optionalCallback)
 
 slider.connect(obj, 'value')
-// s.connect(obj.value) // try to get this to work
+// slider.connect(obj.value) // try to get this to work
 
 slider.scale(d3.scale.pow().exponent(4)
           .domain([0,64])
