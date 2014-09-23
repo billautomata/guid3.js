@@ -14,16 +14,44 @@ a simple toolkit for UI components for mobile and desktop created with D3.js
 - [ ] radio button group (quantile scales?)
 
 ```javascript
+// buttons!
+var obj = { value: true }
+
+function optionalCallback(v){
+  console.log('from the constructor passed callback', v)
+  if(v){
+    doSomething()
+  } else {
+    undoSomething()
+  }
+}
+
+var button = new GUId3.button(optionalCallback)
+
+button.width(100).height(100)
+button.labelOn('on')
+button.labelOff('off')
+
+button.setValue(true)
+button.toggle()
+
+button.create(d3.select('div#something'))
+
+```
+
+
+```javascript
+// sliders!
 var obj = { value: 3 }  // the target object
 
 function optionalCallback(v){
   console.log('from the constructor passed callback', v)
 }
 
-var slider = new GUId3.horizontalSlider() // or use other constructors
-var slider = new GUId3.horizontalSlider(obj)                  // or...
-var slider = new GUId3.horizontalSlider(optionalCallback)     // or...
-var slider = new GUId3.horizontalSlider(obj,optionalCallback)
+var slider = new GUId3.slider() // or use other constructors
+// var slider = new GUId3.slider(obj)                  // or...
+var slider = new GUId3.slider(optionalCallback)     // or...
+// var slider = new GUId3.slider(obj,optionalCallback)
 
 slider.connect(obj, 'value')
 // slider.connect(obj.value) // try to get this to work
