@@ -3,8 +3,10 @@ GUId3.js
 
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
+```javascript
 d3.select('div#foo_slider').call(GUId3.slider(options))
 d3.select('div#bar_button').call(GUId3.button(options))
+```
 
 sliders
 * vertical
