@@ -49,7 +49,7 @@ slider.callback(function(scaled_value){
 slider.setValue(32)  // changes the appearance of the slider
                      // and sets the target value
 
-d3.select('div#foo_slider').call(slider     // or
+d3.select('div#foo_slider').call(slider)     // or
 slider.create(d3.select('div#foo_slider'))
 ```
 

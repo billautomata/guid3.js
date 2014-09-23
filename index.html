@@ -21,27 +21,29 @@
   var svg = d3.select('div#slider0').append('svg')
     .attr('width', 500)
     .attr('height', 500)
-    .style('background-color', 'green')
+    .style('background-color', 'white')
 
   var obser = { v: 1 }  // the value we want to change
 
   // pass in a callback
-  var n = GUId3.horizontal_slider(function(value){ console.log('from the constructor hook',value) })
-
-  n.color('red')
-  n.width(400)
-  n.label('zomg')
+  var n = new GUId3.horizontal_slider(function(d){console.log('from callback',d)})
+  //
+  // n.color('red')
+  // n.width(400)
+  // n.label('zomg')
   n.scale(d3.scale.pow().exponent(4)
     .domain([32,64])
     .range([10,100000])
     .clamp(true))
-
-  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
-
+  //
+  // // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+  //
   n.connect(obser,'v')  // pass in the object and the key
 
   // create the element on the d3 selection
-  svg.call(n) // alternatively d3.select('svg').call(n)
+
+  n.create(svg)
+  //svg.call(n) // alternatively d3.select('svg').call(n)
 
   </script>
 
