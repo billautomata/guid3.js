@@ -4,9 +4,42 @@
 <head>
   <title>GUID3.js</title>
   <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   <script src='vendor/d3.js' charset='utf-8'></script>
   <script src='lib/GUId3.js' charset='utf-8'></script>
+
+  <style>
+
+    * {
+    	-webkit-user-select: none;
+    	-moz-user-select: none;
+    	user-select: none;
+    }
+
+    textarea {
+    	-webkit-user-select: text!important;
+    	-moz-user-select: text!important
+    	user-select: text!important
+    }
+
+    .guid3-slider-text {
+      font-family: monospace;
+      fill: orange;
+      stroke: none;
+    }
+
+    .guid3-slider-bg-colors {
+      fill: red;
+      stroke: black;
+    }
+    .guid3-slider-indicator-colors {
+      fill: rgba(33,66,255,0.3);
+      stroke: white;
+    }
+
+
+  </style>
 
 </head>
 
@@ -23,27 +56,28 @@
     .attr('height', 500)
     .style('background-color', 'white')
 
-  var obser = { v: 1 }  // the value we want to change
+  var g_slider0 = svg.append('g')
+    .attr('transform', 'translate(2,2)')
+
+  var obser = { v: 5000.333 }  // the value we want to change
 
   // pass in a callback
-  var n = new GUId3.horizontal_slider(function(d){console.log('from callback',d)})
-  //
-  // n.color('red')
-  // n.width(400)
-  n.label('zomg')
+  var n = new GUId3.horizontal_slider(function(d){console.log('from callback',d)}).label('qqq')
+  n.width(400).height(150).connect(obser,'v')
+
   n.scale(d3.scale.pow().exponent(4)
-    .domain([32,64])
+    .domain([0,2])
     .range([10,100000])
     .clamp(true))
-  //
-  // // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
-  //
-  n.connect(obser,'v')  // pass in the object and the key
+
+//  n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
+
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
+  n.create(g_slider0) // you can also chain the create function at the end
+  //n.setValue(9333.01) // then you can set the setValue
 
-  n.create(svg)
-  //svg.call(n) // alternatively d3.select('svg').call(n)
 
   </script>
 
