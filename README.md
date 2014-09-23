@@ -5,58 +5,56 @@ GUId3.js
 
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
+#### features
+- [x] horizontal slider
+- [ ] vertical slider
+- [ ] radial slider
+- [ ] toggle button
+- [ ] momentary button
+- [ ] radio button group
+
+
 ```javascript
+var obj = { value: 3 }  // the target object
 
-var obj = { value: 3 }
-
-function optionalCallback(value){
-  console.log('from the hook', value)
+function optionalCallback(v){
+  console.log('from the constructor passed callback', v)
 }
 
-var s = GUId3.horizontalSlider(optionalCallback)
+var slider = new GUId3.horizontalSlider() // or use other constructors
+var slider = new GUId3.horizontalSlider(obj)                  // or...
+var slider = new GUId3.horizontalSlider(optionalCallback)     // or...
+var slider = new GUId3.horizontalSlider(obj,optionalCallback)
 
-s.connect(obj,'value')
+slider.connect(obj, 'value')
+// s.connect(obj.value) // try to get this to work
 
-s.scale(d3.scale.pow().exponent(4)
+slider.scale(d3.scale.pow().exponent(4)
           .domain([0,n.width()])
           .range([10,100000])
-          .clamp(true)
-      )
+          .clamp(true))
 
-s.width(100).height(30) // chain parameters!
+slider.width(100).height(30) // chain parameters!
 
-s.fill('blue')  // sets the fill to blue
-s.fill()        // returns 'blue'
+slider.fill('blue')  // sets the fill to blue
+slider.fill()        // returns 'blue'
 
-s.callback(function(v){
+slider.callback(function(scaled_value){
   // sends the scaled value to the callback function
   // useful for debugging or hooking into multiple targets
   // or complex conditionals
   // overwrites the callback sent to the constructor
-  console.log(v)
+  console.log('I overwrite the callback in the constructor',scaled_value)
 })
 
-n.connect(obj,'value')  // pass in the object and the key we want to target
+slider.setValue(32)  // changes the appearance of the slider
+                     // and sets the target value
 
-d3.select('div#foo_slider').call(GUId3.horizontal_slider()
-                                    .width(100).height(30)
-                                    .fill('blue')
-                                    .connect(obj,'value'))
-
-d3.select('div#bar_slider').call(s)
-
-// both sliders will change the value, but only the #bar_slider will run the callback
-
+d3.select('div#foo_slider').call(slider     // or
+slider.create(d3.select('div#foo_slider'))
 ```
 
 * uses d3 scales internally
 * two way communication that monitors the target value using Object.observe
 * or use as a proxy to mulitple values setting a callback function
-* calling `connect(object.reference)`
-* calling `setValue` function that
 * with and without handles or backgrounds
-
-buttons
-* toggle
-* momentary
-* radio list
