@@ -62,11 +62,13 @@
   var g_slider0 = svg.append('g')
     .attr('transform', 'translate(2,2)')
 
-  var obser = { v: 5000.333 }  // the value we want to change
+  var obser = { v: 50.333 }  // the value we want to change
 
   // pass in a callback
-  var n = new GUId3.horizontal_slider(function(d){console.log('from callback',d)}).label('qqq')
-  n.width(400).height(150).connect(obser,'v')
+  var n = new GUId3.slider(function(d){console.log('from callback',d)})
+
+  n.type('vertical')
+  n.width(40).height(250).connect(obser,'v')
 
   n.scale(d3.scale.pow().exponent(4)
     .domain([0,2])
@@ -78,7 +80,35 @@
 
   // create the element on the d3 selection
   n.create(g_slider0) // you can also chain the create function at the end
-  n.setValue(9333.01) // then you can call setValue(v)
+  //n.setValue(9333.01) // then you can call setValue(v)
+                      // which updates the slider and the target
+
+</script>
+
+<script>
+
+  var g_slider1 = svg.append('g')
+    .attr('transform', 'translate(50,2)')
+
+  var obser = { v: 50.333 }  // the value we want to change
+
+  // pass in a callback
+  var slider1 = new GUId3.slider(function(d){console.log('from callback',d)})
+
+  slider1.type('horizontal')
+  slider1.width(240).height(50).connect(obser,'v')
+
+  slider1.scale(d3.scale.pow().exponent(4)
+    .domain([0,2])
+    .range([300,100000])
+    .clamp(true))
+
+  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+
+  // create the element on the d3 selection
+  slider1.create(g_slider1) // you can also chain the create function at the end
+  //n.setValue(9333.01) // then you can call setValue(v)
                       // which updates the slider and the target
 
 </script>
