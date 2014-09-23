@@ -14,48 +14,36 @@
 
   <div id='slider0'></div>
 
-
 </body>
 
   <script>
 
-  var svg = d3.select('div#slider0').append('svg').attr('width', 500).attr('height', 500).style('background-color', 'green')
+  var svg = d3.select('div#slider0').append('svg')
+    .attr('width', 500)
+    .attr('height', 500)
+    .style('background-color', 'green')
 
-  function draw_scale(scale){
+  var obser = { v: 1 }  // the value we want to change
 
-    scale.domain([0,500])
-    scale.range([100,0])
+  // pass in a callback
+  var n = GUId3.horizontal_slider(function(value){ console.log('from the constructor hook',value) })
 
-    var svg = d3.select('div#slider0').append('svg')
-    svg.attr('width', 500)
-    svg.attr('height', 100)
-
-    for(var i = 0; i < 500; i++){
-      svg.append('circle')
-        .attr('cx', i)
-        .attr('cy', scale(i))
-        .attr('r', 1)
-        .attr('fill', 'red')
-        .attr('stroke', 'none')
-    }
-
-  }
-
-  //
-  var n = GUId3.horizontal_slider()
-  //
   n.color('red')
   n.width(400)
   n.label('zomg')
-  n.scale(d3.scale.pow().exponent(4).domain([0,n.width()]).range([10,100000]).clamp(true))
-  //
-  svg.call(n)
+  n.scale(d3.scale.pow().exponent(4)
+    .domain([0,n.width()])
+    .range([10,100000])
+    .clamp(true))
 
-  // var slider = new create_horizontal_slider()
-  // slider.call(d3.select('div#slider0'))
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
-//    create_horizontal_slider()
-//    create_vertical_slider()
+
+  n.connect(obser,'v')  // pass in the object and the key
+
+  // create the element on the d3 selection
+  svg.call(n) // alternatively d3.select('svg').call(n)
+
   </script>
 
   <!-- <script src='examples/create_slider.js' charset='utf-8'></script> -->
