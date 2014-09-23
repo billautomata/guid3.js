@@ -1,6 +1,8 @@
 GUId3.js
 ========
 
+##currently very unstable, do not use
+
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
 ```javascript
@@ -40,7 +42,7 @@ d3.select('div#foo_slider').call(GUId3.horizontal_slider()
                                     .width(100).height(30)
                                     .fill('blue')
                                     .connect(obj,'value'))
-                                    
+
 d3.select('div#bar_slider').call(s)
 
 // both sliders will change the value, but only the #bar_slider will run the callback
