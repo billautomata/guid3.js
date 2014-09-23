@@ -6,7 +6,7 @@
   <meta charset='utf-8'>
 
   <script src='vendor/d3.js' charset='utf-8'></script>
-  <script src='lib/GUID3.js' charset='utf-8'></script>
+  <script src='lib/GUId3.js' charset='utf-8'></script>
 
 </head>
 
@@ -19,12 +19,36 @@
 
   <script>
 
+  var svg = d3.select('div#slider0').append('svg').attr('width', 500).attr('height', 500).style('background-color', 'green')
+
+  function draw_scale(scale){
+
+    scale.domain([0,500])
+    scale.range([100,0])
+
+    var svg = d3.select('div#slider0').append('svg')
+    svg.attr('width', 500)
+    svg.attr('height', 100)
+
+    for(var i = 0; i < 500; i++){
+      svg.append('circle')
+        .attr('cx', i)
+        .attr('cy', scale(i))
+        .attr('r', 1)
+        .attr('fill', 'red')
+        .attr('stroke', 'none')
+    }
+
+  }
+
+  //
   var n = GUId3.horizontal_slider()
-
+  //
   n.color('red')
-
-  d3.select('div#slider0').call(GUId3.horizontal_slider().color('yellow'))
-  d3.select('div#slider0').call(n)
+  n.width(450)
+  n.scale(d3.scale.pow().exponent(4).domain([0,300]).range([10,100000]).clamp(true))
+  //
+  svg.call(n)
 
   // var slider = new create_horizontal_slider()
   // slider.call(d3.select('div#slider0'))
