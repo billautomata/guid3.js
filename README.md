@@ -7,7 +7,7 @@ a simple toolkit for UI components for mobile and desktop created with D3.js
 
 #### features
 - [x] horizontal slider
-- [ ] vertical slider
+- [x] vertical slider
 - [ ] radial slider
 - [ ] toggle button
 - [ ] momentary button
