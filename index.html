@@ -18,8 +18,19 @@
 </body>
 
   <script>
-    create_horizontal_slider()
-    create_vertical_slider()
+
+  var n = GUId3.horizontal_slider()
+
+  n.color('red')
+
+  d3.select('div#slider0').call(GUId3.horizontal_slider().color('yellow'))
+  d3.select('div#slider0').call(n)
+
+  // var slider = new create_horizontal_slider()
+  // slider.call(d3.select('div#slider0'))
+
+//    create_horizontal_slider()
+//    create_vertical_slider()
   </script>
 
   <!-- <script src='examples/create_slider.js' charset='utf-8'></script> -->
