@@ -38,7 +38,6 @@
       stroke: white;
     }
 
-
   </style>
 
 </head>
@@ -70,14 +69,13 @@
     .range([10,100000])
     .clamp(true))
 
-//  n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
-
+  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
   // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
   n.create(g_slider0) // you can also chain the create function at the end
-  //n.setValue(9333.01) // then you can set the setValue
-
+  n.setValue(9333.01) // then you can call setValue(v)
+                      // which updates the slider and the target
 
   </script>
 
