@@ -45,8 +45,9 @@
   var n = GUId3.horizontal_slider()
   //
   n.color('red')
-  n.width(450)
-  n.scale(d3.scale.pow().exponent(4).domain([0,300]).range([10,100000]).clamp(true))
+  n.width(400)
+  n.label('zomg')
+  n.scale(d3.scale.pow().exponent(4).domain([0,n.width()]).range([10,100000]).clamp(true))
   //
   svg.call(n)
 
