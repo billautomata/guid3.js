@@ -42,7 +42,7 @@
     }
 
     .guid3-button-colors {
-      fill: rgb(33,66,128);
+      fill: rgb(200,200,200);
       stroke: none;
     }
 
@@ -142,8 +142,8 @@
   var button0 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
 
 
-  button0.width(240).height(50).connect(butt_obser,'v')
-
+  button0.width(50).height(50).connect(butt_obser,'v')
+  button0.type('momentary')
   // create the element on the d3 selection
   button0.create(g_button0) // you can also chain the create function at the end
   //n.setValue(9333.01) // then you can call setValue(v)
