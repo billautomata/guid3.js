@@ -189,13 +189,12 @@ module.exports = function module(cb){
   'use strict';
   var self = this;
 
-  console.log('here')
-  // public variables
-
+  // css hooks
   this._cssClass=''
   this._cssId=''
 
-  this._type = 'horizontal'
+  // internal type reference
+  this._type = 'horizontal' // or vertical
 
   // visual attributes not set by CSS
   this._width = 300
@@ -208,9 +207,9 @@ module.exports = function module(cb){
   this._scale = undefined
 
   // target value
-  this.object_reference = undefined  // a reference to the target object
-  this.object_key = undefined        // the key of the target value
-  this.watcher = undefined           // Object.observe watcher
+  this.object_reference  // a reference to the target object
+  this.object_key        // the key of the target value
+  this.watcher          // Object.observe watcher
 
   // callback
   this._callback = cb                 // the callback that is run
@@ -218,7 +217,7 @@ module.exports = function module(cb){
   // internal value
   this._internal_value = 0           // maybe deprecate
 
-  this.g_root = undefined            // group element is the parent container
+  this.g_root            // group element is the parent container
                                      // of all the objects, target for events
 
 

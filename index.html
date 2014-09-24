@@ -8,9 +8,12 @@
 
   <script src='vendor/d3.js' charset='utf-8'></script>
   <script src='vendor/observe.js' charset='utf-8'></script>
+  <script src='vendor/jstest.js' charset='utf-8'></script>
 
   <script src='build/guid3.js' charset='utf-8'></script>
   <link rel='stylesheet' type='text/css' href="lib/GUId3.css">
+
+  <!-- tests -->
 
   <style>
 
@@ -165,14 +168,15 @@
 <body>
 
   <div id='example'></div>
+  <div id='test'></div>
 
 </body>
 
 <script>
 
   var svg = d3.select('div#example').append('svg')
-    .attr('width', window.innerWidth)
-    .attr('height', window.innerHeight)
+    .attr('width', window.innerWidth*0.05)
+    .attr('height', window.innerHeight*0.05)
     .style('background-color', 'white')
 
 </script>
@@ -391,12 +395,17 @@
  button2.type('toggle')
  button2.labelOn('css')
  button2.labelOff('rules')
- button2.roundedPercent(40)
+ button2.roundedPercent(34)
  // create the element on the d3 selection
  button2.create(g_button2) // you can also chain the create function at the end
 
 </script>
 
-  <!-- <script src='examples/create_slider.js' charset='utf-8'></script> -->
+<script src='test/test.js' charset='utf-8'></script>
+<script>JS.Test.autorun()</script>
+
+<script>
+console.log(location.host)
+document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 </html>
