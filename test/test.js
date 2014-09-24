@@ -1,10 +1,13 @@
+/*globals slider: true */
+
 JS.Test.describe('Slider', function(){ with(this){
-
-
 
     // setup
     before(function(){ with(this){
       console.log('here before')
+
+      window.callback_target = 32
+      window.target_object = { value: 0.1 }
 
       this.svg = d3.select('div#test').append('svg')
         .attr('width', 512)
@@ -12,6 +15,7 @@ JS.Test.describe('Slider', function(){ with(this){
 
       function constructorCallback(v){
         console.log('testing constructor callback', v)
+        window.callback_target = v
       }
 
       slider = new GUId3.slider(constructorCallback)
@@ -20,12 +24,8 @@ JS.Test.describe('Slider', function(){ with(this){
       slider.width(200)
       slider.height(20)
 
-      window.target_object = { value: 0.1 }
-
       slider.connect(window.target_object, 'value')
-      slider.create(svg)
-
-      //slider.setValue(10)
+      slider.create(this.svg)
 
     }})
 
@@ -33,11 +33,10 @@ JS.Test.describe('Slider', function(){ with(this){
     after(function(){ with(this){
       console.log('after')
 
-      svg.remove()
+      this.svg.remove()
       slider = null
 
     }})
-
 
     describe('internals', function(){ with(this){
 
@@ -47,7 +46,6 @@ JS.Test.describe('Slider', function(){ with(this){
       }})
 
     }})
-
 
     describe('default properties', function(){ with(this){
 
@@ -127,14 +125,6 @@ JS.Test.describe('Slider', function(){ with(this){
       }})
 
     }})
-
-
-
-
-
-
-
-
 
 }})
 

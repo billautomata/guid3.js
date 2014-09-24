@@ -62,7 +62,8 @@
     "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
     "validthis"     : false,     // true: Tolerate using this in a non-constructor function
 
-    "-W085"          : true,     // true: tolerate using with
+    "-W085"         : true,     // true: tolerate using with
+    "-W082"         : true,     // true: I'll declare funcitons wherever whenever
 
     // Environments
     "browser"       : true,     // Web Browser (window, document, etc)
@@ -86,15 +87,18 @@
 
     // Custom Globals
     "globals"       : {
-      "JS"         : false,
-      "describe"   : false,
-      "it"         : false,
-      "before"     : false,
-      "beforeEach" : false,
-      "after"      : false,
-      "afterEach"  : false,
+      "JS"            : false,
+      "describe"      : false,
+      "it"            : false,
+      "before"        : false,
+      "beforeEach"    : false,
+      "after"         : false,
+      "afterEach"     : false,
+      "assert"        : false,
+      "assertNot"     : false,
+      "assertEqual"   : false,
       "assertNotEqual": false,
-      "d3"         : false,
-      "GUId3"      : false
+      "d3"            : false,
+      "GUId3"         : false
     }        // additional predefined global variables
 }
