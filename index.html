@@ -43,6 +43,16 @@
       stroke-width: 0.5;
     }
 
+    .slider0 .guid3-slider-text {
+      transform: translate(-10px,12px);
+      font-family: monospace;
+      font-size: 23px;
+      fill: white;
+      fill-opacity: 0.33
+      stroke: none;
+      text-anchor: end;
+    }
+
     .slider1 .guid3-slider {
       fill: rgb(239, 203, 74);
       stroke: none;
@@ -64,7 +74,7 @@
     }
 
     .slider2 .guid3-slider-text {
-      transform: rotate(33deg) translate(-30px,0px);
+      transform: rotate(33deg) translate(-30px,-10px);
       fill: orange;
       stroke: none;
       font-weight: 800;
@@ -87,6 +97,27 @@
       stroke: none;
       font-weight: 100;
       font-size: 32px;
+    }
+
+    .slider4.parent {
+      transform: rotate(-45deg);
+    }
+
+    .slider4 .guid3-slider {
+      fill: rgb(128,128,128);
+      stroke: none;
+    }
+
+    .slider4 .guid3-slider-indicator {
+      fill: rgb(200,200,200);
+      stroke: none;
+    }
+
+    .slider4 .guid3-slider-text {
+      fill: rgb(64,64,64);
+      stroke: none;
+      font-weight: 300;
+      font-size: 12px;
     }
 
     .green_button .guid3-button {
@@ -269,6 +300,37 @@
 
 </script>
 
+<script>
+
+  var obser_slider4 = { foo: 0 }
+
+  var g_slider4 = svg.append('g')
+    .attr('transform', 'translate(500,10)')
+
+  // pass in a callback
+  var slider4 = new GUId3.slider(function(d){console.log('from callback slider 4',d)})
+
+  slider4.cssClass('slider4')
+
+  slider4.type('vertical')
+  slider4.width(10).height(400).connect(obser_slider4,'foo')
+
+  slider4.roundedPercent(0)
+
+  slider4.scale(d3.scale.linear()
+    .domain([0,2])
+    .range([0,640])
+    .clamp(true))
+
+  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+
+  // create the element on the d3 selection
+  slider4.create(g_slider4) // you can also chain the create function at the end
+  slider4.setValue(32.2) // then you can call setValue(v)
+                        // which updates the slider and the target
+
+</script>
 
  <script>
 

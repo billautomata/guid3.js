@@ -311,6 +311,8 @@ module.exports = function module(cb){
       .attr('height', this._height)
       .style('border', '1px solid black')
 
+    this.g_root.classed('parent', true)
+
     this.g_root.on('changed', function(){
       console.log(d3.event.detail)
 
@@ -361,7 +363,7 @@ module.exports = function module(cb){
     if(self._type === 'vertical'){
       text_value.attr('x',0)
       text_value.attr('y',0)
-      text_value.attr('transform', 'translate('+(self._width*0.5)+','+(self._height + 12)+')')
+      text_value.attr('transform', 'translate('+(self._width*0.5)+','+(self._height * 0.52)+')')
       text_value.attr('text-anchor', 'middle')
     }
 

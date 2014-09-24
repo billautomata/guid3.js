@@ -1,7 +1,7 @@
-GUId3.js
+GUId3.js v 0.3.1
 ========
 
-##currently very unstable, do not use
+##currently unstable, do not use in production
 
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
