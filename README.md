@@ -1,9 +1,22 @@
 GUId3.js v 0.3.1
 ========
 
-##currently unstable, do not use in production
+##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
 
-a simple toolkit for UI components for mobile and desktop created with D3.js
+A simple toolkit for creating UI components with D3.js.  The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
+
+Almost all of the visual aspects are powered by setting a class on creation, and modifying the CSS for the corresponding component of the UI element.
+
+```css
+/* example.css */
+.my_css_class.guid3-slider-text {
+  transform: rotate(33deg) translate(110px,-10px);
+  font-family: monospace;
+  font-size: 12px;
+  fill: black;
+  stroke: none;
+}
+```
 
 ```bash
 # build using browserify
@@ -17,8 +30,64 @@ $ browserify test/build_browser.js -o build/guid3.js
 - [x] toggle button
 - [x] momentary button
 
-- [ ] circle slider
+######not implemented yet, planned for version 1
+- [ ] circle slider (like a radial knob)
 - [ ] radio button group (quantile scales?)
+
+###slider example
+```javascript
+var g_slider0 = svg.append('g')
+  .attr('transform', 'translate(15,5)')
+
+var obser = { v: 50000 }  // the value we want to change
+
+// pass in a callback
+var n = new GUId3.slider(function(d){console.log('from callback slider 0',d)})
+
+n.cssClass('slider0')
+
+n.type('horizontal')
+n.width(400).height(50).connect(obser,'v')
+
+n.scale(d3.scale.linear()
+  .domain([0,2])      // the domain doesn't matter,
+  .range([10,100000]) // you just have to set it
+  .clamp(true))
+
+// n.callback(function(q){ console.log('zomg',q) })
+// replaces the callback set in the constructor
+
+// create the element on the d3 selection
+n.roundedPercent(5)
+n.create(g_slider0) // call create() at the end
+n.setValue(9333.01) // then you can call setValue(v)
+                    // which updates the slider and the target
+
+```
+
+```css
+.slider0 .guid3-slider {
+  fill: rgb(33,33,100);
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.slider0 .guid3-slider-indicator {
+  fill: rgb(33,33,255);
+  stroke: white;
+  stroke-width: 0.5;
+}
+
+.slider0 .guid3-slider-text {
+  transform: translate(-10px,12px);
+  font-family: monospace;
+  font-size: 23px;
+  fill: white;
+  fill-opacity: 0.33
+  stroke: none;
+  text-anchor: end;
+}
+```
 
 ```javascript
 // buttons!
@@ -48,46 +117,6 @@ button.toggle() // changes the state of the button
 
 ```
 
-```javascript
-// sliders!
-var obj = { value: 3 }  // the target object
-
-function optionalCallback(v){
-  console.log('from the constructor passed callback', v)
-}
-
-var slider = new GUId3.slider() // or use other constructors
-// var slider = new GUId3.slider(obj)                  // or...
-var slider = new GUId3.slider(optionalCallback)     // or...
-// var slider = new GUId3.slider(obj,optionalCallback)
-
-slider.connect(obj, 'value')
-// slider.connect(obj.value) // try to get this to work
-
-slider.scale(d3.scale.pow().exponent(4)
-          .domain([0,64])
-          .range([10,100000])
-          .clamp(true))
-
-slider.width(100).height(30) // chain parameters!
-
-slider.fill('blue')  // sets the fill to blue
-slider.fill()        // returns 'blue'
-
-slider.callback(function(scaled_value){
-  // sends the scaled value to the callback function
-  // useful for debugging or hooking into multiple targets
-  // or complex conditionals
-  // overwrites the callback sent to the constructor
-  console.log('I overwrite the callback in the constructor',scaled_value)
-})
-
-slider.setValue(32)  // changes the appearance of the slider
-                     // and sets the target value
-
-d3.select('div#foo_slider').call(slider)     // or
-slider.create(d3.select('div#foo_slider'))
-```
 
 * uses d3 scales internally
 * two way communication that monitors the target value using Object.observe
