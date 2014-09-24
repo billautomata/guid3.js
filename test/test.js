@@ -64,6 +64,17 @@ JS.Test.describe('Slider', function(){ with(this){
       assertEqual( slider_height, 20 )
     }})
 
+    it('parent group element node exists', function() { with(this) {
+      
+      console.log(slider.g_root.node())
+
+      var slider_height = parseInt(d3.select(slider.g_root.node())
+        .select('rect.guid3-slider').attr('height'))
+
+      assertNotEqual( slider.g_root.node(), undefined )
+    }})
+
+
 
 }})
 
