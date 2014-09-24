@@ -31,13 +31,100 @@
     	user-select: text!important
     }
 
+    .slider0 .guid3-slider {
+      fill: rgb(33,33,100);
+      stroke: black;
+      stroke-width: 3px;
+    }
+
+    .slider0 .guid3-slider-indicator {
+      fill: rgb(33,33,255);
+      stroke: white;
+      stroke-width: 0.5;
+    }
+
+    .slider1 .guid3-slider {
+      fill: rgb(239, 203, 74);
+      stroke: none;
+    }
+
+    .slider1 .guid3-slider-indicator {
+      fill: rgb(33, 204, 255);
+      stroke: none;
+    }
+
+    .slider2 .guid3-slider {
+      fill: rgb(33,33,100);
+      stroke: none;
+    }
+
+    .slider2 .guid3-slider-indicator {
+      fill: rgb(33,33,255);
+      stroke: white;
+    }
+
+    .slider2 .guid3-slider-text {
+      transform: rotate(33deg) translate(-30px,0px);
+      fill: orange;
+      stroke: none;
+      font-weight: 800;
+      font-size: 32px;
+    }
+
+    .slider3 .guid3-slider {
+      fill: rgb(128,128,128);
+      stroke: none;
+    }
+
+    .slider3 .guid3-slider-indicator {
+      fill: rgb(200,200,200);
+      stroke: none;
+    }
+
+    .slider3 .guid3-slider-text {
+      transform: rotate(180deg) translate(130px,0px);
+      fill: white;
+      stroke: none;
+      font-weight: 100;
+      font-size: 32px;
+    }
+
     .green_button .guid3-button {
-      fill: green;
+      fill: #7b9277;
+      fill-opacity: 0.8;
+      stroke: none;
+    }
+
+    .green_button .guid3-button:hover {
+      fill-opacity: 1.0;
     }
 
     .green_button .guid3-button-inactive {
-      fill: blue;
+      fill-opacity: 0.1 !important;
+      stroke: black;
+      stroke-width: 0.5px;
+      stroke-opacity: 1.0;
+    }
+
+    .green_button_curved.parent {
+      transform: rotate(-33deg) translate(-50px,50px);
+    }
+
+    .green_button_curved .guid3-button {
+      fill: #6d6cc2;
+      fill-opacity: 0.8;
+      stroke: none;
+    }
+
+    .green_button_curved .guid3-button:hover {
       fill-opacity: 1.0;
+    }
+
+    .green_button_curved .guid3-button-inactive {
+      fill-opacity: 0.1 !important;
+      stroke: black;
+      stroke-width: 0.5px;
+      stroke-opacity: 1.0;
     }
 
   </style>
@@ -62,15 +149,17 @@
 <script>
 
   var g_slider0 = svg.append('g')
-    .attr('transform', 'translate(5,5)')
+    .attr('transform', 'translate(15,5)')
 
   var obser = { v: 50000 }  // the value we want to change
 
   // pass in a callback
   var n = new GUId3.slider(function(d){console.log('from callback slider 0',d)})
 
-  n.type('vertical')
-  n.width(40).height(250).connect(obser,'v')
+  n.cssClass('slider0')
+
+  n.type('horizontal')
+  n.width(400).height(50).connect(obser,'v')
 
   n.scale(d3.scale.linear()
     .domain([0,2])
@@ -91,13 +180,15 @@
 <script>
 
   var g_slider1 = svg.append('g')
-    .attr('transform', 'translate(50,2)')
+    .attr('transform', 'translate(15,75)')
 
   // pass in a callback
   var slider1 = new GUId3.slider(function(d){console.log('from callback slider 1',d)})
 
+  slider1.cssClass('slider1')
+
   slider1.type('horizontal')
-  slider1.width(240).height(50).connect(obser,'v')
+  slider1.width(400).height(50).connect(obser,'v')
 
   slider1.scale(d3.scale.pow().exponent(4)
     .domain([0,2])
@@ -116,38 +207,75 @@
 
 <script>
 
-  var obser_slider = { foo: 0 }
+  var obser_slider2 = { foo: 0 }
 
-  var g_slider1 = svg.append('g')
-    .attr('transform', 'translate(150,150)')
+  var g_slider2 = svg.append('g')
+    .attr('transform', 'translate(15,150)')
 
   // pass in a callback
-  var slider1 = new GUId3.slider(function(d){console.log('from callback slider 1',d)})
+  var slider2 = new GUId3.slider(function(d){console.log('from callback slider 1',d)})
 
-  slider1.type('horizontal')
-  slider1.width(100).height(10).connect(obser_slider,'foo')
+  slider2.cssClass('slider2')
 
-  slider1.scale(d3.scale.pow().exponent(4)
+  slider2.type('horizontal')
+  slider2.width(200).height(25).connect(obser_slider2,'foo')
+
+  slider2.roundedPercent(33)
+
+  slider2.scale(d3.scale.linear()
     .domain([0,2])
-    .range([0,10000])
+    .range([0,64])
     .clamp(true))
 
   // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
   // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
-  slider1.create(g_slider1) // you can also chain the create function at the end
-  //n.setValue(9333.01) // then you can call setValue(v)
+  slider2.create(g_slider2) // you can also chain the create function at the end
+  slider2.setValue(32.2) // then you can call setValue(v)
                         // which updates the slider and the target
 
 </script>
 
 <script>
 
+  var obser_slider3 = { foo: 0 }
+
+  var g_slider3 = svg.append('g')
+    .attr('transform', 'translate(15,225)')
+
+  // pass in a callback
+  var slider3 = new GUId3.slider(function(d){console.log('from callback slider 3',d)})
+
+  slider3.cssClass('slider3')
+
+  slider3.type('horizontal')
+  slider3.width(400).height(40).connect(obser_slider3,'foo')
+
+  slider3.roundedPercent(0)
+
+  slider3.scale(d3.scale.linear()
+    .domain([0,2])
+    .range([0,64])
+    .clamp(true))
+
+  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+
+  // create the element on the d3 selection
+  slider3.create(g_slider3) // you can also chain the create function at the end
+  slider3.setValue(32.2) // then you can call setValue(v)
+                        // which updates the slider and the target
+
+</script>
+
+
+ <script>
+
   var butt_obser = { v: true }
 
   var g_button0 = svg.append('g')
-    .attr('transform', 'translate(150,200)')
+    .attr('transform', 'translate(30,300)')
 
   // pass in a callback
   var button0 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
@@ -155,31 +283,53 @@
   button0.cssClass('green_button')
   button0.width(50).height(50).connect(butt_obser,'v')
   button0.type('momentary')
+  button0.labelOn('on')
+  button0.labelOff('off')
   button0.roundedPercent(100)
   // create the element on the d3 selection
   button0.create(g_button0) // you can also chain the create function at the end
   //n.setValue(9333.01) // then you can call setValue(v)
                         // which updates the slider and the target
 
+ </script>
+
+<script>
+
+ var button_obser1 = { v: true }
+
+ var g_button1 = svg.append('g')
+   .attr('transform', 'translate(120,300)')
+
+ // pass in a callback
+ var button1 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
+
+ button1.cssClass('green_button')
+ button1.width(150).height(50).connect(button_obser1,'v')
+ button1.type('toggle')
+ button1.labelOn('state on')
+ button1.labelOff('=)')
+ button1.roundedPercent(10)
+ // create the element on the d3 selection
+ button1.create(g_button1) // you can also chain the create function at the end
+
 </script>
 
 <script>
 
-  var butt_obser0 = { v: true }
+ var g_button2 = svg.append('g')
+   .attr('transform', 'translate(320,300)')
 
-  var g_button1 = svg.append('g')
-    .attr('transform', 'translate(250,200)')
+ // pass in a callback
+ var button2 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
 
-  // pass in a callback
-  var button1 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
-
-  button1.width(70).height(50).connect(butt_obser0,'v')
-  button1.roundedPercent(30)
-  button1.type('toggle')  // defaults to toggle
-  // create the element on the d3 selection
-  button1.create(g_button1) // you can also chain the create function at the end
-  //n.setValue(9333.01) // then you can call setValue(v)
-                        // which updates the slider and the target
+ button2.cssClass('green_button_curved')
+ button2.width(170).height(50).connect(button_obser1,'v')
+ button2.type('toggle')
+ button2.labelOn('css')
+ button2.labelOff('rules')
+ button2.roundedPercent(40)
+ // create the element on the d3 selection
+ button2.create(g_button2) // you can also chain the create function at the end
 
 </script>
 

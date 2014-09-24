@@ -10,6 +10,7 @@
   font-family: monospace;
   fill: black;
   stroke: none;
+  pointer-events: none;
 }
 
 .guid3-button {
@@ -25,4 +26,5 @@
   font-size: 22px;
   fill: black;
   stroke: none;
+  pointer-events: none;
 }

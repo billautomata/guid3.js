@@ -115,16 +115,18 @@ module.exports = function module(cb){
     this.g_root = svg.append('g')
       .attr('class', this._cssClass)
       .attr('id', this._cssId)
-      .attr('width', this._width)
-      .attr('height', this._height)
+      // .attr('width', this._width)
+      // .attr('height', this._height)
+
+    this.g_root.classed('parent', true)
 
     this.g_root.on('changed', function(){
       console.log(d3.event.detail)
 
       if(!d3.event.detail){
-        rect_button.classed('guid3-button-colors-inactive', true)
+        rect_button.classed('guid3-button-inactive', true)
       } else {
-        rect_button.classed('guid3-button-colors-inactive', false)
+        rect_button.classed('guid3-button-inactive', false)
       }
 
       // update the label
@@ -132,16 +134,13 @@ module.exports = function module(cb){
     })
 
     var rect_button = this.g_root.append('rect')
-      .classed('guid3-button-colors', true)
+      .classed('guid3-button', true)
       .attr('x',0)
       .attr('y',0)
       .attr('rx', (this._roundedPercent*0.05) + '%')
       .attr('ry', (this._roundedPercent*0.05) + '%')
       .attr('width', this._width)
       .attr('height', this._height)
-      .attr('fill', 'green')
-      .attr('fill-opacity', 1.0)
-      .attr('stroke', 'none')
 
     if(self._type === 'toggle'){
       this.g_root.on('mousedown', function(){
@@ -349,11 +348,14 @@ module.exports = function module(cb){
 
     var text_value
 
-    text_value = this.g_root.append('text')
+    var g_root_text_value = this.g_root.append('g')
+      .attr('transform', 'translate(' + (this._width + 2) + ',' + (this._height * 0.5) + ')')
+
+    text_value = g_root_text_value.append('text')
       .attr('class', 'guid3-slider-text')
       .text(this._label)
-      .attr('x', this._width + 2)
-      .attr('y', this._height * 0.5)
+      .attr('x', 0)
+      .attr('y', 0)
       .attr('dy', '0.33em')
 
     if(self._type === 'vertical'){
