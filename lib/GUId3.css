@@ -12,6 +12,12 @@
   stroke: none;
   pointer-events: none;
 }
+.guid3-slider-textlabel {
+  font-family: monospace;
+  fill: black;
+  stroke: none;
+  pointer-events: none;
+}
 
 .guid3-button {
   fill: rgb(200,200,200);

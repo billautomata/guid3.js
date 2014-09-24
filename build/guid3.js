@@ -45,6 +45,12 @@ module.exports = function module(cb){
 
   // //////////////////////////////////
   // param setters and getters
+  this.callback = function(_){
+    if(!arguments.length) { return this._callback; }
+    this._callback = _
+    return this;
+  }
+  
   this.cssClass = function(_){
     if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
@@ -120,8 +126,6 @@ module.exports = function module(cb){
     this.g_root = svg.append('g')
       .attr('class', this._cssClass)
       .attr('id', this._cssId)
-      // .attr('width', this._width)
-      // .attr('height', this._height)
 
     this.g_root.classed('parent', true)
 
@@ -357,14 +361,6 @@ module.exports = function module(cb){
       }
 
     })  // end of g_root.on('changed')
-
-
-
-
-
-
-
-
 
     var rect_slider_bg = this.g_root.append('rect')
       .attr('class', 'guid3-slider')
