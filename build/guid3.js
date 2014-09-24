@@ -325,8 +325,9 @@ module.exports = function module(cb){
     this.g_root.classed('parent', true)
 
     this.g_root.on('changed', function(){
+
       console.log('g_root changed fired')
-      console.log(d3.event.detail)
+      console.log('value passed', d3.event.detail)
 
       if(self._type === 'horizontal'){
         rect_horizontal_indicator.attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
@@ -341,9 +342,23 @@ module.exports = function module(cb){
         new CustomEvent(
           'change_me',
           { detail: self._scale.invert(d3.event.detail) }
-        ))
+      ))
+
+      if(typeof self._callback === 'function'){
+        return self._callback(d3.event.detail);
+      } else {
+        return;
+      }
 
     })  // end of g_root.on('changed')
+
+
+
+
+
+
+
+
 
     var rect_slider_bg = this.g_root.append('rect')
       .attr('class', 'guid3-slider')
@@ -430,24 +445,9 @@ module.exports = function module(cb){
         use_value = y
       }
 
-      // set the width of the indicator
-      if(self._type === 'horizontal'){
-        rect_horizontal_indicator.attr('width', use_value)
-      } else {
-        rect_horizontal_indicator.attr('y', use_value)
-        rect_horizontal_indicator.attr('height', self._height - use_value)
-      }
-
-      text_value.node().dispatchEvent(new CustomEvent('change_me', { detail:map_scale(use_value) } ))
-
       // set the value of the object itself
+      // this triggers the callback on g_root.on('changed')
       self.object_reference[self.object_key] = self._scale(map_scale(use_value))
-
-      if(typeof self._callback === 'function'){
-        return self._callback(self._scale(map_scale(use_value)));
-      } else {
-        return;
-      }
 
     }
 
