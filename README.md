@@ -7,6 +7,11 @@ A simple toolkit for creating UI components with D3.js.  The UI elements receive
 
 Almost all of the visual aspects are powered by setting a class on creation, and modifying the CSS for the corresponding component of the UI element.
 
+* uses d3 scales internally
+* two way communication that monitors the target value using Object.observe
+* or use as a proxy to multiple values setting a callback function
+
+
 ```css
 /* example.css */
 .my_css_class.guid3-slider-text {
@@ -36,6 +41,7 @@ $ browserify test/build_browser.js -o build/guid3.js
 
 ###slider example
 ```javascript
+// example.js
 var g_slider0 = svg.append('g')
   .attr('transform', 'translate(15,5)')
 
@@ -66,6 +72,7 @@ n.setValue(9333.01) // then you can call setValue(v)
 ```
 
 ```css
+/* example.css */
 .slider0 .guid3-slider {
   fill: rgb(33,33,100);
   stroke: black;
@@ -116,9 +123,3 @@ button.toggle() // changes the state of the button
                 // allows you to treat a momentary button like a toggle
 
 ```
-
-
-* uses d3 scales internally
-* two way communication that monitors the target value using Object.observe
-* or use as a proxy to multiple values setting a callback function
-* with and without handles or backgrounds
