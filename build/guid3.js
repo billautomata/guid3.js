@@ -22,7 +22,7 @@ module.exports = function module(cb){
   this.object_key           // the key of the target value
   this.watcher              // Object.observe watcher
 
-  this.callback = cb
+  this._callback = cb
 
   // root group element that events are attached to
   // moved to global scope of the object
@@ -126,7 +126,6 @@ module.exports = function module(cb){
     this.g_root.classed('parent', true)
 
     this.g_root.on('changed', function(){
-      console.log(d3.event.detail)
 
       if(!d3.event.detail){
         rect_button.classed('guid3-button-inactive', true)
@@ -136,6 +135,13 @@ module.exports = function module(cb){
 
       // update the label
       text_value.node().dispatchEvent(new CustomEvent('change_me', { detail: {} } ))
+
+      if(typeof self._callback === 'function'){
+        return self._callback(d3.event.detail);
+      } else {
+        return;
+      }
+
     })
 
     var rect_button = this.g_root.append('rect')

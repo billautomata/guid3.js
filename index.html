@@ -372,22 +372,22 @@
 
 <script>
 
- // var button_obser1 = { v: true }
- //
- // var g_button1 = svg.append('g')
- //   .attr('transform', 'translate(120,300)')
- //
- // // pass in a callback
- // var button1 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
- //
- // button1.cssClass('green_button')
- // button1.width(150).height(50).connect(button_obser1,'v')
- // button1.type('toggle')
- // button1.labelOn('state on')
- // button1.labelOff('=)')
- // button1.roundedPercent(10)
- // // create the element on the d3 selection
- // button1.create(g_button1) // you can also chain the create function at the end
+  var button_obser1 = { v: true }
+
+  var g_button1 = svg.append('g')
+   .attr('transform', 'translate(120,300)')
+
+  // pass in a callback
+  var button1 = new GUId3.button(function(d){console.log('from callback button 1',d)})
+
+  button1.cssClass('green_button')
+  button1.width(150).height(50).connect(button_obser1,'v')
+  button1.type('toggle')
+  button1.labelOn('state on')
+  button1.labelOff('=)')
+  button1.roundedPercent(10)
+  // create the element on the d3 selection
+  button1.create(g_button1) // you can also chain the create function at the end
 
 </script>
 
