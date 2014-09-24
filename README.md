@@ -14,7 +14,7 @@ Almost all of the visual aspects are powered by setting a class on creation, and
 
 ```css
 /* example.css */
-.my_css_class.guid3-slider-text {
+.my_css_class.guid3-slider-textvalue {
   transform: rotate(33deg) translate(110px,-10px);
   font-family: monospace;
   font-size: 12px;
@@ -85,7 +85,7 @@ n.setValue(9333.01) // then you can call setValue(v)
   stroke-width: 0.5;
 }
 
-.slider0 .guid3-slider-text {
+.slider0 .guid3-slider-textvalue {
   transform: translate(-10px,12px);
   font-family: monospace;
   font-size: 23px;

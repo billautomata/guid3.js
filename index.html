@@ -43,7 +43,7 @@
       stroke-width: 0.5;
     }
 
-    .slider0 .guid3-slider-text {
+    .slider0 .guid3-slider-textvalue {
       transform: translate(-10px,12px);
       font-family: monospace;
       font-size: 23px;
@@ -73,7 +73,7 @@
       stroke: white;
     }
 
-    .slider2 .guid3-slider-text {
+    .slider2 .guid3-slider-textvalue {
       transform: rotate(33deg) translate(-30px,-10px);
       fill: orange;
       stroke: none;
@@ -91,7 +91,7 @@
       stroke: none;
     }
 
-    .slider3 .guid3-slider-text {
+    .slider3 .guid3-slider-textvalue {
       transform: rotate(180deg) translate(130px,0px);
       fill: white;
       stroke: none;
@@ -113,7 +113,7 @@
       stroke: none;
     }
 
-    .slider4 .guid3-slider-text {
+    .slider4 .guid3-slider-textvalue {
       fill: rgb(64,64,64);
       stroke: none;
       font-weight: 300;
@@ -197,13 +197,15 @@
     .range([10,100000])
     .clamp(true))
 
+  n._label = 'zomg'
+
   // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
   // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
   n.roundedPercent(5)
   n.create(g_slider0)   // you can also chain the create function at the end
-  //n.setValue(9333.01) // then you can call setValue(v)
+  n.setValue(9333.01) // then you can call setValue(v)
                         // which updates the slider and the target
 
 </script>
@@ -227,12 +229,12 @@
     .clamp(true))
 
   // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
-  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+  slider1.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
   slider1.create(g_slider1) // you can also chain the create function at the end
-  //n.setValue(9333.01) // then you can call setValue(v)
-                        // which updates the slider and the target
+
+  slider1.setValue(3333.0)
 
 </script>
 
