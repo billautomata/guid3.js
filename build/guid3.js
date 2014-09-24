@@ -207,9 +207,9 @@ module.exports = function module(cb){
   this._scale = undefined
 
   // target value
-  this.object_reference  // a reference to the target object
-  this.object_key        // the key of the target value
-  this.watcher          // Object.observe watcher
+  this.object_reference = undefined  // a reference to the target object
+  this.object_key = undefined        // the key of the target value
+  this.watcher = undefined           // Object.observe watcher
 
   // callback
   this._callback = cb                 // the callback that is run
@@ -219,7 +219,6 @@ module.exports = function module(cb){
 
   this.g_root            // group element is the parent container
                                      // of all the objects, target for events
-
 
   // //////////////////////////////////
   // "use functions"
@@ -326,6 +325,7 @@ module.exports = function module(cb){
     this.g_root.classed('parent', true)
 
     this.g_root.on('changed', function(){
+      console.log('g_root changed fired')
       console.log(d3.event.detail)
 
       if(self._type === 'horizontal'){

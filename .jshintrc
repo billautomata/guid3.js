@@ -27,7 +27,7 @@
                                 //   "double" : require double quotes
     "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
     "unused"        : true,     // true: Require all defined variables be used
-    "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+    "strict"        : false,     // true: Requires all functions run in ES5 Strict Mode
     "maxparams"     : false,    // {int} Max number of formal params allowed per function
     "maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
     "maxstatements" : false,    // {int} Max number statements per function
@@ -35,7 +35,7 @@
     "maxlen"        : false,    // {int} Max number of characters per line
 
     // Relaxing
-    "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+    "asi"           : true,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
     "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
     "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
     "eqnull"        : false,     // true: Tolerate use of `== null`
@@ -62,6 +62,8 @@
     "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
     "validthis"     : false,     // true: Tolerate using this in a non-constructor function
 
+    "-W085"          : true,     // true: tolerate using with
+
     // Environments
     "browser"       : true,     // Web Browser (window, document, etc)
     "browserify"    : false,    // Browserify (node.js code in the browser)
@@ -84,10 +86,15 @@
 
     // Custom Globals
     "globals"       : {
-      d3:true,
-      GUId3: true,
-      it: true,
-      describe: true,
-      before: true
+      "JS"         : false,
+      "describe"   : false,
+      "it"         : false,
+      "before"     : false,
+      "beforeEach" : false,
+      "after"      : false,
+      "afterEach"  : false,
+      "assertNotEqual": false,
+      "d3"         : false,
+      "GUId3"      : false
     }        // additional predefined global variables
 }
