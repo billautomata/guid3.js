@@ -5,12 +5,19 @@ GUId3.js
 
 a simple toolkit for UI components for mobile and desktop created with D3.js
 
+```bash
+# build using browserify
+$ npm install -g browserify
+$ browserify test/build_browser.js -o build/guid3.js
+```
+
 #### UI elements
 - [x] horizontal slider
 - [x] vertical slider
-- [ ] radial slider
-- [ ] toggle button
-- [ ] momentary button
+- [x] toggle button
+- [x] momentary button
+
+- [ ] circle slider
 - [ ] radio button group (quantile scales?)
 
 ```javascript
@@ -32,13 +39,14 @@ button.width(100).height(100)
 button.labelOn('on')
 button.labelOff('off')
 
-button.setValue(true)
-button.toggle()
+button.create(d3.select('g#something'))
 
-button.create(d3.select('div#something'))
+button.setValue(true)
+button.setValue(false)
+button.toggle() // changes the state of the button
+                // allows you to treat a momentary button like a toggle
 
 ```
-
 
 ```javascript
 // sliders!

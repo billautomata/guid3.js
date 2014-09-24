@@ -1,7 +1,6 @@
-var GUId3 = {}
-
-GUId3.button = function module(cb){
-  "use strict"
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = function module(cb){
+  'use strict';
   var self = this;
 
   // css hooks
@@ -28,49 +27,62 @@ GUId3.button = function module(cb){
   // moved to global scope of the object
   this.g_root
 
+  // //////////////////////////////////
+  // custom functions
+  // can only be called after .create()
+  this.toggle = function(){
+    this.object_reference[this.object_key] = !this.object_reference[this.object_key]
+  }
+
+  this.setValue = function(_){
+    this.object_reference[this.object_key] = _
+  }
+
+  // //////////////////////////////////
+  // param setters and getters
   this.cssClass = function(_){
-    if(!arguments.length) return this._cssClass;
+    if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
     return this;
   }
 
   this.cssId = function(_){
-    if(!arguments.length) return this._cssClass;
+    if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
     return this;
   }
 
   this.height = function(_){
-    if(!arguments.length) return this._height;
+    if(!arguments.length) { return this._height; }
     this._height = _
     return this;
   }
 
   this.roundedPercent = function(_){
-    if(!arguments.length) return this._roundedPercent;
+    if(!arguments.length) { return this._roundedPercent; }
     this._roundedPercent = _
     return this;
   }
 
   this.type = function(_){
-    if(!arguments.length) return this._type;
+    if(!arguments.length) { return this._type; }
     this._type = _
     return this;
   }
 
   this.width = function(_){
-    if(!arguments.length) return this._width;
+    if(!arguments.length) { return this._width; }
     this._width = _
     return this;
   }
 
   this.labelOn = function(_){
-    if(!arguments.length) return this._labelText.on;
+    if(!arguments.length) { return this._labelText.on; }
     this._labelText.on = _
     return this;
   }
   this.labelOff = function(_){
-    if(!arguments.length) return this._labelText.off;
+    if(!arguments.length) { return this._labelText.off; }
     this._labelText.off = _
     return this;
   }
@@ -84,7 +96,7 @@ GUId3.button = function module(cb){
     this.watcher = new PathObserver(this.object_reference, this.object_key)
     this.watcher.open(function(fresh,old){
       // update the slider visual
-      console.log('fresh',fresh,'old',old)
+      // console.log('fresh',fresh,'old',old)
       var v = fresh
       if(self.g_root === undefined){
         self._internal_value = v
@@ -116,7 +128,7 @@ GUId3.button = function module(cb){
       }
 
       // update the label
-      text_label.node().dispatchEvent(new CustomEvent('change_me', { detail: {} } ))
+      text_value.node().dispatchEvent(new CustomEvent('change_me', { detail: {} } ))
     })
 
     var rect_button = this.g_root.append('rect')
@@ -131,8 +143,6 @@ GUId3.button = function module(cb){
       .attr('fill-opacity', 1.0)
       .attr('stroke', 'none')
 
-
-
     if(self._type === 'toggle'){
       this.g_root.on('mousedown', function(){
         self.object_reference[self.object_key] = !self.object_reference[self.object_key]
@@ -144,11 +154,10 @@ GUId3.button = function module(cb){
       this.g_root.on('mouseup', function(){
         self.object_reference[self.object_key] = !self.object_reference[self.object_key]
       })
-
     }
 
     // text label
-    var text_label = this.g_root.append('text')
+    var text_value = this.g_root.append('text')
       .attr('class', 'guid3-button-text')
       .text(this._labelText.on)
       .attr('x', this._width * 0.5)
@@ -156,11 +165,11 @@ GUId3.button = function module(cb){
       .attr('dy', '0.333em')
       .attr('text-anchor', 'middle')
 
-    text_label.on('change_me', function(){
+    text_value.on('change_me', function(){
       if(self.object_reference[self.object_key]){
-        text_label.text(self._labelText.on)
+        text_value.text(self._labelText.on)
       } else {
-        text_label.text(self._labelText.off)
+        text_value.text(self._labelText.off)
       }
     })
 
@@ -171,8 +180,9 @@ GUId3.button = function module(cb){
 
 }
 
-GUId3.slider = function module(cb){
-  "use strict";
+},{}],2:[function(require,module,exports){
+module.exports = function module(cb){
+  'use strict';
   var self = this;
 
   console.log('here')
@@ -209,49 +219,49 @@ GUId3.slider = function module(cb){
   this.g_root
 
   this.roundedPercent = function(_){
-    if(!arguments.length) return this._roundedPercent;
+    if(!arguments.length) { return this._roundedPercent; }
     this._roundedPercent = _
     return this;
   }
 
   this.scale = function(_){
-    if(!arguments.length) return this._scale;
+    if(!arguments.length) { return this._scale; }
     this._scale = _
     return this;
   }
 
   this.type = function(_){
-    if(!arguments.length) return this._type;
+    if(!arguments.length) { return this._type; }
     this._type = _
     return this;
   }
 
   this.cssClass = function(_){
-    if(!arguments.length) return this._cssClass
+    if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
     return this;
   }
 
   this.cssId = function(_){
-    if(!arguments.length) return this._cssId
+    if(!arguments.length) { return this._cssId; }
     this._cssId = _
     return this;
   }
 
   this.width = function(_){
-    if(!arguments.length) return this._width;
+    if(!arguments.length) { return this._width; }
     this._width = _
     return this;
   }
 
   this.height = function(_){
-    if(!arguments.length) return this.height;
+    if(!arguments.length) { return this.height; }
     this._height = _
     return this;
   }
 
   this.label = function(_){
-    if(!arguments.length) return this._label;
+    if(!arguments.length) { return this._label; }
     this._label = _
     return this;
   }
@@ -314,12 +324,11 @@ GUId3.slider = function module(cb){
         rect_horizontal_indicator.attr('height', self._height - slider_height)
       }
 
-
-      text_label.node().dispatchEvent(new CustomEvent('change_me', { detail: self._scale.invert(d3.event.detail) } ))
+      text_value.node().dispatchEvent(new CustomEvent('change_me', { detail: self._scale.invert(d3.event.detail) } ))
     })
 
     var rect_slider_bg = this.g_root.append('rect')
-      .attr('class', 'guid3-slider-bg-colors')
+      .attr('class', 'guid3-slider')
       .attr('x',0)
       .attr('y',0)
       .attr('rx', (this._roundedPercent*0.05) + '%')
@@ -329,7 +338,7 @@ GUId3.slider = function module(cb){
 
     // horizontal slider
     var rect_horizontal_indicator = this.g_root.append('rect')
-      .attr('class', 'guid3-slider-indicator-colors')
+      .attr('class', 'guid3-slider-indicator')
       .attr('x',0)
       .attr('y',0)
       .attr('rx', (this._roundedPercent*0.05) + '%')
@@ -338,9 +347,9 @@ GUId3.slider = function module(cb){
       .attr('height', this._height)
       .style('pointer-events', 'none')
 
-    var text_label
+    var text_value
 
-    text_label = this.g_root.append('text')
+    text_value = this.g_root.append('text')
       .attr('class', 'guid3-slider-text')
       .text(this._label)
       .attr('x', this._width + 2)
@@ -348,13 +357,13 @@ GUId3.slider = function module(cb){
       .attr('dy', '0.33em')
 
     if(self._type === 'vertical'){
-      text_label.attr('x',0)
-      text_label.attr('y',0)
-      text_label.attr('transform', 'translate('+(self._width*0.5)+','+(self._height + 12)+')')
-      text_label.attr('text-anchor', 'middle')
+      text_value.attr('x',0)
+      text_value.attr('y',0)
+      text_value.attr('transform', 'translate('+(self._width*0.5)+','+(self._height + 12)+')')
+      text_value.attr('text-anchor', 'middle')
     }
 
-    text_label.on('change_me', function(){
+    text_value.on('change_me', function(){
       d3.select(this).text(self._scale(d3.event.detail).toFixed(2,0))
       console.log('running from change_me event')
       console.log(d3.event)
@@ -400,7 +409,7 @@ GUId3.slider = function module(cb){
         rect_horizontal_indicator.attr('height', self._height - use_value)
       }
 
-      text_label.node().dispatchEvent(new CustomEvent('change_me', { detail:map_scale(use_value) } ))
+      text_value.node().dispatchEvent(new CustomEvent('change_me', { detail:map_scale(use_value) } ))
 
       // set the value of the object itself
       self.object_reference[self.object_key] = self._scale(map_scale(use_value))
@@ -424,27 +433,9 @@ GUId3.slider = function module(cb){
 
 }
 
+},{}],3:[function(require,module,exports){
+window.GUId3 = {}
+window.GUId3.button = require('../lib/GUId3.button.js')
+window.GUId3.slider = require('../lib/GUId3.slider.js')
 
-  // draw_scale(d3.scale.linear())
-  // draw_scale(d3.scale.log())
-  // draw_scale(d3.scale.pow().exponent(3))
-  //
-  // function draw_scale(scale){
-  //
-  //   scale.domain([1,500])
-  //   scale.range([100,1])
-  //
-  //   var svg = d3.select('div#slider0').append('svg')
-  //   svg.attr('width', 500)
-  //   svg.attr('height', 100)
-  //
-  //   for(var i = 0; i < 500; i++){
-  //     svg.append('circle')
-  //       .attr('cx', i)
-  //       .attr('cy', scale(i))
-  //       .attr('r', 1)
-  //       .attr('fill', 'red')
-  //       .attr('stroke', 'none')
-  //   }
-  //
-  // }
+},{"../lib/GUId3.button.js":1,"../lib/GUId3.slider.js":2}]},{},[3]);

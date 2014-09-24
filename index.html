@@ -9,14 +9,20 @@
   <script src='vendor/d3.js' charset='utf-8'></script>
   <script src='vendor/observe.js' charset='utf-8'></script>
 
-  <script src='lib/GUId3.js' charset='utf-8'></script>
+  <script src='build/guid3.js' charset='utf-8'></script>
+  <link rel='stylesheet' type='text/css' href="lib/GUId3.css">
 
   <style>
 
     * {
     	-webkit-user-select: none;
     	-moz-user-select: none;
-    	user-select: none;
+    	 user-select: none;
+    }
+
+    body {
+      margin: none;
+      overflow: hidden;
     }
 
     textarea {
@@ -25,48 +31,14 @@
     	user-select: text!important
     }
 
-    .guid3-slider-text {
-      font-family: monospace;
-      fill: orange;
-      stroke: none;
-    }
-
-    .guid3-slider-bg-colors {
-      fill: red;
-      stroke: black;
-      rx: 32px;
-    }
-    .guid3-slider-indicator-colors {
-      fill: rgba(33,66,255,0.3);
-      stroke: white;
-    }
-
-    .guid3-button-colors {
-      fill: rgb(200,200,200);
-      stroke: none;
-    }
-
-    .guid3-button-colors-inactive {
-      fill-opacity: 0.1;
-      stroke: none;
-    }
-
-    .guid3-button-text {
-      font-family: Helvetica;
-      font-size: 22px;
-      fill: blue;
-      stroke: none;
-    }
-
-    .green_button .guid3-button-colors {
+    .green_button .guid3-button {
       fill: green;
     }
 
-    .green_button .guid3-button-colors-inactive {
+    .green_button .guid3-button-inactive {
       fill: blue;
       fill-opacity: 1.0;
     }
-
 
   </style>
 
@@ -74,15 +46,15 @@
 
 <body>
 
-  <div id='slider0'></div>
+  <div id='example'></div>
 
 </body>
 
 <script>
 
-  var svg = d3.select('div#slider0').append('svg')
-    .attr('width', 500)
-    .attr('height', 500)
+  var svg = d3.select('div#example').append('svg')
+    .attr('width', window.innerWidth)
+    .attr('height', window.innerHeight)
     .style('background-color', 'white')
 
 </script>
@@ -90,7 +62,7 @@
 <script>
 
   var g_slider0 = svg.append('g')
-    .attr('transform', 'translate(20,82)')
+    .attr('transform', 'translate(5,5)')
 
   var obser = { v: 50000 }  // the value we want to change
 
@@ -109,7 +81,7 @@
   // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
-  n.roundedPercent(100)
+  n.roundedPercent(5)
   n.create(g_slider0)   // you can also chain the create function at the end
   //n.setValue(9333.01) // then you can call setValue(v)
                         // which updates the slider and the target
