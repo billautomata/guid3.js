@@ -58,6 +58,16 @@
       stroke: none;
     }
 
+    .green_button .guid3-button-colors {
+      fill: green;
+    }
+
+    .green_button .guid3-button-colors-inactive {
+      fill: blue;
+      fill-opacity: 1.0;
+    }
+
+
   </style>
 
 </head>
@@ -99,6 +109,7 @@
   // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
 
   // create the element on the d3 selection
+  n.roundedPercent(100)
   n.create(g_slider0)   // you can also chain the create function at the end
   //n.setValue(9333.01) // then you can call setValue(v)
                         // which updates the slider and the target
@@ -133,6 +144,34 @@
 
 <script>
 
+  var obser_slider = { foo: 0 }
+
+  var g_slider1 = svg.append('g')
+    .attr('transform', 'translate(150,150)')
+
+  // pass in a callback
+  var slider1 = new GUId3.slider(function(d){console.log('from callback slider 1',d)})
+
+  slider1.type('horizontal')
+  slider1.width(100).height(10).connect(obser_slider,'foo')
+
+  slider1.scale(d3.scale.pow().exponent(4)
+    .domain([0,2])
+    .range([0,10000])
+    .clamp(true))
+
+  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
+  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+
+  // create the element on the d3 selection
+  slider1.create(g_slider1) // you can also chain the create function at the end
+  //n.setValue(9333.01) // then you can call setValue(v)
+                        // which updates the slider and the target
+
+</script>
+
+<script>
+
   var butt_obser = { v: true }
 
   var g_button0 = svg.append('g')
@@ -141,11 +180,32 @@
   // pass in a callback
   var button0 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
 
-
+  button0.cssClass('green_button')
   button0.width(50).height(50).connect(butt_obser,'v')
   button0.type('momentary')
+  button0.roundedPercent(100)
   // create the element on the d3 selection
   button0.create(g_button0) // you can also chain the create function at the end
+  //n.setValue(9333.01) // then you can call setValue(v)
+                        // which updates the slider and the target
+
+</script>
+
+<script>
+
+  var butt_obser0 = { v: true }
+
+  var g_button1 = svg.append('g')
+    .attr('transform', 'translate(250,200)')
+
+  // pass in a callback
+  var button1 = new GUId3.button(function(d){console.log('from callback slider 1',d)})
+
+  button1.width(70).height(50).connect(butt_obser0,'v')
+  button1.roundedPercent(30)
+  button1.type('toggle')  // defaults to toggle
+  // create the element on the d3 selection
+  button1.create(g_button1) // you can also chain the create function at the end
   //n.setValue(9333.01) // then you can call setValue(v)
                         // which updates the slider and the target
 
