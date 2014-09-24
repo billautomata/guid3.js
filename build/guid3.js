@@ -340,12 +340,17 @@ module.exports = function module(cb){
       console.log('value passed', d3.event.detail)
 
       if(self._type === 'horizontal'){
-        rect_horizontal_indicator.attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
+
+        rect_horizontal_indicator
+          .attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
+
       } else {
         var slider_height = map_scale.invert(self._scale.invert(d3.event.detail))
 
-        rect_horizontal_indicator.attr('y', slider_height)
-        rect_horizontal_indicator.attr('height', self._height - slider_height)
+        rect_horizontal_indicator
+          .attr('y', slider_height)
+          .attr('height', self._height - slider_height)
+
       }
 
       text_value.node().dispatchEvent(

@@ -12,6 +12,7 @@
 
   <script src='build/guid3.js' charset='utf-8'></script>
   <link rel='stylesheet' type='text/css' href="lib/GUId3.css">
+  <link rel='stylesheet' type='text/css' href="examples/awesome_interface.css">
 
   <!-- tests -->
 
@@ -33,7 +34,7 @@
     	-moz-user-select: text!important
     	user-select: text!important
     }
-
+/*
     .slider0 .guid3-slider {
       fill: rgb(33,33,100);
       stroke: black;
@@ -166,7 +167,7 @@
       stroke: black;
       stroke-width: 0.5px;
       stroke-opacity: 1.0;
-    }
+    }*/
 
   </style>
 
@@ -181,45 +182,44 @@
 
 <script>
 
-  var svg = d3.select('div#example').append('svg')
+  window.svg = d3.select('div#example').append('svg')
     .attr('width', window.innerWidth)
     .attr('height', window.innerHeight)
     .style('background-color', 'white')
 
 </script>
 
+<script src="examples/awesome_interface.js"></script>
+
 <script>
 
-  var g_slider0 = svg.append('g')
-    .attr('transform', 'translate(15,5)')
-
-  var obser = { v: 50000 }  // the value we want to change
-
-  // pass in a callback
-  var n = new GUId3.slider(function(d){
-    console.log('from callback slider 0',d)
-  })
-
-  n.cssClass('slider0')
-
-  n.type('horizontal')
-  n.width(400).height(50).connect(obser,'v')
-
-  n.scale(d3.scale.linear()
-    .domain([0,2])
-    .range([10,100000])
-    .clamp(true))
-
-  n.label('zomg yo')
-
-  // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
-  // n.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
-
-  // create the element on the d3 selection
-  n.roundedPercent(5)
-  n.create(g_slider0) // you can also chain the create function at the end
-  n.setValue(9333.01) // then you can call setValue(v)
-                      // which updates the slider and the target
+  // var g_slider0 = svg.append('g')
+  //   .attr('transform', 'translate(15,5)')
+  //
+  // var obser = { v: 50000 }  // the value we want to change
+  //
+  // // pass in a callback
+  // var n = new GUId3.slider(function(d){
+  //   console.log('from callback slider 0',d)
+  // })
+  //
+  // n.cssClass('slider0')
+  //
+  // n.type('horizontal')
+  // n.width(400).height(50).connect(obser,'v')
+  //
+  // n.scale(d3.scale.linear()
+  //   .domain([0,2])
+  //   .range([10,100000])
+  //   .clamp(true))
+  //
+  // n.label('zomg yo')
+  //
+  // // create the element on the d3 selection
+  // n.roundedPercent(5)
+  // n.create(g_slider0) // you can also chain the create function at the end
+  // n.setValue(9333.01) // then you can call setValue(v)
+  //                     // which updates the slider and the target
 
 </script>
 
@@ -232,9 +232,10 @@
   // var slider1 = new GUId3.slider(function(d){console.log('from callback slider 1',d)})
   //
   // slider1.cssClass('slider1')
+  // slider1.label('')
   //
-  // slider1.type('horizontal')
-  // slider1.width(400).height(50).connect(obser,'v')
+  // slider1.type('vertical')
+  // slider1.width(10).height(300).connect(obser,'v')
   //
   // slider1.scale(d3.scale.pow().exponent(4)
   //   .domain([0,2])
@@ -242,7 +243,7 @@
   //   .clamp(true))
   //
   // // n.scale(d3.scale.linear().domain([0,1]).range([10,100000]).clamp(true))
-  // slider1.callback(function(q){ console.log('zomg',q) }) // replaces the callback set in the constructor
+  // slider1.callback(function(q){ console.log('zomggg',q) }) // replaces the callback set in the constructor
   //
   // // create the element on the d3 selection
   // slider1.create(g_slider1) // you can also chain the create function at the end
@@ -372,32 +373,32 @@
 
 <script>
 
-  var button_obser1 = { v: true }
-
-  var g_button1 = svg.append('g')
-   .attr('transform', 'translate(120,300)')
-
-  // pass in a callback
-  var button1 = new GUId3.button(function(d){
-    console.log('from callback button 1',d)
-    if(d){
-      obser.v = 10001.2
-    } else {
-      obser.v = 93030.1
-    }
-  })
-
-  button1.cssClass('green_button')
-  button1.width(150).height(50).connect(button_obser1,'v')
-  button1.type('toggle')
-  button1.labelOn('state on')
-  button1.labelOff('=)')
-  button1.roundedPercent(10)
-
-  // button1.callback(function(d){console.log(d,'zomg')})
-
-  // create the element on the d3 selection
-  button1.create(g_button1) // you can also chain the create function at the end
+  // var button_obser1 = { v: true }
+  //
+  // var g_button1 = svg.append('g')
+  //  .attr('transform', 'translate(120,300)')
+  //
+  // // pass in a callback
+  // var button1 = new GUId3.button(function(d){
+  //   console.log('from callback button 1',d)
+  //   if(d){
+  //     obser.v = 10001.2
+  //   } else {
+  //     obser.v = 93030.1
+  //   }
+  // })
+  //
+  // button1.cssClass('green_button')
+  // button1.width(150).height(50).connect(button_obser1,'v')
+  // button1.type('toggle')
+  // button1.labelOn('state on')
+  // button1.labelOff('=)')
+  // button1.roundedPercent(10)
+  //
+  // // button1.callback(function(d){console.log(d,'zomg')})
+  //
+  // // create the element on the d3 selection
+  // button1.create(g_button1) // you can also chain the create function at the end
 
 </script>
 
@@ -422,7 +423,7 @@
 
 <script src='test/test_button.js' charset='utf-8'></script>
 <script src='test/test_slider.js' charset='utf-8'></script>
-<script>JS.Test.autorun()</script>
+<script>//JS.Test.autorun()</script>
 
 <script>
 console.log(location.host)

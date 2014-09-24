@@ -1,0 +1,50 @@
+.vert0 .guid3-slider {
+  fill-opacity: 0.01;
+}
+
+.vert0 .guid3-slider-textvalue {
+  fill: none;
+}
+
+.button0 .guid3-button {
+  fill: #a27a1c;
+  stroke: none;
+}
+
+.button0 .guid3-button-inactive {
+  fill-opacity: 0.5;
+  stroke: none;
+}
+
+.button0 .guid3-button-text {
+  fill: white;
+  stroke: none;
+  font-family: Verdana;
+  font-size: 16px;
+}
+
+
+.slider2 .guid3-slider {
+  fill: #eaeaea;
+  stroke: black;
+  stroke-opacity: 0.1;
+}
+
+.slider2 .guid3-slider-indicator {
+  fill: #555c76;
+  stroke: none;
+}
+
+.slider2 .guid3-slider-textvalue {
+  transform: translate(-5px,7px);
+  fill: #7c7c7c;
+  text-anchor: end;
+}
+
+.slider2 .guid3-slider-textlabel {
+  transform: translate(5px,7px);
+  fill: white;
+  font-family: Verdana;
+  font-size: 10px;
+
+}
