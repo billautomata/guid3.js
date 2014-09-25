@@ -3,17 +3,19 @@ GUId3.js v0.4.1 [examples](http://billautomata.github.io/GUId3.js/)
 
 ##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
 
-A simple toolkit for creating UI components with D3.js.  The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
+A simple toolkit for interactive UI components with D3.js.  The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
 
 Almost all of the visual aspects are powered by setting a class on creation, and modifying the CSS for the corresponding component of the UI element.
 
+* bi-directional communication
+  * click the slider, the value is updated
+  * update the value, the slider visual is correct
 * uses d3 scales internally
-* two way communication that monitors the target value using Object.observe
-* or use as a proxy to multiple values setting a callback function
-
+* use as a proxy to multiple values setting a callback function
 
 ```css
 /* example.css */
+/* changing the position and look of the value indicator for the slider */
 .my_css_class.guid3-slider-textvalue {
   transform: rotate(33deg) translate(110px,-10px);
   font-family: monospace;

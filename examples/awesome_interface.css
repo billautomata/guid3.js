@@ -1,6 +1,7 @@
 .vert0 .guid3-slider {
   fill: white;
   fill-opacity: 1.0;
+
 }
 
 .vert0 .guid3-slider-textvalue {
@@ -20,8 +21,9 @@
 .button0 .guid3-button-text {
   fill: white;
   stroke: none;
-  font-family: Verdana;
+  font-family: Helvetica;
   font-size: 16px;
+  -webkit-filter: blur(29px);
 }
 
 .color_slider .guid3-slider {
@@ -41,21 +43,24 @@
 
 .color_slider .guid3-slider-textlabel {
   transform: translate(10px,140px);
-  font-family: Verdana;
+  font-family: Helvetica;
   font-size: 10px;
   text-anchor: middle;
 }
 
 #red text.guid3-slider-textlabel {
   fill: red;
+  font-family: Helvetica;
 }
 
 #red rect.guid3-slider-indicator {
   fill: red;
+
 }
 
 #green text.guid3-slider-textlabel {
   fill: green;
+  font-family: Helvetica;
 }
 #green rect.guid3-slider-indicator {
   fill: green;
@@ -64,6 +69,7 @@
 
 #blue text.guid3-slider-textlabel {
   fill: blue;
+  font-family: Helvetica;
 }
 #blue rect.guid3-slider-indicator {
   fill: blue;
@@ -71,7 +77,7 @@
 
 
 .slider2 .guid3-slider {
-  fill: #eaeaea;
+  fill: #bdbdbd;
   stroke: black;
   stroke-opacity: 0.1;
 }
@@ -85,12 +91,16 @@
   transform: translate(-5px,7px);
   fill: #7c7c7c;
   text-anchor: end;
+  font-size: 12px;
+  font-weight: 100;
+  font-family: Helvetica;
 }
 
 .slider2 .guid3-slider-textlabel {
-  transform: translate(5px,7px);
+  transform: translate(5px,24px);
   fill: white;
-  font-family: Verdana;
+  font-family: Helvetica;
+  font-weight: 100;
   font-size: 10px;
 }
 
@@ -137,6 +147,6 @@
 .button_toggle0 .guid3-button-text {
   fill: white;
   stroke: none;
-  font-family: Verdana;
+  font-family: Helvetica;
   font-size: 16px;
 }
