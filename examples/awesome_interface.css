@@ -1,5 +1,6 @@
 .vert0 .guid3-slider {
-  fill-opacity: 0.01;
+  fill: white;
+  fill-opacity: 1.0;
 }
 
 .vert0 .guid3-slider-textvalue {
@@ -46,5 +47,34 @@
   fill: white;
   font-family: Verdana;
   font-size: 10px;
+
+}
+
+.slider_linear_log .guid3-slider {
+  fill: #eaeaea;
+  stroke: black;
+  stroke-opacity: 0.1;
+}
+
+.slider_linear_log .guid3-slider-indicator {
+  fill: #5f7fe2;
+  stroke: none;
+}
+
+.slider_linear_log .guid3-slider-textvalue {
+  transform: translate(-5px,0px);
+  font-family: Helvetica;
+  font-size: 12px;
+  font-weight: 100;
+  fill: #7c7c7c;
+  text-anchor: end;
+}
+
+.slider_linear_log .guid3-slider-textlabel {
+  transform: translate(5px,10px);
+  fill: #494949;
+  font-family: Helvetica;
+  font-weight: 100;
+  font-size: 14px;
 
 }
