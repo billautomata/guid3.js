@@ -328,6 +328,7 @@ module.exports = function module(cb){
 
     this.g_root = svg.append('g').attr('id', 'slider_root')
       .attr('class', this._cssClass)
+      .attr('id', this._cssId)
       .attr('width', this._width)
       .attr('height', this._height)
       .style('border', '1px solid black')
@@ -336,8 +337,8 @@ module.exports = function module(cb){
 
     this.g_root.on('changed', function(){
 
-      console.log('g_root changed fired')
-      console.log('value passed', d3.event.detail)
+      //console.log('g_root changed fired')
+      //console.log('value passed', d3.event.detail)
 
       if(self._type === 'horizontal'){
 

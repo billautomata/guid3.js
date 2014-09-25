@@ -8,7 +8,7 @@
 }
 
 .button0 .guid3-button {
-  fill: #a27a1c;
+  fill: #7bb1cd;
   stroke: none;
 }
 
@@ -22,6 +22,51 @@
   stroke: none;
   font-family: Verdana;
   font-size: 16px;
+}
+
+.color_slider .guid3-slider {
+  fill: #eaeaea;
+  stroke: black;
+  stroke-opacity: 0.1;
+}
+
+.color_slider .guid3-slider-indicator {
+  fill: #555c76;
+  stroke: none;
+}
+
+.color_slider .guid3-slider-textvalue {
+  display: none;
+}
+
+.color_slider .guid3-slider-textlabel {
+  transform: translate(10px,140px);
+  font-family: Verdana;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+#red text.guid3-slider-textlabel {
+  fill: red;
+}
+
+#red rect.guid3-slider-indicator {
+  fill: red;
+}
+
+#green text.guid3-slider-textlabel {
+  fill: green;
+}
+#green rect.guid3-slider-indicator {
+  fill: green;
+}
+
+
+#blue text.guid3-slider-textlabel {
+  fill: blue;
+}
+#blue rect.guid3-slider-indicator {
+  fill: blue;
 }
 
 
@@ -47,7 +92,6 @@
   fill: white;
   font-family: Verdana;
   font-size: 10px;
-
 }
 
 .slider_linear_log .guid3-slider {
@@ -77,4 +121,22 @@
   font-weight: 100;
   font-size: 14px;
 
+}
+
+.button_toggle0 .guid3-button {
+  fill: #7bb1cd;
+  fill-opacity: 1.0;
+  stroke: none;
+}
+
+.button_toggle0 .guid3-button-inactive {
+  fill-opacity: 0.1;
+  stroke: #bababa;
+}
+
+.button_toggle0 .guid3-button-text {
+  fill: white;
+  stroke: none;
+  font-family: Verdana;
+  font-size: 16px;
 }

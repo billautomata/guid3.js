@@ -21,7 +21,6 @@ for(var i = 0; i < n_sliders; i++){
 
 Object.keys(window.vert0).forEach(function(k,key_index){
 
-
   window.vert0['_'+key_index] = 1.0
 
   var w = 10
@@ -34,12 +33,12 @@ Object.keys(window.vert0).forEach(function(k,key_index){
 
   var slider = new GUId3.slider(function(v){
   //  console.log(v)
-    console.log(key_index)
+    // console.log(key_index)
 
     if(key_index % 2 === 0){
-      target_ellipse.attr('ry', v)
+      target_ellipse.attr('ry', v*1.5)
     } else {
-      target_ellipse.attr('rx', v)
+      target_ellipse.attr('rx', v*1.5)
     }
 
   })
@@ -58,14 +57,49 @@ Object.keys(window.vert0).forEach(function(k,key_index){
 
 })
 
-window.counter_stepper = { i: 0 }
-for(window.counter_stepper.i = 0; window.counter_stepper.i < 32; window.counter_stepper.i++){
 
+// r g b sliders
+
+var ellipse_color = {
+  red: 255,
+  green: 255,
+  blue: 255
 }
+
+
+
+;['red', 'green', 'blue'].forEach(function(color_name,color_idx){
+
+  var w = 20
+  var h = 130
+
+  var color_slider = new GUId3.slider(function(v){
+    var value = 'rgb(' + Math.floor(ellipse_color.red) + ',' + Math.floor(ellipse_color.green) + ',' + Math.floor(ellipse_color.blue) +')'
+    target_ellipse.attr('fill', value)
+  })
+  color_slider.label(color_name)
+  color_slider.cssClass('color_slider')
+  color_slider.cssId(color_name)
+  color_slider.width(w)
+  color_slider.height(h)
+  color_slider.type('vertical')
+
+  color_slider.scale(d3.scale.linear().domain([1,2]).range([0,255]))
+
+  color_slider.connect(ellipse_color,color_name)
+
+  var g_color_parent = window.svg.append('g')
+    .attr('transform', 'translate('+(510+(color_idx*(w*1.5)))+',20)')
+
+  color_slider.create(g_color_parent)
+
+  color_slider.setValue(Math.floor(Math.random()*255))
+
+})
 
 // slider target ellipse
 var g_target_ellipse_parent = window.svg.append('g')
-  .attr('transform', 'translate(740,128)')
+  .attr('transform', 'translate(720,110)')
 
 var target_ellipse = g_target_ellipse_parent.append('ellipse')
   .attr('cx', 0)
@@ -99,18 +133,18 @@ on_off_button.labelOff('timer off')
 
 on_off_button.cssClass('button0')
 on_off_button.width(100)
-on_off_button.height(100)
+on_off_button.height(33)
 on_off_button.roundedPercent(10)
 
 on_off_button.connect(button_target,'v')
 
 var g_button_parent = window.svg.append('g')
-  .attr('transform', 'translate(500,-100)')
+  .attr('transform', 'translate(500,240)')
 
   g_button_parent.transition()
-    .duration(1000)
-    .ease('bounce')
-    .attr('transform', 'translate(500,110)')
+    .duration(1500)
+    .ease('elastic')
+    .attr('transform', 'translate(500,175)')
 
 
 on_off_button.create(g_button_parent)
@@ -153,9 +187,19 @@ var g_slider2_parent = window.svg.append('g')
 
 slider2.create(g_slider2_parent)
 
-slider2.setValue(333)
+slider2.setValue(200)
 
+
+/////////////////////////////////////////////
 // linear and log scales
+
+window.svg.append('rect')
+  .attr('x', 0)
+  .attr('y', 273)
+  .attr('width', 510)
+  .attr('height', 66)
+  .attr('fill', '#fafafa')
+  .attr('stroke', '#c5c5c5')
 
 var linear_log_target = { v: 1000 }
 
@@ -184,3 +228,29 @@ var g_log_parent = window.svg.append('g')
   .attr('transform', 'translate(5,310)')
 
 slider_log.create(g_log_parent)
+
+// toggle ranges button
+window.toggle_button0 = { v: true }
+var toggle_ranges_button = new GUId3.button(function(v){
+  if(v){
+    linear_log_target.v = 1000
+  } else {
+    linear_log_target.v = Math.random() * 100000
+  }
+})
+
+toggle_ranges_button.labelOn(' ')
+toggle_ranges_button.labelOff(' ')
+toggle_ranges_button.type('momentary')
+
+toggle_ranges_button.cssClass('button_toggle0')
+toggle_ranges_button.width(80)
+toggle_ranges_button.height(60)
+toggle_ranges_button.roundedPercent(10)
+
+toggle_ranges_button.connect(window.toggle_button0,'v')
+
+var g_toggle_button_parent = window.svg.append('g')
+  .attr('transform', 'translate(520,275)')
+
+toggle_ranges_button.create(g_toggle_button_parent)
