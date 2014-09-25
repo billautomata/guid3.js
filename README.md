@@ -1,4 +1,4 @@
-GUId3.js v 0.3.1
+GUId3.js v0.4.1 [examples](http://billautomata.github.io/GUId3.js/)
 ========
 
 ##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
@@ -64,7 +64,7 @@ n.scale(d3.scale.linear()
 // replaces the callback set in the constructor
 
 // create the element on the d3 selection
-n.roundedPercent(5)
+n.roundedPercent(5) // rounded rectangles
 n.create(g_slider0) // call create() at the end
 n.setValue(9333.01) // then you can call setValue(v)
                     // which updates the slider and the target
