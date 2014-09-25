@@ -50,7 +50,7 @@ module.exports = function module(cb){
     this._callback = _
     return this;
   }
-  
+
   this.cssClass = function(_){
     if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
@@ -104,17 +104,17 @@ module.exports = function module(cb){
     this.object_reference = o
     this.object_key = k
 
-    this.watcher = new PathObserver(this.object_reference, this.object_key)
-    this.watcher.open(function(fresh,old){
-      // update the slider visual
-      // console.log('fresh',fresh,'old',old)
-      var v = fresh
-      if(self.g_root === undefined){
-        self._internal_value = v
-      } else {
-        self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
-      }
-    })
+    // this.watcher = new PathObserver(this.object_reference, this.object_key)
+    // this.watcher.open(function(fresh,old){
+    //   // update the slider visual
+    //   // console.log('fresh',fresh,'old',old)
+    //   var v = fresh
+    //   if(self.g_root === undefined){
+    //     self._internal_value = v
+    //   } else {
+    //     self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
+    //   }
+    // })
 
     return this;
   }
@@ -308,16 +308,37 @@ module.exports = function module(cb){
     this.object_reference = o
     this.object_key = k
 
-    this.watcher = new PathObserver(this.object_reference, this.object_key)
-    this.watcher.open(function(fresh,old){
-      // update the slider visual
-      var v = fresh
-      if(self.g_root === undefined){
-        self._internal_value = v
-      } else {
-        self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
-      }
+
+
+    ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
+
+    Object.observe(this.object_reference, function(changes){
+
+      // console.log(self.object_key)
+
+      changes.forEach(function(change,change_index){
+        if(change.name === self.object_key){
+          // console.log(self.object_key, 'new value', change.object[self.object_key])
+
+          // update the slider visual
+          var v = change.object[self.object_key]
+          if(self.g_root === undefined){
+            self._internal_value = v
+          } else {
+            self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
+          }
+
+        }
+      })
+
+
+      // console.log('changes')
+      // console.log(changes)
     })
+
+    // this.watcher = new PathObserver(this.object_reference, this.object_key)
+    // this.watcher.open(function(fresh,old){
+    // })
 
     return this;
   }
@@ -338,8 +359,8 @@ module.exports = function module(cb){
 
     this.g_root.on('changed', function(){
 
-      //console.log('g_root changed fired')
-      //console.log('value passed', d3.event.detail)
+      // console.log('g_root changed fired')
+      // console.log('value passed', d3.event.detail)
 
       if(self._type === 'horizontal'){
 
@@ -443,16 +464,25 @@ module.exports = function module(cb){
 
     var drag_function = function(d){
 
+      // console.log('here')
+      // console.log(d3.event)
+
       var bounding_node = self.g_root.node().getBoundingClientRect()
+      // console.log(bounding_node)
+
+      if(!d3.event.clientX){
+        d3.event.clientX = d3.event.x
+        d3.event.clientY = d3.event.y
+      }
 
       var x,y
 
       if(d3.event.type === 'drag'){
-        x = d3.event.x
-        y = d3.event.y
+        x = d3.event.clientX  // or .layerX
+        y = d3.event.clientY  // or .layerY
       } else {
-        x = d3.event.x - bounding_node.left
-        y = d3.event.y - bounding_node.top
+        x = d3.event.clientX - bounding_node.left
+        y = d3.event.clientY - bounding_node.top
       }
 
       // clamp the input, out of bounds values can break things
@@ -467,6 +497,8 @@ module.exports = function module(cb){
       } else {
         use_value = y
       }
+
+      // console.log('use_value',use_value)
 
       // set the value of the object itself
       // this triggers the callback on g_root.on('changed')

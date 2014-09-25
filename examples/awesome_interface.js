@@ -254,3 +254,7 @@ var g_toggle_button_parent = window.svg.append('g')
   .attr('transform', 'translate(520,275)')
 
 toggle_ranges_button.create(g_toggle_button_parent)
+
+
+
+clearInterval(change_interval)
