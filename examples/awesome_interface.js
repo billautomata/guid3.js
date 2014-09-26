@@ -29,8 +29,6 @@ Object.keys(window.vert0).forEach(function(k,key_index){
   var g_parent = window.svg.append('g')
     .attr('transform', 'translate('+(10+(key_index*(w*1.5)))+',10)')
 
-
-
   var slider = new GUId3.slider(function(v){
   //  console.log(v)
     // console.log(key_index)
@@ -207,14 +205,14 @@ var linear_log_target = { v: 1000 }
 
 var slider_linear = new GUId3.slider()
 slider_linear.cssClass('slider_linear_log')
-slider_linear.width(500).height(22)
+slider_linear.width(500).height(22).fixedDecimal(2)
 slider_linear.label('linear range')
 slider_linear.scale(d3.scale.linear().domain([1,100]).range([1,100000]))
 slider_linear.connect(linear_log_target, 'v')
 
 var slider_log = new GUId3.slider()
 slider_log.cssClass('slider_linear_log')
-slider_log.width(500).height(22)
+slider_log.width(500).height(22).fixedDecimal(1)
 slider_log.label('exp/log range')
 slider_log.scale(d3.scale.pow().exponent(4).domain([1,100]).range([1,100000]))
 slider_log.connect(linear_log_target, 'v')
