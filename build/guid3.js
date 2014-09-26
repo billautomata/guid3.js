@@ -243,11 +243,10 @@ module.exports = function module(cb){
   the CSS `class` of the parent group element
 
   set with {{#crossLink "Slider/cssClass"}}{{/crossLink}}
-  @private
   @property _cssClass
 
   @type {String}
-  @default ''
+  @default empty string
   **/
   this._cssClass=''
 
@@ -257,30 +256,61 @@ module.exports = function module(cb){
   set with {{#crossLink "Slider/cssId"}}{{/crossLink}}
   @property _cssId
   @type {String}
-  @default ''
+  @default empty string
   **/
   this._cssId=''
 
-
   /**
   the type of slider, either `'vertical'` or `'horizontal'`
-
 
   set with {{#crossLink "Slider/cssType"}}{{/crossLink}}
   @property _type
   @type {String}
   @default 'horizontal'
   **/
-  this._type = 'horizontal' // or vertical
+  this._type = 'horizontal'
 
-  // visual attributes not set by CSS
+  /**
+  the width of the slider in pixels
+
+  set with {{#crossLink "Slider/width"}}{{/crossLink}}
+  @property _width
+  @type {Number}
+  @default '300'
+  **/
   this._width = 300
+
+  /**
+  the height of the slider in pixels
+
+  set with {{#crossLink "Slider/height"}}{{/crossLink}}
+  @property _height
+  @type {Number}
+  @default '50'
+  **/
   this._height = 50
+
+
   this._roundedPercent = 0
 
-  this._label = undefined            // text used in the label box
+  /**
+  the text label of the slider
 
-  // math stuffs
+  set with {{#crossLink "Slider/label"}}{{/crossLink}}
+  @property _label
+  @type {String}
+  @default empty string
+  **/
+  this._label = ''
+
+  /**
+  the d3 scale of the slider
+
+  set with {{#crossLink "Slider/scale"}}{{/crossLink}}
+  @property _scale
+  @type {Function}
+  @default undefined
+  **/
   this._scale = undefined
 
   // target value
@@ -288,12 +318,35 @@ module.exports = function module(cb){
   this.object_key = undefined        // the key of the target value
   this.watcher = undefined           // Object.observe watcher
 
-  // callback
-  this._callback = cb                 // the callback that is run
+  /**
+  the user facing callback function
+
+  set with {{#crossLink "Slider/callback"}}{{/crossLink}}
+  @property _callback
+  @type {Function}
+  @default undefined
+  **/
+  this._callback = cb
 
   // internal value
   this._internal_value = 0           // maybe deprecate
 
+  /**
+  the parent group element that the `_cssClass` and `_cssId` are applied to
+
+  use this element to use d3 functions to access internal elements
+
+  @example
+      // fade in the text for your sliders
+      var slider = new GUId3.slider()
+      d3.select(slider.g_root).selectAll('text').opacity(0.0)
+      d3.select(slider.g_root).selectAll('text').transition().opacity(1.0)
+
+  set with {{#crossLink "Slider/callback"}}{{/crossLink}}
+  @property g_root
+  @type {Object}
+  @default undefined
+  **/
   this.g_root            // group element is the parent container
                                      // of all the objects, target for events
 
@@ -302,47 +355,68 @@ module.exports = function module(cb){
   // "use functions"
   // can only be called after .create()
 
-
   /**
-   * Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
-   *
-   * @method setValue
-   * @param {Number} v the value to be set
-   * @return {} undefined
-   */
+  Sets the value of the target function.  Invokes the callback chain.
+
+  **can only be called after calling `create()`**
+
+  @method setValue
+  @param v{Number} the value mentioned above
+
+  @example
+      slider.setValue(3.0)
+      // slider target value updates
+      // slider visual updates (indicator and text value label)
+      // slider callback is invoked
+
+  @return undefined
+  */
   this.setValue = function(v){
     // update the target value
     this.object_reference[self.object_key] = v
   }
 
   /**
-   * Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
-   *
-   * @method getValue
-   * @return {Number} target value
-   */
+  Gets the value of the target.
+
+  **can only be called after calling `create()`**
+
+  @method getValue
+
+  @example
+      slider.setValue(3.0)
+      console.log(slider.getValue())
+      // outputs '3.0'
+
+  @return Number
+  */
   this.getValue = function(){
     return this.object_reference[self.object_key];
   }
 
-  // //////////////////////////////////
-  // param setters and getters
-  // can be called before and after .create()
-
   /**
-   Sets the calback to be invoked when the target value changes because of slider interaction, or outside forces.  The callback will receive one argument, the scaled value.  Do not change the target object in this callback.  You will cause an infinite loop as changing the value will retrigger the callback chain.
 
-   @method callback
-   @chainable
-   @param [f] {Function} the callback function mentioned above
+  Sets the calback to be invoked when the target value changes because of
+  slider interaction, or outside forces.  The callback will receive one
+  argument, the scaled value.  Do not change the target object in this
+  callback.  You will cause an infinite loop as changing the value will
+  retrigger the callback chain.
 
-   @example
-       slider.callback(function(v){ console.log('value changed '+ v) })
-       // slider target changes to 1.01
-       // outputs 'value changed 1.01'
+  @method callback
+  @chainable
 
-   @return **Function** `_callback` passing no arguments triggers the return, this terminates the chain
-   */
+  @param [f] {Function}
+  the callback function mentioned above
+
+  @example
+      slider.callback(function(v){ console.log('value changed '+ v) })
+      // slider target changes to 1.01
+      // outputs 'value changed 1.01'
+
+  @return **Function** `_callback`
+  passing no arguments triggers the return, this terminates the chain
+
+  */
   this.callback = function(f){
     if(!arguments.length) { return this._callback; }
     this._callback = f
@@ -350,22 +424,31 @@ module.exports = function module(cb){
   }
 
   /**
-   Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+  Sets the CSS class of the parent group element of the slider.
 
-   @method cssClass
-   @param {String} _
-   @chainable
-   */
-  /**
-   Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+  @method cssClass
+  @chainable
 
-   @method cssClass
-   @return {Function} callback
+  @param _ {String}
+  the CSS class mentioned above
 
-   @example
-       slider.cssClass('my-class')
+  @example
+      slider.cssClass('foo')
+      slider.create(d3.select('svg'))
 
-   */
+  in your stylesheet
+
+      .foo .gui-slider {
+        fill: red;
+        stroke: orange;
+      }
+
+  creates a slider with red background and an orange stroke
+
+  @return **String** `_cssClass`
+  passing no arguments triggers the return, this terminates the chain
+
+  */
   this.cssClass = function(_){
     if(!arguments.length) { return this._cssClass; }
     this._cssClass = _

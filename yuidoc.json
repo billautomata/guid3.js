@@ -1,0 +1,9 @@
+{
+    "name": "GUId3",
+    "description": "UI elements for d3js",
+    "version": "0.5.1",
+    "url": "http://.../",
+    "options": {
+        "outdir": "./build/apidocs"
+    }
+}
