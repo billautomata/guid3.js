@@ -1,5 +1,5 @@
 ![logo](http://billautomata.github.io/GUId3.js/logo.png)
-#v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
+v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
 ========
 
 ##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
