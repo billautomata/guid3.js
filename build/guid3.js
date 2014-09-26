@@ -238,7 +238,6 @@ module.exports = function module(cb){
   **/
   var self = this;
 
-
   /**
   the CSS `class` of the parent group element
 
@@ -269,6 +268,17 @@ module.exports = function module(cb){
   @default 'horizontal'
   **/
   this._type = 'horizontal'
+
+  /**
+  the transition speed in milliseconds the slider will use when traveling
+  to a new position because it has been clicked
+
+  set with {{#crossLink "Slider/transitionSpeed"}}{{/crossLink}}
+  @property _transitionSpeed
+  @type {Number}
+  @default 100
+  **/
+  this._transitionSpeed = 100
 
   /**
   the width of the slider in pixels
@@ -316,7 +326,6 @@ module.exports = function module(cb){
   // target value
   this.object_reference = undefined  // a reference to the target object
   this.object_key = undefined        // the key of the target value
-  this.watcher = undefined           // Object.observe watcher
 
   /**
   the user facing callback function
@@ -610,6 +619,36 @@ module.exports = function module(cb){
     return this;
   }
 
+  /**
+  Sets the transition speed of the slider.  The value passed is in
+  milliseconds.  This is the duration of the transition that will be used
+  when the slider is clicked on or the source value is updated.
+  If you want instant movement between positions, effectively no transition,
+  pass zero `0` to this method.
+
+  @method transitionSpeed
+  @chainable
+
+  @param _ {Number}
+  the transition speed in milliseconds
+
+  @example
+      var slider = new GUId3.slider()
+      slider.transitionSpeed(303)
+      slider.create(d3.select('svg'))
+
+  creates a slider with a transition speed of 303ms
+
+  @return **String** `_type`
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.transitionSpeed = function(_){
+    if(!arguments.length) { return this._transitionSpeed; }
+    this._transitionSpeed = _
+    return this;
+  }
+
 
   /**
   Sets the visual width of the slider.  Sadly this property cannot be set
@@ -758,7 +797,7 @@ module.exports = function module(cb){
           rect_horizontal_indicator
             .attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
         } else {
-          rect_horizontal_indicator.transition().duration(150)
+          rect_horizontal_indicator.transition().duration(self._transitionSpeed)
             .attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
         }
 
@@ -771,7 +810,7 @@ module.exports = function module(cb){
             .attr('y', slider_height)
             .attr('height', self._height - slider_height)
         } else {
-          rect_horizontal_indicator.transition().duration(150)
+          rect_horizontal_indicator.transition().duration(self._transitionSpeed)
             .attr('y', slider_height)
             .attr('height', self._height - slider_height)
         }
