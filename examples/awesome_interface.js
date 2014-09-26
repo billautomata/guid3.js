@@ -1,6 +1,3 @@
-
-
-
 // 32 horizontal sliders
 
 window.svg.append('rect')
@@ -110,8 +107,6 @@ var target_ellipse = g_target_ellipse_parent.append('ellipse')
   .attr('fill-opacity', 0.75)
   .attr('stroke', 'none')
 
-
-
 // on off button
 var change_interval = setInterval(random_sinusoidal,1000)
 
@@ -205,7 +200,7 @@ var linear_log_target = { v: 1000 }
 
 var slider_linear = new GUId3.slider()
 slider_linear.cssClass('slider_linear_log')
-slider_linear.width(500).height(22).fixedDecimal(2)
+slider_linear.width(500).height(22).fixedDecimal(2).transitionSpeed(0)
 slider_linear.label('linear range')
 slider_linear.scale(d3.scale.linear().domain([1,100]).range([1,100000]))
 slider_linear.connect(linear_log_target, 'v')
