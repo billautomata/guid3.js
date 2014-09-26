@@ -1,4 +1,5 @@
-GUId3.js v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
+![logo](http://creative-co.de/logo.png)
+####v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
 ========
 
 ##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
