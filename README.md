@@ -1,9 +1,7 @@
-GUId3.js v0.6.1 [examples](http://billautomata.github.io/GUId3.js/)
+GUId3.js v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
 ========
 
 ##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
-
-##only works in chrome for some reason too =\
 
 A simple toolkit for interactive UI components with D3.js.  The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
 
