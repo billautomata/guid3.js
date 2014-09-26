@@ -221,15 +221,56 @@ module.exports = function module(cb){
 }
 
 },{}],2:[function(require,module,exports){
+/**
+ * A slider interface element.
+ *
+ * @class Slider
+ * @constructor
+ */
 module.exports = function module(cb){
   'use strict';
+
+  /**
+  A reference to `this`
+  @property self
+  @type {Object}
+  @default this
+  **/
   var self = this;
 
-  // css hooks
+
+  /**
+  the CSS `class` of the parent group element
+
+  set with {{#crossLink "Slider/cssClass"}}{{/crossLink}}
+  @private
+  @property _cssClass
+
+  @type {String}
+  @default ''
+  **/
   this._cssClass=''
+
+  /**
+  the CSS `id` of the parent group element
+
+  set with {{#crossLink "Slider/cssId"}}{{/crossLink}}
+  @property _cssId
+  @type {String}
+  @default ''
+  **/
   this._cssId=''
 
-  // internal type reference
+
+  /**
+  the type of slider, either `'vertical'` or `'horizontal'`
+
+
+  set with {{#crossLink "Slider/cssType"}}{{/crossLink}}
+  @property _type
+  @type {String}
+  @default 'horizontal'
+  **/
   this._type = 'horizontal' // or vertical
 
   // visual attributes not set by CSS
@@ -260,11 +301,26 @@ module.exports = function module(cb){
   // //////////////////////////////////
   // "use functions"
   // can only be called after .create()
+
+
+  /**
+   * Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+   *
+   * @method setValue
+   * @param {Number} v the value to be set
+   * @return {} undefined
+   */
   this.setValue = function(v){
     // update the target value
     this.object_reference[self.object_key] = v
   }
 
+  /**
+   * Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+   *
+   * @method getValue
+   * @return {Number} target value
+   */
   this.getValue = function(){
     return this.object_reference[self.object_key];
   }
@@ -273,12 +329,43 @@ module.exports = function module(cb){
   // param setters and getters
   // can be called before and after .create()
 
-  this.callback = function(_){
+  /**
+   Sets the calback to be invoked when the target value changes because of slider interaction, or outside forces.  The callback will receive one argument, the scaled value.  Do not change the target object in this callback.  You will cause an infinite loop as changing the value will retrigger the callback chain.
+
+   @method callback
+   @chainable
+   @param [f] {Function} the callback function mentioned above
+
+   @example
+       slider.callback(function(v){ console.log('value changed '+ v) })
+       // slider target changes to 1.01
+       // outputs 'value changed 1.01'
+
+   @return **Function** `_callback` passing no arguments triggers the return, this terminates the chain
+   */
+  this.callback = function(f){
     if(!arguments.length) { return this._callback; }
-    this._callback = _
+    this._callback = f
     return this;
   }
 
+  /**
+   Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+
+   @method cssClass
+   @param {String} _
+   @chainable
+   */
+  /**
+   Sets the value of the target object.  Will invoke the callback chain involved with the slider, and set the visual indicator of the slider.
+
+   @method cssClass
+   @return {Function} callback
+
+   @example
+       slider.cssClass('my-class')
+
+   */
   this.cssClass = function(_){
     if(!arguments.length) { return this._cssClass; }
     this._cssClass = _
