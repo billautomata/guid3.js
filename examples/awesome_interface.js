@@ -134,7 +134,7 @@ on_off_button.labelOff('timer off')
 on_off_button.cssClass('button0')
 on_off_button.width(100)
 on_off_button.height(33)
-on_off_button.roundedPercent(10)
+on_off_button.roundedRectanglePercent(10)
 
 on_off_button.connect(button_target,'v')
 
@@ -246,7 +246,7 @@ toggle_ranges_button.type('momentary')
 toggle_ranges_button.cssClass('button_toggle0')
 toggle_ranges_button.width(80)
 toggle_ranges_button.height(60)
-toggle_ranges_button.roundedPercent(10)
+toggle_ranges_button.roundedRectanglePercent(10)
 
 toggle_ranges_button.connect(window.toggle_button0,'v')
 

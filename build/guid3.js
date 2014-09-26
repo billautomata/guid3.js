@@ -13,7 +13,7 @@ module.exports = function module(cb){
   // visual parameters
   this._width = 100
   this._height = 100
-  this._roundedPercent = 0
+  this._roundedRectanglePercent = 0
 
   this._labelText = { on: '1', off: '0' }
 
@@ -69,9 +69,9 @@ module.exports = function module(cb){
     return this;
   }
 
-  this.roundedPercent = function(_){
-    if(!arguments.length) { return this._roundedPercent; }
-    this._roundedPercent = _
+  this.roundedRectanglePercent = function(_){
+    if(!arguments.length) { return this._roundedRectanglePercent; }
+    this._roundedRectanglePercent = _
     return this;
   }
 
@@ -178,8 +178,8 @@ module.exports = function module(cb){
       .classed('guid3-button', true)
       .attr('x',0)
       .attr('y',0)
-      .attr('rx', (this._roundedPercent*0.05) + '%')
-      .attr('ry', (this._roundedPercent*0.05) + '%')
+      .attr('rx', (this._roundedRectanglePercent*0.05) + '%')
+      .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
       .attr('width', this._width)
       .attr('height', this._height)
 
@@ -311,8 +311,15 @@ module.exports = function module(cb){
   **/
   this._fixedDecimal = 2
 
+  /**
+  The percent roundedness of the rectangle.  100% round is a circle or ellipse.
 
-  this._roundedPercent = 0
+  set with {{#crossLink "Slider/roundedRectanglePercent"}}{{/crossLink}}
+  @property _roundedRectanglePercent
+  @type {Number}
+  @default '0'
+  **/
+  this._roundedRectanglePercent = 0
 
   /**
   the text label of the slider
@@ -589,9 +596,32 @@ module.exports = function module(cb){
     return this;
   }
 
-  this.roundedPercent = function(_){
-    if(!arguments.length) { return this._roundedPercent; }
-    this._roundedPercent = _
+  /**
+  Sets the roundedness of the rectangle of the slider.  A square slider with
+  a `roundedRectanglePercent` of 100, would be a circle.  `10` is a good value
+  to start with.
+
+  @method roundedRectanglePercent
+  @chainable
+
+  @param _ {String}
+  the percent roundedness of the slider rectangles
+
+  @example
+      var slider = new GUId3.slider()
+      slider.width(100).height(100)
+      slider.roundedRectanglePercent(100)
+      slider.create(d3.select('svg'))
+
+  creates slider that appears to be a circle
+
+  @return **String** `_roundedRectanglePercent`
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.roundedRectanglePercent = function(_){
+    if(!arguments.length) { return this._roundedRectanglePercent; }
+    this._roundedRectanglePercent = _
     return this;
   }
 
@@ -876,8 +906,8 @@ module.exports = function module(cb){
       .attr('class', 'guid3-slider')
       .attr('x',0)
       .attr('y',0)
-      .attr('rx', (this._roundedPercent*0.05) + '%')
-      .attr('ry', (this._roundedPercent*0.05) + '%')
+      .attr('rx', (this._roundedRectanglePercent*0.05) + '%')
+      .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
       .attr('width', this._width)
       .attr('height', this._height)
 
@@ -886,8 +916,8 @@ module.exports = function module(cb){
       .attr('class', 'guid3-slider-indicator')
       .attr('x',0)
       .attr('y',0)
-      .attr('rx', (this._roundedPercent*0.05) + '%')
-      .attr('ry', (this._roundedPercent*0.05) + '%')
+      .attr('rx', (this._roundedRectanglePercent*0.05) + '%')
+      .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
       .attr('width', this._width)
       .attr('height', this._height)
       .style('pointer-events', 'none')
