@@ -29,7 +29,7 @@ Almost all of the visual aspects are powered by setting a class on creation, and
 ```bash
 # build using browserify
 $ npm install -g browserify
-$ browserify test/build_browser.js -o build/guid3.js
+$ browserify lib/GUId3.base.js -o build/guid3.js
 ```
 
 #### UI elements
@@ -51,7 +51,7 @@ var g_slider0 = svg.append('g')
 var obser = { v: 50000 }  // the value we want to change
 
 // pass in a callback
-var n = new GUId3.slider(function(d){console.log('from callback slider 0',d)})
+var n = new GUId3.Slider(function(d){console.log('from callback slider 0',d)})
 
 n.cssClass('slider0')
 
@@ -112,7 +112,7 @@ function optionalCallback(v){
   }
 }
 
-var button = new GUId3.button(optionalCallback)
+var button = new GUId3.Button(optionalCallback)
 
 button.width(100).height(100)
 button.labelOn('on')

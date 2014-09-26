@@ -26,7 +26,7 @@ Object.keys(window.vert0).forEach(function(k,key_index){
   var g_parent = window.svg.append('g')
     .attr('transform', 'translate('+(10+(key_index*(w*1.5)))+',10)')
 
-  var slider = new GUId3.slider(function(v){
+  var slider = new GUId3.Slider(function(v){
   //  console.log(v)
     // console.log(key_index)
 
@@ -70,7 +70,7 @@ var ellipse_color = {
   var w = 20
   var h = 130
 
-  var color_slider = new GUId3.slider(function(v){
+  var color_slider = new GUId3.Slider(function(v){
     var value = 'rgb(' + Math.floor(ellipse_color.red) + ',' + Math.floor(ellipse_color.green) + ',' + Math.floor(ellipse_color.blue) +')'
     target_ellipse.attr('fill', value)
   })
@@ -113,7 +113,7 @@ var change_interval = setInterval(random_sinusoidal,1000)
 var button_target = { v:true }
 var timer_duration = { v: 1000 }
 
-var on_off_button = new GUId3.button(function(v){
+var on_off_button = new GUId3.Button(function(v){
   if(v){
     random_sinusoidal()
     clearInterval(change_interval)
@@ -158,7 +158,7 @@ function random_sinusoidal(){
 
 
 ///
-var slider2 = new GUId3.slider(function(v){
+var slider2 = new GUId3.Slider(function(v){
 
   if(!on_off_button.getValue()){
     on_off_button.toggle()
@@ -198,14 +198,14 @@ window.svg.append('rect')
 
 var linear_log_target = { v: 1000 }
 
-var slider_linear = new GUId3.slider()
+var slider_linear = new GUId3.Slider()
 slider_linear.cssClass('slider_linear_log')
 slider_linear.width(500).height(22).fixedDecimal(2).transitionSpeed(0)
 slider_linear.label('linear range')
 slider_linear.scale(d3.scale.linear().domain([1,100]).range([1,100000]))
 slider_linear.connect(linear_log_target, 'v')
 
-var slider_log = new GUId3.slider()
+var slider_log = new GUId3.Slider()
 slider_log.cssClass('slider_linear_log')
 slider_log.width(500).height(22).fixedDecimal(1)
 slider_log.label('exp/log range')
@@ -226,7 +226,7 @@ slider_log.create(g_log_parent)
 
 // toggle ranges button
 window.toggle_button0 = { v: true }
-var toggle_ranges_button = new GUId3.button(function(v){
+var toggle_ranges_button = new GUId3.Button(function(v){
   if(v){
     linear_log_target.v = 1000
   } else {
