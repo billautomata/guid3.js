@@ -1174,7 +1174,7 @@ module.exports = function module(cb){
 
       changes.forEach(function(change,change_index){
         if(change.name === self.object_key){
-          // console.log(self.object_key, 'new value', change.object[self.object_key])
+          console.log(self.object_key, 'new value', change.object[self.object_key])
 
           // update the slider visual
           var v = change.object[self.object_key]
@@ -1245,22 +1245,33 @@ module.exports = function module(cb){
 
     this.g_root.on('changed', function(){
 
-      // console.log('g_root changed fired')
-      // console.log('value passed', d3.event.detail)
+      console.log('g_root changed fired')
+      console.log('value passed', d3.event.detail)
 
+      // convert to a slider size
+      //console.log(self._scale.invertExtent(d3.event.detail))
+
+      var true_value = d3.event.detail
+
+      // we need to convert the true value of the slider
+      // to the made up value of it's domain
+
+      var scaled_inverted_value = 0
+      scaled_inverted_value = self._scale.invert(true_value)
+    
       if(self._type === 'horizontal'){
 
         if(self._drag){
           rect_horizontal_indicator
-            .attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
+            .attr('width', map_scale.invert(scaled_inverted_value))
         } else {
           rect_horizontal_indicator.transition().duration(self._transitionSpeed)
-            .attr('width', map_scale.invert(self._scale.invert(d3.event.detail)))
+            .attr('width', map_scale.invert(scaled_inverted_value))
         }
 
-
       } else {
-        var slider_height = map_scale.invert(self._scale.invert(d3.event.detail))
+
+        var slider_height = map_scale.invert(scaled_inverted_value)
 
         if(self._drag){
           rect_horizontal_indicator
@@ -1279,7 +1290,7 @@ module.exports = function module(cb){
       text_value.node().dispatchEvent(
         new CustomEvent(
           'change_me',
-          { detail: self._scale.invert(d3.event.detail) }
+          { detail: scaled_inverted_value }
       ))
 
       if(typeof self._callback === 'function'){
@@ -1340,7 +1351,12 @@ module.exports = function module(cb){
     }
 
     text_value.on('change_me', function(){
-      d3.select(this).text(self._scale(d3.event.detail).toFixed(self._fixedDecimal))
+
+      if(typeof d3.event.detail === 'number'){
+        d3.select(this).text(self._scale(d3.event.detail).toFixed(self._fixedDecimal))
+      } else {
+        d3.select(this).text(self._scale(d3.event.detail))
+      }
     })
 
     var map_scale = d3.scale.linear().domain([0,self._width]).range(self._scale.domain())

@@ -14,14 +14,14 @@ JS.Test.describe('Button', function(){ with(this){
      .attr('transform', 'translate(120,300)')
 
     // pass in a callback
-    button = new GUId3.button(function(d){console.log('from callback button 1',d)})
+    button = new GUId3.Button(function(d){console.log('from callback button 1',d)})
 
     button.cssClass('green_button')
     button.width(150).height(50).connect(window.button_obser1,'v')
     button.type('toggle')
     button.labelOn('state on')
     button.labelOff('=)')
-    button.roundedPercent(10)
+    //button.roundedPercent(10)
 
     // button1.callback(function(d){console.log(d,'zomg')})
 
