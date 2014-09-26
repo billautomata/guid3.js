@@ -1,7 +1,8 @@
 {
     "name": "GUId3",
     "description": "UI elements for d3js",
-    "version": "0.5.1",
+    "version": "0.6.1",
+    "logo" : "http://creative-co.de/logo.png",
     "url": "http://.../",
     "options": {
         "outdir": "./build/apidocs"

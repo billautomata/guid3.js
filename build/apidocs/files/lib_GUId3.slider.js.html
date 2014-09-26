@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/GUId3.slider.js - GUId3</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="http://creative-co.de/logo.png" title="GUId3"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.6.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Button.html">Button</a></li>
+            
+                <li><a href="../classes/Slider.html">Slider</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/GUId3.html">GUId3</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/GUId3.slider.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * A slider interface element.
+ *
+ * @class Slider
+ * @constructor
+ */
+module.exports = function module(cb){
+  &#x27;use strict&#x27;;
+
+  /**
+  A reference to &#x60;this&#x60;
+  @property self
+  @type {Object}
+  @default this
+  **/
+  var self = this;
+
+  /**
+  the CSS &#x60;class&#x60; of the parent group element
+
+  set with {{#crossLink &quot;Slider/cssClass&quot;}}{{/crossLink}}
+  @property _cssClass
+
+  @type {String}
+  @default empty string
+  **/
+  this._cssClass=&#x27;&#x27;
+
+  /**
+  the CSS &#x60;id&#x60; of the parent group element
+
+  set with {{#crossLink &quot;Slider/cssId&quot;}}{{/crossLink}}
+  @property _cssId
+  @type {String}
+  @default empty string
+  **/
+  this._cssId=&#x27;&#x27;
+
+  /**
+  the type of slider, either &#x60;&#x27;vertical&#x27;&#x60; or &#x60;&#x27;horizontal&#x27;&#x60;
+
+  set with {{#crossLink &quot;Slider/type&quot;}}{{/crossLink}}
+  @property _type
+  @type {String}
+  @default &#x27;horizontal&#x27;
+  **/
+  this._type = &#x27;horizontal&#x27;
+
+  /**
+  the transition speed in milliseconds the slider will use when traveling
+  to a new position because it has been clicked
+
+  set with {{#crossLink &quot;Slider/transitionSpeed&quot;}}{{/crossLink}}
+  @property _transitionSpeed
+  @type {Number}
+  @default 100
+  **/
+  this._transitionSpeed = 100
+
+  /**
+  the width of the slider in pixels
+
+  set with {{#crossLink &quot;Slider/width&quot;}}{{/crossLink}}
+  @property _width
+  @type {Number}
+  @default &#x27;300&#x27;
+  **/
+  this._width = 300
+
+  /**
+  the height of the slider in pixels
+
+  set with {{#crossLink &quot;Slider/height&quot;}}{{/crossLink}}
+  @property _height
+  @type {Number}
+  @default &#x27;50&#x27;
+  **/
+  this._height = 50
+
+  /**
+  the number of digits to display after the decimal point in the displayed
+  value on the slider
+
+  set with {{#crossLink &quot;Slider/fixedDecimal&quot;}}{{/crossLink}}
+  @property _fixedDecimal
+  @type {Number}
+  @default &#x27;2&#x27;
+  **/
+  this._fixedDecimal = 2
+
+  /**
+  The percent roundedness of the rectangle.  100% round is a circle or ellipse.
+
+  set with {{#crossLink &quot;Slider/roundedRectanglePercent&quot;}}{{/crossLink}}
+  @property _roundedRectanglePercent
+  @type {Number}
+  @default &#x27;0&#x27;
+  **/
+  this._roundedRectanglePercent = 0
+
+  /**
+  the text label of the slider
+
+  set with {{#crossLink &quot;Slider/label&quot;}}{{/crossLink}}
+  @property _label
+  @type {String}
+  @default empty string
+  **/
+  this._label = &#x27;&#x27;
+
+  /**
+  the d3 scale of the slider
+
+  set with {{#crossLink &quot;Slider/scale&quot;}}{{/crossLink}}
+  @property _scale
+  @type {Function}
+  @default undefined
+  **/
+  this._scale = undefined
+
+  // target value
+  this.object_reference = undefined  // a reference to the target object
+  this.object_key = undefined        // the key of the target value
+
+  /**
+  the user facing callback function
+
+  set with {{#crossLink &quot;Slider/callback&quot;}}{{/crossLink}}
+  @property _callback
+  @type {Function}
+  @default undefined
+  **/
+  this._callback = cb
+
+  // internal value
+  this._internal_value = 0           // maybe deprecate
+
+  /**
+  the parent group element that the &#x60;_cssClass&#x60; and &#x60;_cssId&#x60; are applied to
+
+  use this element to use d3 functions to access internal elements
+
+  @example
+      // fade in the text for your sliders
+      var slider = new GUId3.slider()
+      d3.select(slider.g_root.node()).selectAll(&#x27;text&#x27;).opacity(0.0)
+      d3.select(slider.g_root.node()).selectAll(&#x27;text&#x27;)
+        .transition().opacity(1.0)
+
+  @property g_root
+  @type {Object}
+  @default undefined
+  **/
+  this.g_root            // group element is the parent container
+                                     // of all the objects, target for events
+
+  this.current_transition
+  // //////////////////////////////////
+  // &quot;use functions&quot;
+  // can only be called after .create()
+
+  /**
+  Sets the value of the target object.  Invokes the callback chain.
+
+  **can only be called after calling &#x60;create()&#x60;**
+
+  @method setValue
+  @param v{Number} the value mentioned above
+
+  @example
+      slider.setValue(3.0)
+      // slider target value updates
+      // slider visual updates (indicator and text value label)
+      // slider callback is invoked
+
+  @return undefined
+  */
+  this.setValue = function(v){
+    // update the target value
+    this.object_reference[self.object_key] = v
+  }
+
+  /**
+  Gets the value of the target.
+
+  **can only be called after calling &#x60;create()&#x60;**
+
+  @method getValue
+
+  @example
+      slider.setValue(3.0)
+      console.log(slider.getValue())
+      // outputs &#x27;3.0&#x27;
+
+  @return Number
+  */
+  this.getValue = function(){
+    return this.object_reference[self.object_key];
+  }
+
+  /**
+
+  Sets the calback to be invoked when the target value changes because of
+  slider interaction, or outside forces.  The callback will receive one
+  argument, the scaled value.  Do not change the target object in this
+  callback.  You will cause an infinite loop as changing the value will
+  retrigger the callback chain.
+
+  @method callback
+  @chainable
+
+  @param [f] {Function}
+  the callback function mentioned above
+
+  @example
+      slider.callback(function(v){ console.log(&#x27;value changed &#x27;+ v) })
+      // slider target changes to 1.01
+      // outputs &#x27;value changed 1.01&#x27;
+
+  @return **Function** &#x60;_callback&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.callback = function(f){
+    if(!arguments.length) { return this._callback; }
+    this._callback = f
+    return this;
+  }
+
+  /**
+  Sets the CSS class of the parent group element of the slider.
+
+  @method cssClass
+  @chainable
+
+  @param _ {String}
+  the CSS class mentioned above
+
+  @example
+      slider.cssClass(&#x27;foo&#x27;)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  in your stylesheet
+
+      .foo .gui-slider {
+        fill: red;
+        stroke: orange;
+      }
+
+  creates a slider with red background and an orange stroke
+
+  @return **String** &#x60;_cssClass&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.cssClass = function(_){
+    if(!arguments.length) { return this._cssClass; }
+    this._cssClass = _
+    return this;
+  }
+
+  /**
+  Sets the CSS id of the parent group element of the slider.
+
+  @method cssId
+  @chainable
+
+  @param _ {String}
+  the CSS id mentioned above
+
+  @example
+      slider.cssId(&#x27;foo&#x27;)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  in your stylesheet
+
+      #foo .gui-slider {
+        fill: red;
+        stroke: orange;
+      }
+
+  creates a slider with red background and an orange stroke
+
+  @return **String** &#x60;_cssId&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.cssId = function(_){
+    if(!arguments.length) { return this._cssId; }
+    this._cssId = _
+    return this;
+  }
+
+  /**
+  Sets the visual height of the slider.  Sadly this property cannot be set
+  using CSS.
+
+  @method height
+  @chainable
+
+  @param _ {Number}
+  the height of the slider in pixels
+
+  @example
+      var slider = new GUId3.slider()
+      slider.height(44)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a slider with a height of 44 pixels in the svg
+
+  @return **Number** &#x60;_height&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.height = function(_){
+    if(!arguments.length) { return this._height; }
+    this._height = _
+    return this;
+  }
+
+  /**
+  Sets the number of digits to display when the slider displays the text
+  representation of the target value.
+
+  @method fixedDecimal
+  @chainable
+
+  @param _ {Number}
+  number of decimal places to display
+
+  @example
+      var slider = new GUId3.slider()
+      slider.fixedDecimal(0)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a slider with value indicator that has no digits after the decimal
+  place, so it appears as an integer
+
+  @return **Number** &#x60;_fixedDecimal&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.fixedDecimal = function(_){
+    if(!arguments.length) { return this._fixedDecimal; }
+    this._fixedDecimal = _
+    return this;
+  }
+
+  /**
+  Sets the text of the label of the slider.  This is optional, you can manage
+  your own labels.
+
+  @method label
+  @chainable
+
+  @param _ {String}
+  the text label of the slider
+
+  @example
+      var slider = new GUId3.slider()
+      slider.label(&#x27;zewmg&#x27;)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a slider with label of zemg
+
+  @return **String** &#x60;_label&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.label = function(_){
+    if(!arguments.length) { return this._label; }
+    this._label = _
+    return this;
+  }
+
+  /**
+  Sets the roundedness of the rectangle of the slider.  A square slider with
+  a &#x60;roundedRectanglePercent&#x60; of 100, would be a circle.  &#x60;10&#x60; is a good value
+  to start with.
+
+  @method roundedRectanglePercent
+  @chainable
+
+  @param _ {String}
+  the percent roundedness of the slider rectangles
+
+  @example
+      var slider = new GUId3.slider()
+      slider.width(100).height(100)
+      slider.roundedRectanglePercent(100)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates slider that appears to be a circle
+
+  @return **String** &#x60;_roundedRectanglePercent&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.roundedRectanglePercent = function(_){
+    if(!arguments.length) { return this._roundedRectanglePercent; }
+    this._roundedRectanglePercent = _
+    return this;
+  }
+
+  /**
+  Sets the internal &#x60;d3.scale&#x60; of the slider.  This is where all of the
+  business logic of the slider is performed.  When the user clicks on the
+  slider, an internal scale maps the size of the slider to the input domain
+  of the &#x60;d3.scale&#x60; that is set with this function.  Thus the position
+  clicked or dragged on the slider always corresponds to the corresponding
+  output range of the scale passed to this function.
+
+  An interesting note.  The domain of this scale does not matter.  You could
+  enter &#x60;[300.1,333.03]&#x60; and the slider would re-map the click events to that
+  range.  Because &#x60;log&#x60; scales are not continuous, try to use values in the
+  range of &#x60;[ 1, &lt;∞ ]&#x60;.
+
+  @method scale
+  @chainable
+
+  @param _ {Function}
+  a valid &#x60;d3.scale&#x60;
+
+  @example
+      var slider = new GUId3.slider()
+      slider.scale(d3.scale.linear().domain([1,2]).range([0,100]))
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  Creates a slider that will output a value between 0 and 100 depending on
+  where it is clicked.
+
+  @return **String** &#x60;_scale&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.scale = function(_){
+    if(!arguments.length) { return this._scale; }
+    this._scale = _
+    return this;
+  }
+
+  /**
+  Sets the type of the slider.  Wants &#x60;&#x27;vertical&#x27;&#x60; or &#x60;&#x27;horizontal&#x27;&#x60;.
+
+  @method type
+  @chainable
+
+  @param _ {String}
+  the type of the slider, either &#x60;&#x27;vertical&#x27;&#x60; or &#x27;&#x60;horiztonal&#x60;&#x27;
+
+  @example
+      var slider = new GUId3.slider()
+      slider.type(&#x27;vertical&#x27;)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a vertical slider
+
+  @return **String** &#x60;_type&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.type = function(_){
+    if(!arguments.length) { return this._type; }
+    this._type = _
+    return this;
+  }
+
+  /**
+  Sets the transition speed of the slider.  The value passed is in
+  milliseconds.  This is the duration of the transition that will be used
+  when the slider is clicked on or the source value is updated.
+  If you want instant movement between positions, effectively no transition,
+  pass zero &#x60;0&#x60; to this method.
+
+  @method transitionSpeed
+  @chainable
+
+  @param _ {Number}
+  the transition speed in milliseconds
+
+  @example
+      var slider = new GUId3.slider()
+      slider.transitionSpeed(303)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a slider with a transition speed of 303ms
+
+  @return **String** &#x60;_type&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.transitionSpeed = function(_){
+    if(!arguments.length) { return this._transitionSpeed; }
+    this._transitionSpeed = _
+    return this;
+  }
+
+
+  /**
+  Sets the visual width of the slider.  Sadly this property cannot be set
+  using CSS.
+
+  @method width
+  @chainable
+
+  @param _ {Number}
+  the width of the slider in pixels
+
+  @example
+      var slider = new GUId3.slider()
+      slider.width(303)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  creates a slider with a width of 303 pixels in the svg
+
+  @return **Number** &#x60;_width&#x60;
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.width = function(_){
+    if(!arguments.length) { return this._width; }
+    this._width = _
+    return this;
+  }
+
+  /**
+  Connects the slider to a target object and a target key.  When the slider
+  is clicked on, the value of the targetObject[target_key] is changed.
+
+  Call this funcition immediately before calling &#x60;create()&#x60;
+
+  @method connect
+  @chainable
+
+  @param o {Object}
+  the target object that holds the value the slider will modify
+
+  @param k {String}
+  the String name of the key/field of the object that holds the value the
+  slider will modify
+
+  @example
+      var foo = { bar: 303.3 }
+      var slider = new GUId3.slider()
+      // ...
+
+      slider.connect(foo,&#x27;bar&#x27;)
+      slider.create(d3.select(&#x27;svg&#x27;))
+
+  clicking on the slider will change the value of foo
+
+  */
+  this.connect = function(o,k){
+
+    this.object_reference = o
+    this.object_key = k
+
+    ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
+
+    Object.observe(this.object_reference, function(changes){
+
+      // console.log(self.object_key)
+
+      changes.forEach(function(change,change_index){
+        if(change.name === self.object_key){
+          // console.log(self.object_key, &#x27;new value&#x27;, change.object[self.object_key])
+
+          // update the slider visual
+          var v = change.object[self.object_key]
+          if(self.g_root === undefined){
+            self._internal_value = v
+          } else {
+            self.g_root.node().dispatchEvent(new CustomEvent(&#x27;changed&#x27;, { detail:v } ))
+          }
+
+        }
+      })
+
+
+      // console.log(&#x27;changes&#x27;)
+      // console.log(changes)
+    })
+
+    // this.watcher = new PathObserver(this.object_reference, this.object_key)
+    // this.watcher.open(function(fresh,old){
+    // })
+
+    return this;
+  }
+
+  /**
+  Creates the slider in the selection passed.  It is advised that you pass in
+  a selection of a group element that you can transform and style yourself.
+
+  Call this function after all the parameters are set, and &#x60;connect()&#x60; has
+  been called.  After you call &#x60;create()&#x60;, you can then call &#x60;setValue()&#x60; and
+  &#x60;getValue()&#x60; without having any issues.
+
+  @method create
+  @chainable
+
+  @param selection {Object}
+  A d3 selection.
+
+  @example
+
+      var svg = d3.select(&#x27;body&#x27;).append(&#x27;svg&#x27;)
+      var g_slider_parent = svg.append(&#x27;g&#x27;)
+        .attr(&#x27;transform&#x27;, &#x27;translate(303,101)&#x27;)
+
+      var foo = { bar: 303.3 }
+      var slider = new GUId3.slider()
+      // ...
+
+      slider.connect(foo,&#x27;bar&#x27;)
+      slider.create(g_slider_parent)
+
+  Creates a slider at position &#x60;x: 303 y: 101&#x60;, because the parent element
+  with a &#x60;translate&#x60; with those coordinates was passed as the selection.
+
+  */
+  this.create = function(selection){
+
+    var svg = selection
+
+    this.g_root = svg.append(&#x27;g&#x27;).attr(&#x27;id&#x27;, &#x27;slider_root&#x27;)
+      .attr(&#x27;class&#x27;, this._cssClass)
+      .attr(&#x27;id&#x27;, this._cssId)
+      .attr(&#x27;width&#x27;, this._width)
+      .attr(&#x27;height&#x27;, this._height)
+      .style(&#x27;border&#x27;, &#x27;1px solid black&#x27;)
+
+    this.g_root.classed(&#x27;parent&#x27;, true)
+
+    this.g_root.on(&#x27;changed&#x27;, function(){
+
+      // console.log(&#x27;g_root changed fired&#x27;)
+      // console.log(&#x27;value passed&#x27;, d3.event.detail)
+
+      if(self._type === &#x27;horizontal&#x27;){
+
+        if(self._drag){
+          rect_horizontal_indicator
+            .attr(&#x27;width&#x27;, map_scale.invert(self._scale.invert(d3.event.detail)))
+        } else {
+          rect_horizontal_indicator.transition().duration(self._transitionSpeed)
+            .attr(&#x27;width&#x27;, map_scale.invert(self._scale.invert(d3.event.detail)))
+        }
+
+
+      } else {
+        var slider_height = map_scale.invert(self._scale.invert(d3.event.detail))
+
+        if(self._drag){
+          rect_horizontal_indicator
+            .attr(&#x27;y&#x27;, slider_height)
+            .attr(&#x27;height&#x27;, self._height - slider_height)
+        } else {
+          rect_horizontal_indicator.transition().duration(self._transitionSpeed)
+            .attr(&#x27;y&#x27;, slider_height)
+            .attr(&#x27;height&#x27;, self._height - slider_height)
+        }
+
+      }
+
+      self._drag = false
+
+      text_value.node().dispatchEvent(
+        new CustomEvent(
+          &#x27;change_me&#x27;,
+          { detail: self._scale.invert(d3.event.detail) }
+      ))
+
+      if(typeof self._callback === &#x27;function&#x27;){
+        return self._callback(d3.event.detail);
+      } else {
+        return;
+      }
+
+    })  // end of g_root.on(&#x27;changed&#x27;)
+
+    var rect_slider_bg = this.g_root.append(&#x27;rect&#x27;)
+      .attr(&#x27;class&#x27;, &#x27;guid3-slider&#x27;)
+      .attr(&#x27;x&#x27;,0)
+      .attr(&#x27;y&#x27;,0)
+      .attr(&#x27;rx&#x27;, (this._roundedRectanglePercent*0.05) + &#x27;%&#x27;)
+      .attr(&#x27;ry&#x27;, (this._roundedRectanglePercent*0.05) + &#x27;%&#x27;)
+      .attr(&#x27;width&#x27;, this._width)
+      .attr(&#x27;height&#x27;, this._height)
+
+    // horizontal slider
+    var rect_horizontal_indicator = this.g_root.append(&#x27;rect&#x27;)
+      .attr(&#x27;class&#x27;, &#x27;guid3-slider-indicator&#x27;)
+      .attr(&#x27;x&#x27;,0)
+      .attr(&#x27;y&#x27;,0)
+      .attr(&#x27;rx&#x27;, (this._roundedRectanglePercent*0.05) + &#x27;%&#x27;)
+      .attr(&#x27;ry&#x27;, (this._roundedRectanglePercent*0.05) + &#x27;%&#x27;)
+      .attr(&#x27;width&#x27;, this._width)
+      .attr(&#x27;height&#x27;, this._height)
+      .style(&#x27;pointer-events&#x27;, &#x27;none&#x27;)
+
+    // create the label
+    var g_root_text_label = this.g_root.append(&#x27;g&#x27;)
+      .attr(&#x27;transform&#x27;, &#x27;translate(0,0)&#x27;)
+
+    var text_label = g_root_text_label.append(&#x27;text&#x27;)
+      .attr(&#x27;class&#x27;, &#x27;guid3-slider-textlabel&#x27;)
+      .text(this._label)
+      .attr(&#x27;x&#x27;, 0)
+      .attr(&#x27;y&#x27;, 0)
+      .attr(&#x27;dy&#x27;, &#x27;0.33em&#x27;)
+
+    // create the value indicator
+    var g_root_text_value = this.g_root.append(&#x27;g&#x27;)
+      .attr(&#x27;transform&#x27;, &#x27;translate(&#x27; + (this._width + 2) + &#x27;,&#x27; + (this._height * 0.5) + &#x27;)&#x27;)
+
+    var text_value = g_root_text_value.append(&#x27;text&#x27;)
+      .attr(&#x27;class&#x27;, &#x27;guid3-slider-textvalue&#x27;)
+      .text(function(){ return self.getValue() })
+      .attr(&#x27;x&#x27;, 0)
+      .attr(&#x27;y&#x27;, 0)
+      .attr(&#x27;dy&#x27;, &#x27;0.33em&#x27;)
+
+    if(self._type === &#x27;vertical&#x27;){
+      text_value.attr(&#x27;x&#x27;,0)
+      text_value.attr(&#x27;y&#x27;,0)
+      text_value.attr(&#x27;transform&#x27;, &#x27;translate(&#x27;+(self._width*0.5)+&#x27;,&#x27;+(self._height * 0.52)+&#x27;)&#x27;)
+      text_value.attr(&#x27;text-anchor&#x27;, &#x27;middle&#x27;)
+    }
+
+    text_value.on(&#x27;change_me&#x27;, function(){
+      d3.select(this).text(self._scale(d3.event.detail).toFixed(self._fixedDecimal))
+    })
+
+    var map_scale = d3.scale.linear().domain([0,self._width]).range(self._scale.domain())
+    if(self._type !== &#x27;horizontal&#x27;){
+      map_scale = d3.scale.linear().domain([self._height,0]).range(self._scale.domain())
+    }
+
+    var drag_function = function(d){
+
+      // console.log(&#x27;here&#x27;)
+      // console.log(d3.event)
+
+      var bounding_node = self.g_root.node().getBoundingClientRect()
+      // console.log(bounding_node)
+
+      if(!d3.event.clientX){
+        d3.event.clientX = d3.event.x
+        d3.event.clientY = d3.event.y
+      }
+
+      var x,y
+
+      if(d3.event.type === &#x27;drag&#x27;){
+        x = d3.event.clientX  // or .layerX
+        y = d3.event.clientY  // or .layerY
+      } else {
+        x = d3.event.clientX - bounding_node.left
+        y = d3.event.clientY - bounding_node.top
+      }
+
+      // clamp the input, out of bounds values can break things
+      if(x &lt; 0){ x = 0 }
+      if(x &gt; self._width) { x = self._width }
+      if(y &lt; 0){ y = 0 }
+      if(y &gt; self._height) { y = self._height }
+
+      var use_value
+      if(self._type === &#x27;horizontal&#x27;){
+        use_value = x
+      } else {
+        use_value = y
+      }
+
+      // console.log(&#x27;use_value&#x27;,use_value)
+
+      // set the value of the object itself
+      // this triggers the callback on g_root.on(&#x27;changed&#x27;)
+      self.object_reference[self.object_key] = self._scale(map_scale(use_value))
+
+    }
+
+    var drag = d3.behavior.drag().on(&#x27;drag&#x27;, function(){
+      self._drag=true
+      drag_function()
+    });
+
+    rect_slider_bg.call(drag)
+    rect_slider_bg.on(&#x27;mousedown&#x27;, function(){
+        self._drag = false
+        drag_function()
+    })
+
+  } // end of this.create
+
+
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

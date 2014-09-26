@@ -1,0 +1,975 @@
+{
+    "project": {
+        "name": "GUId3",
+        "description": "UI elements for d3js",
+        "version": "0.6.1",
+        "logo": "http://creative-co.de/logo.png",
+        "url": "http://.../"
+    },
+    "files": {
+        "lib/GUId3.base.js": {
+            "name": "lib/GUId3.base.js",
+            "modules": {
+                "GUId3": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/GUId3.button.js": {
+            "name": "lib/GUId3.button.js",
+            "modules": {},
+            "classes": {
+                "Button": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/GUId3.slider.js": {
+            "name": "lib/GUId3.slider.js",
+            "modules": {},
+            "classes": {
+                "Slider": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "GUId3": {
+            "name": "GUId3",
+            "submodules": {},
+            "classes": {
+                "Button": 1,
+                "Slider": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "lib/GUId3.slider.js",
+            "line": 1,
+            "description": "UI toolkit for D3js",
+            "itemtype": "main"
+        }
+    },
+    "classes": {
+        "Button": {
+            "name": "Button",
+            "shortname": "Button",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "GUId3",
+            "namespace": "",
+            "file": "lib/GUId3.button.js",
+            "line": 1,
+            "description": "A button interface element.",
+            "is_constructor": 1
+        },
+        "Slider": {
+            "name": "Slider",
+            "shortname": "Slider",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "GUId3",
+            "namespace": "",
+            "file": "lib/GUId3.slider.js",
+            "line": 1,
+            "description": "A slider interface element.",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 10,
+            "description": "A reference to `this`",
+            "itemtype": "property",
+            "name": "self",
+            "type": "{Object}",
+            "default": "this",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 18,
+            "description": "the CSS `class` of the parent group element\n\nset with {{#crossLink \"Button/cssClass\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_cssClass",
+            "type": "{String}",
+            "default": "empty string",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 29,
+            "description": "the CSS `id` of the parent group element\n\nset with {{#crossLink \"Button/cssId\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_cssId",
+            "type": "{String}",
+            "default": "empty string",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 40,
+            "description": "the type of button, either `'toggle'` or `'momentary'`\n\nset with {{#crossLink \"Button/type\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_type",
+            "type": "{String}",
+            "default": "'toggle'",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 51,
+            "description": "the width of the button in pixels\n\nset with {{#crossLink \"Button/width\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_width",
+            "type": "{Number}",
+            "default": "'100'",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 61,
+            "description": "the height of the button in pixels\n\nset with {{#crossLink \"Button/height\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_height",
+            "type": "{Number}",
+            "default": "'100'",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 71,
+            "description": "The percent roundedness of the rectangle.  100% round is a circle or ellipse.\n\nset with {{#crossLink \"Button/roundedRectanglePercent\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_roundedRectanglePercent",
+            "type": "{Number}",
+            "default": "'0'",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 81,
+            "description": "The text lable of the button on each state.\n\nset with {{#crossLink \"Button/labelOn\"}}{{/crossLink}} and\n{{#crossLink \"Button/labelOff\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_labelText",
+            "type": "{Number}",
+            "default": "`{ on: '1', off: '0' }`",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 96,
+            "description": "the user facing callback function\n\nset with {{#crossLink \"Slider/callback\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_callback",
+            "type": "{Function}",
+            "default": "undefined",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 106,
+            "description": "the parent group element that the `_cssClass` and `_cssId` are applied to\n\nuse this element to use d3 functions to access internal elements",
+            "example": [
+                "\n    // fade in the text for your button\n    var button = new GUId3.button()\n    d3.select(button.g_root.node()).selectAll('text')\n      .attr('opacity', 0.0)\n    d3.select(button.g_root.node()).selectAll('text').transition()\n      .attr('opacity', 1.0)"
+            ],
+            "itemtype": "property",
+            "name": "g_root",
+            "type": "{Object}",
+            "default": "undefined",
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 132,
+            "description": "Sets the value of the target object.  Invokes the callback chain.\n\n**can only be called after calling `create()`**",
+            "itemtype": "method",
+            "name": "setValue",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "the value mentioned above",
+                    "type": "Boolean"
+                }
+            ],
+            "example": [
+                "\n    button.setValue(true)\n    // button target value updates\n    // button visual updates (indicator and text value label)\n    // button callback is invoked"
+            ],
+            "return": {
+                "description": "undefined"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 152,
+            "description": "Gets the value of the target.\n\n**can only be called after calling `create()`**",
+            "itemtype": "method",
+            "name": "getValue",
+            "example": [
+                "\n    button.setValue(true)\n    console.log(button.getValue())\n    // outputs 'true'"
+            ],
+            "return": {
+                "description": "Boolean"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 173,
+            "description": "Sets the calback to be invoked when the target value changes because of\n  button interaction, or outside forces.  The callback will receive one\n  argument, the boolean value.  Do not change the target object in this\n  callback.  You will cause an infinite loop as changing the value will\n  retrigger the callback chain.",
+            "itemtype": "method",
+            "name": "callback",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "f",
+                    "description": "\n  the callback function mentioned above",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "example": [
+                "\n      button.callback(function(v){ console.log('value changed '+ v) })\n      // slider target changes to true\n      // outputs 'value changed true'"
+            ],
+            "return": {
+                "description": "**Function** `_callback`\n  passing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 203,
+            "description": "Sets the CSS class of the parent group element of the button.",
+            "itemtype": "method",
+            "name": "cssClass",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe CSS class mentioned above",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    button.cssClass('foo')\n    button.create(d3.select('svg'))\n\nin your stylesheet\n\n    .foo .gui-button {\n      fill: red;\n      stroke: orange;\n    }\n\ncreates a button with red background and an orange stroke"
+            ],
+            "return": {
+                "description": "**String** `_cssClass`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 235,
+            "description": "Sets the CSS id of the parent group element of the button.",
+            "itemtype": "method",
+            "name": "cssClass",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe CSS id mentioned above",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    button.cssId('foo')\n    button.create(d3.select('svg'))\n\nin your stylesheet\n\n    #foo .gui-button {\n      fill: red;\n      stroke: orange;\n    }\n\ncreates a button with red background and an orange stroke"
+            ],
+            "return": {
+                "description": "**String** `_cssId`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 267,
+            "description": "Sets the visual height of the button.  Sadly this property cannot be set\nusing CSS.",
+            "itemtype": "method",
+            "name": "height",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe height of the button in pixels",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var button = new GUId3.button()\n    button.height(44)\n    button.create(d3.select('svg'))\n\ncreates a button with a height of 44 pixels in the svg"
+            ],
+            "return": {
+                "description": "**Number** `_height`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 294,
+            "description": "Sets the roundedness of the rectangle of the button.  A square button with\na `roundedRectanglePercent` of 100, would be a circle.  `10` is a good value\nto start with.",
+            "itemtype": "method",
+            "name": "roundedRectanglePercent",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe percent roundedness of the button rectangles",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var button = new GUId3.button()\n    button.width(100).height(100)\n    button.roundedRectanglePercent(100)\n    button.create(d3.select('svg'))\n\ncreates button that appears to be a circle"
+            ],
+            "return": {
+                "description": "**String** `_roundedRectanglePercent`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 323,
+            "description": "Sets the type of the button.  Wants `'toggle'` or `'momentary'`.\n\nA momentary button triggers a change in the value to true when pressed, and\ntriggers a value change to false when released.  A toggle button is toggled\nbetween states when the button is pressed.  Nothing happens to a toggle\nbutton when it is released.",
+            "itemtype": "method",
+            "name": "type",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe type of the slider, either `'toggle'` or '`momentary`'",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var button = new GUId3.button()\n    button.type('momentary')\n    button.create(d3.select('svg'))\n\ncreates a momentary button"
+            ],
+            "return": {
+                "description": "**String** `_type`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 354,
+            "description": "Sets the visual width of the button.  Sadly this property cannot be set\nusing CSS.",
+            "itemtype": "method",
+            "name": "width",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe width of the button in pixels",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var button = new GUId3.button()\n    button.width(44)\n    button.create(d3.select('svg'))\n\ncreates a button with a width of 44 pixels in the svg"
+            ],
+            "return": {
+                "description": "**Number** `_height`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 381,
+            "description": "Sets the text of the label of the slider, when the target value is `true`,\nor the button is considered in the \"on\" state.",
+            "itemtype": "method",
+            "name": "labelOn",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe text label of the slider when it is \"on\"",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.labelOn('press me to turn off')\n    slider.create(d3.select('svg'))\n\ncreates a slider with on label of \"press me to turn off\" when it is on"
+            ],
+            "return": {
+                "description": "**String** `_labelOn`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 408,
+            "description": "Sets the text of the label of the slider, when the target value is `false`,\nor the button is considered in the \"off\" state.",
+            "itemtype": "method",
+            "name": "labelOn",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe text label of the slider when it is \"on\"",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.labelOff('I am off =(')\n    slider.create(d3.select('svg'))\n\ncreates a slider with on label of \"I am off =(\""
+            ],
+            "return": {
+                "description": "**String** `_labelOff`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 435,
+            "description": "Connects the button to a target object and a target key.  When the button\nis clicked on, the value of the targetObject[target_key] is changed.\n\nCall this funcition immediately before calling `create()`",
+            "itemtype": "method",
+            "name": "connect",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "o",
+                    "description": "\nthe target object that holds the value the button will modify",
+                    "type": "Object"
+                },
+                {
+                    "name": "k",
+                    "description": "\nthe String name of the key/field of the object that holds the value the\nslider will modify",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var foo = { bar: false }\n    var button = new GUId3.button()\n    // ...\n\n    slider.connect(foo,'bar')\n    slider.create(d3.select('svg'))\n\nclicking on the button will change the value of foo\n"
+            ],
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.button.js",
+            "line": 493,
+            "description": "Creates the button in the selection passed.  It is advised that you pass in\na selection of a group element that you can transform and style yourself.\n\nCall this function after all the parameters are set, and `connect()` has\nbeen called.  After you call `create()`, you can then call `setValue()` and\n`getValue()` without having any issues.",
+            "itemtype": "method",
+            "name": "create",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "selection",
+                    "description": "\nA d3 selection.",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n\n    var svg = d3.select('body').append('svg')\n    var g_button_parent = svg.append('g')\n      .attr('transform', 'translate(303,101)')\n\n    var foo = { bar: true }\n    var slider = new GUId3.button()\n    // ...\n\n    button.connect(foo,'bar')\n    button.create(g_slider_parent)\n\nCreates a button at position `x: 303 y: 101`, because the parent element\nwith a `translate` with those coordinates was passed as the selection.\n"
+            ],
+            "class": "Button",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 10,
+            "description": "A reference to `this`",
+            "itemtype": "property",
+            "name": "self",
+            "type": "{Object}",
+            "default": "this",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 18,
+            "description": "the CSS `class` of the parent group element\n\nset with {{#crossLink \"Slider/cssClass\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_cssClass",
+            "type": "{String}",
+            "default": "empty string",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 29,
+            "description": "the CSS `id` of the parent group element\n\nset with {{#crossLink \"Slider/cssId\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_cssId",
+            "type": "{String}",
+            "default": "empty string",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 39,
+            "description": "the type of slider, either `'vertical'` or `'horizontal'`\n\nset with {{#crossLink \"Slider/type\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_type",
+            "type": "{String}",
+            "default": "'horizontal'",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 49,
+            "description": "the transition speed in milliseconds the slider will use when traveling\nto a new position because it has been clicked\n\nset with {{#crossLink \"Slider/transitionSpeed\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_transitionSpeed",
+            "type": "{Number}",
+            "default": "100",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 60,
+            "description": "the width of the slider in pixels\n\nset with {{#crossLink \"Slider/width\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_width",
+            "type": "{Number}",
+            "default": "'300'",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 70,
+            "description": "the height of the slider in pixels\n\nset with {{#crossLink \"Slider/height\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_height",
+            "type": "{Number}",
+            "default": "'50'",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 80,
+            "description": "the number of digits to display after the decimal point in the displayed\nvalue on the slider\n\nset with {{#crossLink \"Slider/fixedDecimal\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_fixedDecimal",
+            "type": "{Number}",
+            "default": "'2'",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 91,
+            "description": "The percent roundedness of the rectangle.  100% round is a circle or ellipse.\n\nset with {{#crossLink \"Slider/roundedRectanglePercent\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_roundedRectanglePercent",
+            "type": "{Number}",
+            "default": "'0'",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 101,
+            "description": "the text label of the slider\n\nset with {{#crossLink \"Slider/label\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_label",
+            "type": "{String}",
+            "default": "empty string",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 111,
+            "description": "the d3 scale of the slider\n\nset with {{#crossLink \"Slider/scale\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_scale",
+            "type": "{Function}",
+            "default": "undefined",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 125,
+            "description": "the user facing callback function\n\nset with {{#crossLink \"Slider/callback\"}}{{/crossLink}}",
+            "itemtype": "property",
+            "name": "_callback",
+            "type": "{Function}",
+            "default": "undefined",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 138,
+            "description": "the parent group element that the `_cssClass` and `_cssId` are applied to\n\nuse this element to use d3 functions to access internal elements",
+            "example": [
+                "\n    // fade in the text for your sliders\n    var slider = new GUId3.slider()\n    d3.select(slider.g_root.node()).selectAll('text').opacity(0.0)\n    d3.select(slider.g_root.node()).selectAll('text')\n      .transition().opacity(1.0)"
+            ],
+            "itemtype": "property",
+            "name": "g_root",
+            "type": "{Object}",
+            "default": "undefined",
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 162,
+            "description": "Sets the value of the target object.  Invokes the callback chain.\n\n**can only be called after calling `create()`**",
+            "itemtype": "method",
+            "name": "setValue",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "the value mentioned above",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    slider.setValue(3.0)\n    // slider target value updates\n    // slider visual updates (indicator and text value label)\n    // slider callback is invoked"
+            ],
+            "return": {
+                "description": "undefined"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 183,
+            "description": "Gets the value of the target.\n\n**can only be called after calling `create()`**",
+            "itemtype": "method",
+            "name": "getValue",
+            "example": [
+                "\n    slider.setValue(3.0)\n    console.log(slider.getValue())\n    // outputs '3.0'"
+            ],
+            "return": {
+                "description": "Number"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 201,
+            "description": "Sets the calback to be invoked when the target value changes because of\n  slider interaction, or outside forces.  The callback will receive one\n  argument, the scaled value.  Do not change the target object in this\n  callback.  You will cause an infinite loop as changing the value will\n  retrigger the callback chain.",
+            "itemtype": "method",
+            "name": "callback",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "f",
+                    "description": "\n  the callback function mentioned above",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "example": [
+                "\n      slider.callback(function(v){ console.log('value changed '+ v) })\n      // slider target changes to 1.01\n      // outputs 'value changed 1.01'"
+            ],
+            "return": {
+                "description": "**Function** `_callback`\n  passing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 230,
+            "description": "Sets the CSS class of the parent group element of the slider.",
+            "itemtype": "method",
+            "name": "cssClass",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe CSS class mentioned above",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    slider.cssClass('foo')\n    slider.create(d3.select('svg'))\n\nin your stylesheet\n\n    .foo .gui-slider {\n      fill: red;\n      stroke: orange;\n    }\n\ncreates a slider with red background and an orange stroke"
+            ],
+            "return": {
+                "description": "**String** `_cssClass`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 262,
+            "description": "Sets the CSS id of the parent group element of the slider.",
+            "itemtype": "method",
+            "name": "cssId",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe CSS id mentioned above",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    slider.cssId('foo')\n    slider.create(d3.select('svg'))\n\nin your stylesheet\n\n    #foo .gui-slider {\n      fill: red;\n      stroke: orange;\n    }\n\ncreates a slider with red background and an orange stroke"
+            ],
+            "return": {
+                "description": "**String** `_cssId`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 294,
+            "description": "Sets the visual height of the slider.  Sadly this property cannot be set\nusing CSS.",
+            "itemtype": "method",
+            "name": "height",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe height of the slider in pixels",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.height(44)\n    slider.create(d3.select('svg'))\n\ncreates a slider with a height of 44 pixels in the svg"
+            ],
+            "return": {
+                "description": "**Number** `_height`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 321,
+            "description": "Sets the number of digits to display when the slider displays the text\nrepresentation of the target value.",
+            "itemtype": "method",
+            "name": "fixedDecimal",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nnumber of decimal places to display",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.fixedDecimal(0)\n    slider.create(d3.select('svg'))\n\ncreates a slider with value indicator that has no digits after the decimal\nplace, so it appears as an integer"
+            ],
+            "return": {
+                "description": "**Number** `_fixedDecimal`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 349,
+            "description": "Sets the text of the label of the slider.  This is optional, you can manage\nyour own labels.",
+            "itemtype": "method",
+            "name": "label",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe text label of the slider",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.label('zewmg')\n    slider.create(d3.select('svg'))\n\ncreates a slider with label of zemg"
+            ],
+            "return": {
+                "description": "**String** `_label`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 376,
+            "description": "Sets the roundedness of the rectangle of the slider.  A square slider with\na `roundedRectanglePercent` of 100, would be a circle.  `10` is a good value\nto start with.",
+            "itemtype": "method",
+            "name": "roundedRectanglePercent",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe percent roundedness of the slider rectangles",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.width(100).height(100)\n    slider.roundedRectanglePercent(100)\n    slider.create(d3.select('svg'))\n\ncreates slider that appears to be a circle"
+            ],
+            "return": {
+                "description": "**String** `_roundedRectanglePercent`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 405,
+            "description": "Sets the internal `d3.scale` of the slider.  This is where all of the\nbusiness logic of the slider is performed.  When the user clicks on the\nslider, an internal scale maps the size of the slider to the input domain\nof the `d3.scale` that is set with this function.  Thus the position\nclicked or dragged on the slider always corresponds to the corresponding\noutput range of the scale passed to this function.\n\nAn interesting note.  The domain of this scale does not matter.  You could\nenter `[300.1,333.03]` and the slider would re-map the click events to that\nrange.  Because `log` scales are not continuous, try to use values in the\nrange of `[ 1, <∞ ]`.",
+            "itemtype": "method",
+            "name": "scale",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\na valid `d3.scale`",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.scale(d3.scale.linear().domain([1,2]).range([0,100]))\n    slider.create(d3.select('svg'))\n\nCreates a slider that will output a value between 0 and 100 depending on\nwhere it is clicked."
+            ],
+            "return": {
+                "description": "**String** `_scale`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 442,
+            "description": "Sets the type of the slider.  Wants `'vertical'` or `'horizontal'`.",
+            "itemtype": "method",
+            "name": "type",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe type of the slider, either `'vertical'` or '`horiztonal`'",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.type('vertical')\n    slider.create(d3.select('svg'))\n\ncreates a vertical slider"
+            ],
+            "return": {
+                "description": "**String** `_type`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 468,
+            "description": "Sets the transition speed of the slider.  The value passed is in\nmilliseconds.  This is the duration of the transition that will be used\nwhen the slider is clicked on or the source value is updated.\nIf you want instant movement between positions, effectively no transition,\npass zero `0` to this method.",
+            "itemtype": "method",
+            "name": "transitionSpeed",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe transition speed in milliseconds",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.transitionSpeed(303)\n    slider.create(d3.select('svg'))\n\ncreates a slider with a transition speed of 303ms"
+            ],
+            "return": {
+                "description": "**String** `_type`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 499,
+            "description": "Sets the visual width of the slider.  Sadly this property cannot be set\nusing CSS.",
+            "itemtype": "method",
+            "name": "width",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "_",
+                    "description": "\nthe width of the slider in pixels",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n    var slider = new GUId3.slider()\n    slider.width(303)\n    slider.create(d3.select('svg'))\n\ncreates a slider with a width of 303 pixels in the svg"
+            ],
+            "return": {
+                "description": "**Number** `_width`\npassing no arguments triggers the return, this terminates the chain"
+            },
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 526,
+            "description": "Connects the slider to a target object and a target key.  When the slider\nis clicked on, the value of the targetObject[target_key] is changed.\n\nCall this funcition immediately before calling `create()`",
+            "itemtype": "method",
+            "name": "connect",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "o",
+                    "description": "\nthe target object that holds the value the slider will modify",
+                    "type": "Object"
+                },
+                {
+                    "name": "k",
+                    "description": "\nthe String name of the key/field of the object that holds the value the\nslider will modify",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n    var foo = { bar: 303.3 }\n    var slider = new GUId3.slider()\n    // ...\n\n    slider.connect(foo,'bar')\n    slider.create(d3.select('svg'))\n\nclicking on the slider will change the value of foo\n"
+            ],
+            "class": "Slider",
+            "module": "GUId3"
+        },
+        {
+            "file": "lib/GUId3.slider.js",
+            "line": 591,
+            "description": "Creates the slider in the selection passed.  It is advised that you pass in\na selection of a group element that you can transform and style yourself.\n\nCall this function after all the parameters are set, and `connect()` has\nbeen called.  After you call `create()`, you can then call `setValue()` and\n`getValue()` without having any issues.",
+            "itemtype": "method",
+            "name": "create",
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "selection",
+                    "description": "\nA d3 selection.",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n\n    var svg = d3.select('body').append('svg')\n    var g_slider_parent = svg.append('g')\n      .attr('transform', 'translate(303,101)')\n\n    var foo = { bar: 303.3 }\n    var slider = new GUId3.slider()\n    // ...\n\n    slider.connect(foo,'bar')\n    slider.create(g_slider_parent)\n\nCreates a slider at position `x: 303 y: 101`, because the parent element\nwith a `translate` with those coordinates was passed as the selection.\n"
+            ],
+            "class": "Slider",
+            "module": "GUId3"
+        }
+    ],
+    "warnings": []
+}
