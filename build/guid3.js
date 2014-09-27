@@ -721,6 +721,16 @@ module.exports = function module(cb){
   this._label = ''
 
   /**
+  the number of ticks of the slider
+
+  set with {{#crossLink "Slider/steps"}}{{/crossLink}}
+  @property _steps
+  @type {Number}
+  @default undefined
+  **/
+  this._steps = undefined
+
+  /**
   the d3 scale of the slider
 
   set with {{#crossLink "Slider/scale"}}{{/crossLink}}
@@ -982,6 +992,33 @@ module.exports = function module(cb){
   this.label = function(_){
     if(!arguments.length) { return this._label; }
     this._label = _
+    return this;
+  }
+
+  /**
+  Sets the number of steps in the slider.  This is only accounts for mouse
+  interaction, and does not
+
+  @method steps
+  @chainable
+
+  @param _ {String}
+  the text label of the slider
+
+  @example
+      var slider = new GUId3.slider()
+      slider.label('zewmg')
+      slider.create(d3.select('svg'))
+
+  creates a slider with label of zemg
+
+  @return **String** `_label`
+  passing no arguments triggers the return, this terminates the chain
+
+  */
+  this.steps = function(_){
+    if(!arguments.length) { return this._steps; }
+    this._steps = _
     return this;
   }
 
@@ -1402,6 +1439,18 @@ module.exports = function module(cb){
       }
 
       // console.log('use_value',use_value)
+      var n_ticks = 10
+
+      if(self._steps){
+        var tick_size
+        if(self._type === 'horizontal'){
+          tick_size  = self._width / self._steps
+        } else {
+          tick_size = self._height / self._steps
+        }
+
+        use_value = tick_size * Math.floor((use_value+(tick_size*0.5))/tick_size)
+      }
 
       // set the value of the object itself
       // this triggers the callback on g_root.on('changed')

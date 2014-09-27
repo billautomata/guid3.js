@@ -175,6 +175,8 @@ slider2.scale(d3.scale.linear().domain([1,100]).range([100,3600]))
 slider2.width(825)
 slider2.height(30)
 slider2.label('speed (ms)')
+slider2.steps(6)
+slider2.fixedDecimal(0)
 
 slider2.connect(timer_duration,'v')
 
