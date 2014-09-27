@@ -1003,16 +1003,9 @@ module.exports = function module(cb){
   @chainable
 
   @param _ {String}
-  the text label of the slider
+  the number of steps in the slider
 
-  @example
-      var slider = new GUId3.slider()
-      slider.label('zewmg')
-      slider.create(d3.select('svg'))
-
-  creates a slider with label of zemg
-
-  @return **String** `_label`
+  @return **String** `_steps`
   passing no arguments triggers the return, this terminates the chain
 
   */
