@@ -3,21 +3,36 @@
 JS.Test.describe('Button', function(){ with(this){
 
   before(function(){ with(this){
+    console.log('before run')
 
-    window.button_obser1 = { v: true }
+    window.outside_value = 33
 
-    this.svg = d3.select('div#test').append('svg')
+    button_observed_object = { v: true }
+
+    svg = d3.select('div#test').append('svg')
       .attr('width', 512)
       .attr('height', 512)
 
-    g_button1 = this.svg.append('g')
+    g_button1 = svg.append('g')
      .attr('transform', 'translate(120,300)')
 
     // pass in a callback
-    button = new GUId3.Button(function(d){console.log('from callback button 1',d)})
+    button = new GUId3.Button(function(d){
+
+      //console.log('button',button)
+
+      console.log('button test callback', d)
+
+      var s = d3.select(button.g_root.node())
+      s.attr('id', 'callback_triggered')
+      console.log(d3.select(button.g_root.node()))
+
+
+    })
 
     button.cssClass('green_button')
-    button.width(150).height(50).connect(window.button_obser1,'v')
+    button.cssId('derrrp')
+    button.width(150).height(50).connect(button_observed_object,'v')
     button.type('toggle')
     button.labelOn('state on')
     button.labelOff('=)')
@@ -28,11 +43,13 @@ JS.Test.describe('Button', function(){ with(this){
     // create the element on the d3 selection
     button.create(g_button1) // you can also chain the create function at the end
 
+
   }})
 
   after(function(){ with(this){
 
-    this.svg.remove()
+    console.log('after run')
+    svg.remove()
     button = null
 
   }})
@@ -85,29 +102,82 @@ JS.Test.describe('Button', function(){ with(this){
 
   describe('Object.observe functionality', function(){ with(this){
 
-    it('calling setValue changes the target object', function() { with(this) {
+    it('calling setValue(false) sets',
+    function(resume) { with(this) {
 
       button.setValue(false)
-      assertEqual( false, window.button_obser1.v)
-      button.setValue(true)
-      assertEqual( true, window.button_obser1.v)
 
+      var m = setTimeout(function(){
+
+        var classed_inactive = d3.select(button.g_root.node())
+          .select('rect').classed('guid3-button-inactive')
+
+          assertEqual(true, classed_inactive)
+          assertNotEqual(false, classed_inactive)
+
+        resume()
+
+      },100)
+    }})
+
+    it('calling setValue() invokes the callback chain',
+    function(resume) { with(this) {
+
+      console.log('setting the value')
+
+      button.setValue(false)
+
+      var m = setTimeout(function(){
+
+        assertEqual('callback_triggered',
+          d3.select(button.g_root.node()).attr('id'))
+        assertNotEqual('zemw',
+          d3.select(button.g_root.node()).attr('id'))
+        assertNotEqual(undefined,
+          d3.select(button.g_root.node()).attr('id'))
+        assertNotEqual(null,
+          d3.select(button.g_root.node()).attr('id'))
+
+        resume()
+
+      },200)
     }})
 
   }})
 
+
+  //
   describe('custom functionality', function(){ with(this){
 
-    it('calling toggle() changes the target object', function() { with(this) {
+    it('calling toggle() changes the target object from false -> true', function(resume) { with(this) {
 
+      //assertEqual(false, button_observed_object.v)
+      button.setValue(false)
       button.toggle()
-      assertEqual( false, window.button_obser1.v)
+
+      setTimeout(function(){
+          assertEqual( true, button_observed_object.v)
+          resume()
+      },100)
+
+    }})
+
+
+    it('calling toggle() changes the target object from true -> false', function(resume) { with(this) {
+
+      //assertEqual(false, button_observed_object.v)
+      button.setValue(true)
       button.toggle()
-      assertEqual( true, window.button_obser1.v)
+
+      setTimeout(function(){
+          assertEqual( false, button_observed_object.v)
+          resume()
+      },100)
 
     }})
 
   }})
+
 
 
 }})

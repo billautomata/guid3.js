@@ -138,7 +138,8 @@ JS.Test.describe('Slider', function(){ with(this){
         var m = setTimeout(function(){
 
           console.log('////////////')
-          console.log(d3.select(slider.g_root.node()).select('rect.guid3-slider-indicator').attr('width'))
+          console.log(d3.select(slider.g_root.node())
+            .select('rect.guid3-slider-indicator').attr('width'))
 
           var slider_width = parseFloat(d3.select(slider.g_root.node())
             .select('rect.guid3-slider-indicator')
@@ -158,7 +159,8 @@ JS.Test.describe('Slider', function(){ with(this){
         var m = setTimeout(function(){
 
           console.log('////////////')
-          console.log(d3.select(slider.g_root.node()).select('rect.guid3-slider-indicator').attr('width'))
+          console.log(d3.select(slider.g_root.node())
+            .select('rect.guid3-slider-indicator').attr('width'))
 
           var slider_width = parseFloat(d3.select(slider.g_root.node())
             .select('rect.guid3-slider-indicator')
@@ -180,7 +182,8 @@ JS.Test.describe('Slider', function(){ with(this){
         var m = setTimeout(function(){
 
           console.log('////////////')
-          console.log(d3.select(slider.g_root.node()).select('rect.guid3-slider-indicator').attr('width'))
+          console.log(d3.select(slider.g_root.node())
+            .select('rect.guid3-slider-indicator').attr('width'))
 
           var slider_width = parseFloat(d3.select(slider.g_root.node())
             .select('rect.guid3-slider-indicator')

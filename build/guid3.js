@@ -114,6 +114,7 @@ module.exports = function module(cb){
   @default undefined
   **/
   this._callback = cb
+  this._callbackTriggered = false // for testing
 
   /**
   the parent group element that the `_cssClass` and `_cssId` are applied to
@@ -1174,7 +1175,7 @@ module.exports = function module(cb){
 
       changes.forEach(function(change,change_index){
         if(change.name === self.object_key){
-          console.log(self.object_key, 'new value', change.object[self.object_key])
+          //console.log(self.object_key, 'new value', change.object[self.object_key])
 
           // update the slider visual
           var v = change.object[self.object_key]
@@ -1245,8 +1246,8 @@ module.exports = function module(cb){
 
     this.g_root.on('changed', function(){
 
-      console.log('g_root changed fired')
-      console.log('value passed', d3.event.detail)
+      // console.log('g_root changed fired')
+      // console.log('value passed', d3.event.detail)
 
       // convert to a slider size
       //console.log(self._scale.invertExtent(d3.event.detail))
@@ -1258,7 +1259,7 @@ module.exports = function module(cb){
 
       var scaled_inverted_value = 0
       scaled_inverted_value = self._scale.invert(true_value)
-    
+
       if(self._type === 'horizontal'){
 
         if(self._drag){
