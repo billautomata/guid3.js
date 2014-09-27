@@ -75,6 +75,7 @@ var ellipse_color = {
   var color_slider = new GUId3.Slider(function(v){
     var value = 'rgb(' + Math.floor(ellipse_color.red) + ',' + Math.floor(ellipse_color.green) + ',' + Math.floor(ellipse_color.blue) +')'
     target_ellipse.attr('fill', value)
+    console.log('callback triggered')
   })
   color_slider.label(color_name)
   color_slider.cssClass('color_slider')
