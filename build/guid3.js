@@ -502,6 +502,10 @@ module.exports = function module(cb){
     return this;
   }
 
+  this.noconnect = function(){
+    var dummy = { v: 0 }
+    this.connect(dummy,'v')
+  }
 
   /**
   Creates the button in the selection passed.  It is advised that you pass in
@@ -535,6 +539,11 @@ module.exports = function module(cb){
 
   */
   this.create = function(selection){
+
+    // connect to dummy value if not connected to a target
+    if(!this.object_reference){
+      this.noconnect()
+    }
 
     var svg = selection
 
@@ -571,6 +580,8 @@ module.exports = function module(cb){
       .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
       .attr('width', this._width)
       .attr('height', this._height)
+      .style('fill', 'white')
+      .style('stroke', 'black')
 
     if(self._type === 'toggle'){
       this.g_root.on('mousedown', function(){
@@ -602,8 +613,6 @@ module.exports = function module(cb){
         text_value.text(self._labelText.off)
       }
     })
-
-    // TODO set the state of the button based on the target
 
   } // end of this.create
 
@@ -1266,7 +1275,7 @@ module.exports = function module(cb){
   */
   this.create = function(selection){
 
-    // connect to
+    // connect to dummy value if not connected to a target
     if(!this.object_reference){
       this.noconnect()
     }
