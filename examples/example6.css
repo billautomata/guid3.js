@@ -7,7 +7,7 @@
   fill: white !important;
   font-family: Helvetica !important;
   font-size: 16px !important;
-  font-weight: 100;
+  font-weight: 100 !important;
 }
 .example6 .guid3-button-inactive {
   fill: blue !important;

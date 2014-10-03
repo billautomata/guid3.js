@@ -1,28 +1,28 @@
 ![logo](http://billautomata.github.io/GUId3.js/logo.png)
-v0.6.1 [examples](http://billautomata.github.io/GUId3.js/) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
+v1.0.1 (beta) [examples](http://billautomata.github.io/GUId3.js/) [tests](http://billautomata.github.io/GUId3.js/test.html) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
 ========
+A toolkit for interactive UI components with D3.js.  
 
-##currently unstable, do not use in production yet, version 1.0.0 planned for October 1
-
-A simple toolkit for interactive UI components with D3.js.  The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
+The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
 
 Almost all of the visual aspects are powered by setting a class on creation, and modifying the CSS for the corresponding component of the UI element.
 
 * bi-directional communication
-  * click the slider, the value is updated
-  * update the value, the slider visual is correct
+  * click/drag the UI component, the value is updated
+  * update the value, the UI component visual is correct
 * uses d3 scales internally
-* use as a proxy to multiple values setting a callback function
+* pass custom callbacks
 
 ```css
 /* example.css */
 /* changing the position and look of the value indicator for the slider */
-.my_css_class.guid3-slider-textvalue {
-  transform: rotate(33deg) translate(110px,-10px);
-  font-family: monospace;
-  font-size: 12px;
-  fill: black;
-  stroke: none;
+.my_css_class .guid3-slider-textvalue {
+  -webkit-transform: rotate(33deg) translate(110px,-10px) !important;
+  transform: rotate(33deg) translate(110px,-10px) !important;
+  font-family: monospace !important;
+  font-size: 12px !important;
+  fill: black !important;
+  stroke: none !important;
 }
 ```
 
@@ -38,64 +38,64 @@ $ browserify lib/GUId3.base.js -o build/guid3.js
 - [x] toggle button
 - [x] momentary button
 
-######not implemented yet, planned for version 1
+#### future plans
 - [ ] circle slider (like a radial knob)
 - [ ] radio button group (quantile scales?)
 
 ###slider example
 ```javascript
 // example.js
-var g_slider0 = svg.append('g')
-  .attr('transform', 'translate(15,5)')
+var target_object = { v: 1000 }
 
-var obser = { v: 50000 }  // the value we want to change
+var slider = new GUId3.Slider(function(v){
+  console.log('from the callback', v)
+})
 
-// pass in a callback
-var n = new GUId3.Slider(function(d){console.log('from callback slider 0',d)})
+slider.cssClass('example4')
+slider.width(30).height(250).label('styled & vertical!')
+slider.type('vertical')
 
-n.cssClass('slider0')
+// connect the slider to the target
+slider.connect(target_object,'v')
 
-n.type('horizontal')
-n.width(400).height(50).connect(obser,'v')
+// set up the scale using a d3 scale!
+var my_scale = d3.scale.linear().domain([1,100]).range([303,909])
+slider.scale(my_scale)
 
-n.scale(d3.scale.linear()
-  .domain([0,2])      // the domain doesn't matter,
-  .range([10,100000]) // you just have to set it
-  .clamp(true))
+// create the container, or select one
+var container = d3.select('div#example4')
+  .append('svg').attr('width', 500).attr('height', 300)
 
-// n.callback(function(q){ console.log('zomg',q) })
-// replaces the callback set in the constructor
-
-// create the element on the d3 selection
-n.roundedRectanglePercent(5) // rounded rectangles
-n.create(g_slider0) // call create() at the end
-n.setValue(9333.01) // then you can call setValue(v)
-                    // which updates the slider and the target
+// create the slider by passing in a d3 selection
+slider.create(container.append('g')
+  .attr('transform','translate(100,10)'))
+// set the value of the slider
+slider.setValue(808.1)
 
 ```
 
 ```css
-/* example.css */
-.slider0 .guid3-slider {
-  fill: rgb(33,33,100);
-  stroke: black;
-  stroke-width: 3px;
+.example4 .guid3-slider {
+  fill: rgb(232,232,232) !important;
+  fill-opacity: 1.0 !important;
+  stroke: none !important;
 }
-
-.slider0 .guid3-slider-indicator {
-  fill: rgb(33,33,255);
-  stroke: white;
-  stroke-width: 0.5;
+.example4 .guid3-slider-indicator {
+  fill: #b887fd  !important;
+  fill-opacity: 0.33 !important;
+  stroke: none !important;
 }
-
-.slider0 .guid3-slider-textvalue {
-  transform: translate(-10px,12px);
-  font-family: monospace;
-  font-size: 23px;
-  fill: white;
-  fill-opacity: 0.33
-  stroke: none;
-  text-anchor: end;
+.example4 .guid3-slider-textlabel {
+  fill: black !important;
+  font-family: serif !important;
+  font-size: 12px !important;
+  font-weight: 100 !important;
+}
+.example4 .guid3-slider-textvalue {
+  fill: black !important;
+  font-family: cursive !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
 }
 ```
 
@@ -103,26 +103,48 @@ n.setValue(9333.01) // then you can call setValue(v)
 // buttons!
 var obj = { value: true }
 
-function optionalCallback(v){
-  console.log('from the constructor passed callback', v)
+var button = new GUId3.Button()
+
+button.cssClass('example6')
+button.width(150).height(50)
+button.labelOn('zomgon').labelOff('zomgomentary')
+button.type('momentary')
+
+button.connect(obj,'value')
+
+button.roundedRectangle([10,10])
+button.callback(function(v){
   if(v){
-    doSomething()
+    d3.select('div#example6').style('background-color', '#406573')
   } else {
-    undoSomething()
+    d3.select('div#example6').style('background-color', 'white')
   }
-}
+})
 
-var button = new GUId3.Button(optionalCallback)
+// create the container, or select one
+var container = d3.select('div#example6')
+  .append('svg').attr('width', 500).attr('height', 300)
 
-button.width(100).height(100)
-button.labelOn('on')
-button.labelOff('off')
-
-button.create(d3.select('g#something'))
-
+// create the button
+button.create(container.append('g')
+  .attr('transform','translate(10,10)'))
 button.setValue(true)
-button.setValue(false)
-button.toggle() // changes the state of the button
-                // allows you to treat a momentary button like a toggle
-
+```
+```css
+.example6 .guid3-button {
+  fill: green !important;
+  fill-opacity: 1.0 !important;
+  stroke: white !important;
+}
+.example6 .guid3-button-text {
+  fill: white !important;
+  font-family: Helvetica !important;
+  font-size: 16px !important;
+  font-weight: 100 !important;
+}
+.example6 .guid3-button-inactive {
+  fill: blue !important;
+  fill-opacity: 1.0 !important;
+  stroke: orange !important;
+}
 ```

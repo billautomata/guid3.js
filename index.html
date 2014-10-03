@@ -332,14 +332,15 @@ button.setValue(true)
 <pre><code class='javascript'>// momentary buttons
 var button = new GUId3.Button()
 button.cssClass('example6')
-button.width(100).height(50)
+button.width(150).height(50)
 button.labelOn('zomgon').labelOff('zomgomentary')
 button.type('momentary')
+button.roundedRectangle([10,10])
 button.callback(function(v){
   if(v){
     d3.select('div#example6').style('background-color', '#406573')
   } else {
-    d3.select('div#example6').style('background-color', 'black')
+    d3.select('div#example6').style('background-color', 'white')
   }
 })
 
@@ -351,7 +352,6 @@ var container = d3.select('div#example6')
 button.create(container.append('g')
   .attr('transform','translate(10,10)'))
 button.setValue(true)
-
 </code></pre>
 <pre><code class='css'>/* the associated css */
 .example6 .guid3-button {

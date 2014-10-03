@@ -3,6 +3,7 @@ button.cssClass('example6')
 button.width(150).height(50)
 button.labelOn('zomgon').labelOff('zomgomentary')
 button.type('momentary')
+button.roundedRectangle([10,10])
 button.callback(function(v){
   if(v){
     d3.select('div#example6').style('background-color', '#406573')
