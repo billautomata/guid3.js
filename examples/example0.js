@@ -19,7 +19,7 @@ var container = d3.select('div#example0')
   .attr('height', 32)
 
 // create the slider
-slider.create(container)
-
+slider.create(container.append('g')
+  .attr('transform','translate(10,10)'))
 // set the value of the slider
 slider.setValue(808.1)

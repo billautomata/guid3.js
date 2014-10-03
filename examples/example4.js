@@ -14,7 +14,7 @@ var container = d3.select('div#example4')
   .append('svg').attr('width', 500).attr('height', 300)
 
 // create the slider
-slider.create(container.append('g').attr('transform','translate(100,0)'))
-
+slider.create(container.append('g')
+  .attr('transform','translate(100,10)'))
 // set the value of the slider
 slider.setValue(808.1)
