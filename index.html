@@ -15,7 +15,9 @@
   <script src='vendor/jstest.js' charset='utf-8'></script>
 
   <script src='build/guid3.js' charset='utf-8'></script>
-  <link rel='stylesheet' type='text/css' href="lib/GUId3.css">
+  <!-- <link rel='stylesheet' type='text/css' href="lib/GUId3.css"> -->
+
+  <link rel='stylesheet' type='text/css' href="examples/example3.css">
 
   <link rel='stylesheet' type='text/css' href="examples/bootstrap.css">
   <link rel='stylesheet' type='text/css' href="styles/github.css">
@@ -175,6 +177,55 @@ slider.setValue(128)
 </div>
 
 
+<!-- example 3 -->
+<hr>
+<div class='row'>
+<div class='col-md-6'>
+<pre><code class='javascript'>// style the slider with css
+var slider = new GUId3.Slider(callback)
+
+slider.cssClass('example3')
+
+slider.width(300).height(20).label('styled slider')
+
+// set up the scale using a d3 scale!
+var my_scale = d3.scale.linear().domain([1,100]).range([303,909])
+slider.scale(my_scale)
+
+// create the container, or select one
+var container = d3.select('div#example3')
+  .append('svg').attr('width', 512).attr('height', 32)
+
+// create the slider
+slider.create(container)
+
+// set the value of the slider
+slider.setValue(808.1)
+</code></pre>
+<pre><code class='css'>/* the associated css */
+.example3 .guid3-slider {
+  fill: rgb(232,232,232) !important;
+  fill-opacity: 1.0 !important;
+  stroke: none !important;
+}
+.example3 .guid3-slider-indicator {
+  fill: rgb(33,66,255) !important;
+  fill-opacity: 0.33 !important;
+  stroke: none !important;
+}
+.example3 .guid3-slider-textlabel {
+  fill: white !important;
+}
+.example3 .guid3-slider-textvalue {
+  fill: white !important;
+}
+</code></pre>
+
+
+</div>
+<div class='col-md-4' id='example3'></div>
+</div>
+
   </div>
 
 
@@ -184,20 +235,15 @@ slider.setValue(128)
 
 <script>
 
-
 </script>
-
-<script src='build/tests.js'></script>
 
 <script src='vendor/bootstrap.js' charset='utf-8'></script>
 <script src='vendor/highlight.pack.js' charset='utf-8'></script>
-<script>
-document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-</script>
 
 <script src='examples/example0.js'></script>
 <script src='examples/example1.js'></script>
 <script src='examples/example2.js'></script>
+<script src='examples/example3.js'></script>
 
 <script>
 
@@ -206,6 +252,7 @@ document.write('<script src="http://' + (location.host || 'localhost').split(':'
   });
 
 </script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 
 </html>
