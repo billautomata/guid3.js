@@ -1,5 +1,6 @@
 /*globals slider: true */
 
+
 JS.Test.describe('Slider', function(){ with(this){
 
     // setup
