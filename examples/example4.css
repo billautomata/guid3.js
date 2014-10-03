@@ -1,0 +1,22 @@
+.example4 .guid3-slider {
+  fill: rgb(232,232,232) !important;
+  fill-opacity: 1.0 !important;
+  stroke: none !important;
+}
+.example4 .guid3-slider-indicator {
+  fill: #b887fd  !important;
+  fill-opacity: 0.33 !important;
+  stroke: none !important;
+}
+.example4 .guid3-slider-textlabel {
+  fill: black !important;
+  font-family: serif !important;
+  font-size: 12px !important;
+  font-weight: 100 !important;
+}
+.example4 .guid3-slider-textvalue {
+  fill: black !important;
+  font-family: cursive !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
