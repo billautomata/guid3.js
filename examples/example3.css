@@ -1,0 +1,16 @@
+.example3 .guid3-slider {
+  fill: rgb(232,232,232) !important;
+  fill-opacity: 1.0 !important;
+  stroke: none !important;
+}
+.example3 .guid3-slider-indicator {
+  fill: rgb(33,66,255) !important;
+  fill-opacity: 0.33 !important;
+  stroke: none !important;
+}
+.example3 .guid3-slider-textlabel {
+  fill: white !important;
+}
+.example3 .guid3-slider-textvalue {
+  fill: white !important;
+}
