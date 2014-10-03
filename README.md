@@ -13,19 +13,6 @@ Almost all of the visual aspects are powered by setting a class on creation, and
 * uses d3 scales internally
 * pass custom callbacks
 
-```css
-/* example.css */
-/* changing the position and look of the value indicator for the slider */
-.my_css_class .guid3-slider-textvalue {
-  -webkit-transform: rotate(33deg) translate(110px,-10px) !important;
-  transform: rotate(33deg) translate(110px,-10px) !important;
-  font-family: monospace !important;
-  font-size: 12px !important;
-  fill: black !important;
-  stroke: none !important;
-}
-```
-
 ```bash
 # build using browserify
 $ npm install -g browserify
@@ -41,6 +28,18 @@ $ browserify lib/GUId3.base.js -o build/guid3.js
 #### future plans
 - [ ] circle slider (like a radial knob)
 - [ ] radio button group (quantile scales?)
+
+#### use
+
+
+Include the javascript in your page.
+```html
+<script src="build/Object-Observe-Shims.js"></script>
+<script src="build/guid3.js"></script>
+```
+
+You style your buttons and sliders with CSS using the appropriate classes.  See the examples for the names of the classes of the ui elements you want to apply styles to.
+
 
 ###slider example
 ```javascript
@@ -75,6 +74,7 @@ slider.setValue(808.1)
 ```
 
 ```css
+/* example.css */
 .example4 .guid3-slider {
   fill: rgb(232,232,232) !important;
   fill-opacity: 1.0 !important;
@@ -98,6 +98,7 @@ slider.setValue(808.1)
   font-weight: 900 !important;
 }
 ```
+***note*** There is no getting around the `!important` flag on the CSS.  I am trying to find a way to remove that requirement, but there is a series of bugs and glitches surrounding the painting of SVG elements that do not have `fill` and `stroke` attributes inlined.  In order to override those values you need to set the `!important` flag.  
 
 ```javascript
 // buttons!
