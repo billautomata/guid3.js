@@ -1,11 +1,11 @@
 ![logo](http://billautomata.github.io/GUId3.js/logo.png)
 v1.0.1 (beta) [examples](http://billautomata.github.io/GUId3.js/) [tests](http://billautomata.github.io/GUId3.js/test.html) [docs](http://billautomata.github.io/GUId3.js/build/apidocs/)
 ========
-A toolkit for interactive UI components with D3.js.  
+A toolkit for SVG UI components with D3.js.  
 
-The UI elements receive feedback from the target objects using Object.observe when available, or a shim.
+The UI elements are bi-directional.  Meaning they receive feedback from the target objects using Object.observe when available, or a shim.
 
-Almost all of the visual aspects are powered by setting a class on creation, and modifying the CSS for the corresponding component of the UI element.
+Almost all of the visual aspects of the UI elements can be assigned by associating the UI element with a CSS class, and modifying the CSS for the corresponding component of the UI element.
 
 * bi-directional communication
   * click/drag the UI component, the value is updated
