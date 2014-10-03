@@ -1379,7 +1379,12 @@ module.exports = function module(cb){
 
     // create the label
     var g_root_text_label = this.g_root.append('g')
-      .attr('transform', 'translate(4,' + (this._height * 0.5) + ')')
+
+    if(self._type === 'horizontal'){
+      g_root_text_label.attr('transform', 'translate(4,' + (self._height * 0.5) + ')')
+    } else {
+      g_root_text_label.attr('transform', 'translate('+(self._width*0.5)+','+ (self._height*1.05) + ')')
+    }
 
     var text_label = g_root_text_label.append('text')
       .attr('class', 'guid3-slider-textlabel')
@@ -1391,9 +1396,23 @@ module.exports = function module(cb){
       .style('font-size', '12px')
       .style('font-family', 'monospace')
 
+    if(self._type === 'horizontal'){
+
+    } else {
+      text_label.style('text-anchor', 'middle')
+    }
+
+
     // create the value indicator
     var g_root_text_value = this.g_root.append('g')
-      .attr('transform', 'translate('+(this._width-2)+',' + (this._height * 0.5) + ')')
+
+    if(self._type === 'horizontal'){
+      g_root_text_value.attr('transform',
+        'translate('+(self._width-2) + ','+ (self._height * 0.5) + ')')
+    } else {
+      g_root_text_value.attr('transform',
+        'translate('+(self._width*0.5)+','+ (self._height*1.1) + ')')
+    }
 
     var text_value = g_root_text_value.append('text')
       .attr('class', 'guid3-slider-textvalue')
@@ -1402,15 +1421,14 @@ module.exports = function module(cb){
       .attr('y', 0)
       .attr('dy', '0.33em')
       .style('pointer-events', 'none')
-      .style('text-anchor', 'end')
+
       .style('font-size', '12px')
       .style('font-family', 'monospace')
 
-    if(self._type === 'vertical'){
-      text_value.attr('x',0)
-      text_value.attr('y',0)
-      text_value.attr('transform', 'translate('+(self._width*0.5)+','+(self._height * 0.52)+')')
-      text_value.attr('text-anchor', 'middle')
+    if(self._type === 'horizontal'){
+      text_value.style('text-anchor', 'end')
+    } else {
+      text_value.style('text-anchor', 'middle')
     }
 
     text_value.on('change_me', function(){
