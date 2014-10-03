@@ -593,6 +593,7 @@ module.exports = function module(cb){
       .attr('y', this._height * 0.5)
       .attr('dy', '0.333em')
       .attr('text-anchor', 'middle')
+      .style('pointer-events', 'none')
 
     text_value.on('change_me', function(){
       if(self.object_reference[self.object_key]){
@@ -678,6 +679,8 @@ module.exports = function module(cb){
   @default '300'
   **/
   this._width = 300
+  this._rx = 2
+  this._ry = 2
 
   /**
   the height of the slider in pixels
@@ -1038,11 +1041,13 @@ module.exports = function module(cb){
   passing no arguments triggers the return, this terminates the chain
 
   */
-  this.roundedRectanglePercent = function(_){
-    if(!arguments.length) { return this._roundedRectanglePercent; }
-    this._roundedRectanglePercent = _
+  this.roundedRectangle = function(_){
+    if(!arguments.length) { return [ this._rx, this._ry ]; }
+    this._rx = _[0]
+    this._ry = _[1]
     return this;
   }
+
 
   /**
   Sets the internal `d3.scale` of the slider.  This is where all of the
@@ -1218,16 +1223,14 @@ module.exports = function module(cb){
         }
       })
 
-
-      // console.log('changes')
-      // console.log(changes)
     })
 
-    // this.watcher = new PathObserver(this.object_reference, this.object_key)
-    // this.watcher.open(function(fresh,old){
-    // })
-
     return this;
+  }
+
+  this.noconnect = function(){
+    var dummy = { v: 0 }
+    this.connect(dummy,'v')
   }
 
   /**
@@ -1262,6 +1265,11 @@ module.exports = function module(cb){
 
   */
   this.create = function(selection){
+
+    // connect to
+    if(!this.object_reference){
+      this.noconnect()
+    }
 
     var svg = selection
 
@@ -1336,25 +1344,42 @@ module.exports = function module(cb){
       .attr('class', 'guid3-slider')
       .attr('x',0)
       .attr('y',0)
-      .attr('rx', (this._roundedRectanglePercent*0.05) + '%')
-      .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
+      .attr('rx', this._rx)
+      .attr('ry', this._ry)
       .attr('width', this._width)
       .attr('height', this._height)
+      .style('fill', 'white')
+      .style('stroke', 'black')
+
+    var clip_bg = this.g_root.append('defs').append('clipPath')
+        .attr('id', 'cp')
+        .append('rect')
+        .attr('x',0)
+        .attr('y',0)
+        .attr('rx', this._rx)
+        .attr('ry', this._ry)
+        .attr('width', this._width)
+        .attr('height', this._height)
+        .style('fill', 'white')
+        .style('stroke', 'black')
 
     // horizontal slider
     var rect_horizontal_indicator = this.g_root.append('rect')
       .attr('class', 'guid3-slider-indicator')
       .attr('x',0)
-      .attr('y',0)
-      .attr('rx', (this._roundedRectanglePercent*0.05) + '%')
-      .attr('ry', (this._roundedRectanglePercent*0.05) + '%')
+      .attr('y',1)
+      .attr('rx', this._rx)
+      .attr('ry', this._ry)
       .attr('width', this._width)
-      .attr('height', this._height)
+      .attr('height', this._height-2)
+      .attr('clip-path', 'url(#cp)')
       .style('pointer-events', 'none')
+      .style('fill', 'rgb(200,200,200)')
+      .style('stroke', 'none')
 
     // create the label
     var g_root_text_label = this.g_root.append('g')
-      .attr('transform', 'translate(0,0)')
+      .attr('transform', 'translate(4,' + (this._height * 0.5) + ')')
 
     var text_label = g_root_text_label.append('text')
       .attr('class', 'guid3-slider-textlabel')
@@ -1362,10 +1387,13 @@ module.exports = function module(cb){
       .attr('x', 0)
       .attr('y', 0)
       .attr('dy', '0.33em')
+      .style('pointer-events', 'none')
+      .style('font-size', '12px')
+      .style('font-family', 'monospace')
 
     // create the value indicator
     var g_root_text_value = this.g_root.append('g')
-      .attr('transform', 'translate(' + (this._width + 2) + ',' + (this._height * 0.5) + ')')
+      .attr('transform', 'translate('+(this._width-2)+',' + (this._height * 0.5) + ')')
 
     var text_value = g_root_text_value.append('text')
       .attr('class', 'guid3-slider-textvalue')
@@ -1373,6 +1401,10 @@ module.exports = function module(cb){
       .attr('x', 0)
       .attr('y', 0)
       .attr('dy', '0.33em')
+      .style('pointer-events', 'none')
+      .style('text-anchor', 'end')
+      .style('font-size', '12px')
+      .style('font-family', 'monospace')
 
     if(self._type === 'vertical'){
       text_value.attr('x',0)
@@ -1388,6 +1420,7 @@ module.exports = function module(cb){
       } else {
         d3.select(this).text(self._scale(d3.event.detail))
       }
+
     })
 
     var map_scale = d3.scale.linear().domain([0,self._width]).range(self._scale.domain())
@@ -1397,11 +1430,7 @@ module.exports = function module(cb){
 
     var drag_function = function(d){
 
-      // console.log('here')
-      // console.log(d3.event)
-
       var bounding_node = self.g_root.node().getBoundingClientRect()
-      // console.log(bounding_node)
 
       if(!d3.event.clientX){
         d3.event.clientX = d3.event.x
@@ -1430,9 +1459,6 @@ module.exports = function module(cb){
       } else {
         use_value = y
       }
-
-      // console.log('use_value',use_value)
-      var n_ticks = 10
 
       if(self._steps){
         var tick_size

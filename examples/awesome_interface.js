@@ -46,7 +46,7 @@ Object.keys(window.vert0).forEach(function(k,key_index){
 
   slider.scale(d3.scale.linear().domain([0,1]).range([32,64]))
 
-  slider.transitionSpeed(100)
+  slider.transitionSpeed(50)
 
   slider.width(w)
   slider.height(h)

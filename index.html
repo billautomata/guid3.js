@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   <script src='vendor/d3.js' charset='utf-8'></script>
+  <script src='vendor/jquery-1.11.1.js' charset='utf-8'></script>
+
   <script src='vendor/observe-utils.js' charset='utf-8'></script>
   <script src='vendor/observe-shim.js' charset='utf-8'></script>
 
@@ -14,7 +16,10 @@
 
   <script src='build/guid3.js' charset='utf-8'></script>
   <link rel='stylesheet' type='text/css' href="lib/GUId3.css">
-  <link rel='stylesheet' type='text/css' href="examples/awesome_interface.css">
+
+  <link rel='stylesheet' type='text/css' href="examples/bootstrap.css">
+  <link rel='stylesheet' type='text/css' href="styles/github.css">
+  <link rel='stylesheet' type='text/css' href="examples/bootstrap-theme.css">
 
   <!-- tests -->
 
@@ -28,7 +33,6 @@
 
     body {
       margin: 11px;
-      overflow: hidden;
     }
 
     textarea {
@@ -43,28 +47,167 @@
 
 <body>
 
-  <div id='example'></div>
+  <div class='container'>
+
+<!-- example 0 -->
+<hr>
+<div class='row'>
+<div class='col-md-6'>
+<pre><code class='javascript'>// create a basic slider that does nothing
+
+var slider = new GUId3.Slider()
+
+slider.width(300)
+slider.height(20)
+
+slider.label('my slider')
+
+// set up the scale using a d3 scale!
+var my_scale = d3.scale.linear()
+  .domain([1,100])
+  .range([303,909])
+
+slider.scale(my_scale)
+
+// create the container, or select one
+var container = d3.select('div#example0')
+  .append('svg')
+  .attr('width', 512)
+  .attr('height', 32)
+
+// create the slider
+slider.create(container)
+
+// set the value of the slider
+slider.setValue(808.1)</code></pre>
+
+</div>
+<div class='col-md-4' id='example0'></div>
+</div>
+
+
+<!-- example 1 -->
+<hr>
+<div class='row'>
+<div class='col-md-6'>
+<pre><code class='javascript'>// create a basic slider that does something!
+// pass a callback into the constructor that does
+// something with the value the slider generates
+
+var slider = new GUId3.Slider(function(v){
+  v = Math.floor(v)
+  var rgb_string = 'rgb('+[v,v,v].join(',')+')'
+  console.log(rgb_string)
+  d3.select('div#example1')
+    .style('background-color', rgb_string)
+})
+
+slider.width(300)
+slider.height(20)
+
+slider.label('my slider')
+
+// set up the scale using a d3 scale!
+var my_scale = d3.scale.linear()
+  .domain([1,100])
+  .range([0,255])
+
+slider.scale(my_scale)
+
+// create the container, or select one
+var container = d3.select('div#example1')
+  .append('svg')
+  .attr('width', 300)
+  .attr('height', 20)
+
+// create the slider
+slider.create(container)
+
+// set the value of the slider
+slider.setValue(33)
+</code></pre>
+
+</div>
+<div class='col-md-4' id='example1' style='height: 200px;'></div>
+</div>
+
+<!-- example 2 -->
+<hr>
+<div class='row'>
+<div class='col-md-6'>
+<pre><code class='javascript'>// create a basic slider using all of the more
+// advanced options
+var slider = new GUId3.Slider(function(v){
+  // empty callback
+})
+
+slider.width(300)
+slider.height(20)
+
+slider.roundedRectangle([5,5])
+slider.fixedDecimal(0)
+slider.steps(4)
+
+slider.label('')
+
+// set up the scale using a d3 scale!
+var my_scale = d3.scale.linear()
+  .domain([1,100])
+  .range([0,255])
+
+slider.scale(my_scale)
+
+// create the container, or select one
+var container = d3.select('div#example2')
+  .append('svg')
+  .attr('width', 300)
+  .attr('height', 45)
+
+// create the slider
+slider.create(container)
+
+// set the value of the slider
+slider.setValue(128)
+</code></pre>
+
+</div>
+<div class='col-md-4' id='example2'></div>
+</div>
+
+
+  </div>
+
+
   <div id='test'></div>
 
 </body>
 
 <script>
 
-  window.svg = d3.select('div#example').append('svg')
-    .attr('width', 1024)
-    .attr('height', 720)
-    .style('background-color', 'white')
 
 </script>
 
-<script src="examples/awesome_interface.js"></script>
-
 <script src='test/test_button.js' charset='utf-8'></script>
 <script src='test/test_slider.js' charset='utf-8'></script>
-<script>//JS.Test.autorun()</script>
+<script>JS.Test.autorun()</script>
+
+<script src='vendor/bootstrap.js' charset='utf-8'></script>
+<script src='vendor/highlight.pack.js' charset='utf-8'></script>
+<script>
+document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+
+<script src='examples/example0.js'></script>
+<script src='examples/example1.js'></script>
+<script src='examples/example2.js'></script>
 
 <script>
-console.log(location.host)
-document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+</script>
+
 
 </html>

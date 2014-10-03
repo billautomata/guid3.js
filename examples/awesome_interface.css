@@ -23,6 +23,7 @@
   stroke: none;
   font-family: Helvetica;
   font-size: 16px;
+  text-decoration: blink;
   -webkit-filter: blur(29px);
 }
 
@@ -46,6 +47,7 @@
   transform: translate(10px,140px);
   font-family: Helvetica;
   font-size: 10px;
+  /*letter-spacing: 1px;*/
   text-anchor: middle;
 }
 
@@ -56,7 +58,6 @@
 
 #red rect.guid3-slider-indicator {
   fill: red;
-
 }
 
 #green text.guid3-slider-textlabel {
