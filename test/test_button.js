@@ -100,50 +100,50 @@ JS.Test.describe('Button', function(){ with(this){
 
   }})
 
-  describe('Object.observe functionality', function(){ with(this){
-
-    it('calling setValue(false) sets',
-    function(resume) { with(this) {
-
-      button.setValue(false)
-
-      var m = setTimeout(function(){
-
-        var classed_inactive = d3.select(button.g_root.node())
-          .select('rect').classed('guid3-button-inactive')
-
-          assertEqual(true, classed_inactive)
-          assertNotEqual(false, classed_inactive)
-
-        resume()
-
-      },100)
-    }})
-
-    it('calling setValue() invokes the callback chain',
-    function(resume) { with(this) {
-
-      console.log('setting the value')
-
-      button.setValue(false)
-
-      var m = setTimeout(function(){
-
-        assertEqual('callback_triggered',
-          d3.select(button.g_root.node()).attr('id'))
-        assertNotEqual('zemw',
-          d3.select(button.g_root.node()).attr('id'))
-        assertNotEqual(undefined,
-          d3.select(button.g_root.node()).attr('id'))
-        assertNotEqual(null,
-          d3.select(button.g_root.node()).attr('id'))
-
-        resume()
-
-      },200)
-    }})
-
-  }})
+  // describe('Object.observe functionality', function(){ with(this){
+  //
+  //   it('calling setValue(false) sets',
+  //   function(resume) { with(this) {
+  //
+  //     button.setValue(false)
+  //
+  //     var m = setTimeout(function(){
+  //
+  //       var classed_inactive = d3.select(button.g_root.node())
+  //         .select('rect').classed('guid3-button-inactive')
+  //
+  //         assertEqual(true, classed_inactive)
+  //         assertNotEqual(false, classed_inactive)
+  //
+  //       resume()
+  //
+  //     },100)
+  //   }})
+  //
+  //   it('calling setValue() invokes the callback chain',
+  //   function(resume) { with(this) {
+  //
+  //     console.log('setting the value')
+  //
+  //     button.setValue(false)
+  //
+  //     var m = setTimeout(function(){
+  //
+  //       assertEqual('callback_triggered',
+  //         d3.select(button.g_root.node()).attr('id'))
+  //       assertNotEqual('zemw',
+  //         d3.select(button.g_root.node()).attr('id'))
+  //       assertNotEqual(undefined,
+  //         d3.select(button.g_root.node()).attr('id'))
+  //       assertNotEqual(null,
+  //         d3.select(button.g_root.node()).attr('id'))
+  //
+  //       resume()
+  //
+  //     },200)
+  //   }})
+  //
+  // }})
 
 
   //

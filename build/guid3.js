@@ -5,9 +5,9 @@
  * @module GUId3
  * @main GUId3
  */
- window.GUId3 = {}
- window.GUId3.Button = require('./GUId3.button.js')
- window.GUId3.Slider = require('./GUId3.slider.js')
+window.GUId3 = {}
+window.GUId3.Button = require('./GUId3.button.js')
+window.GUId3.Slider = require('./GUId3.slider.js')
 
 },{"./GUId3.button.js":2,"./GUId3.slider.js":3}],2:[function(require,module,exports){
 /**
@@ -141,7 +141,8 @@ module.exports = function module(cb){
   // "use functions"
   // can only be called after .create()
   this.toggle = function(){
-    this.object_reference[this.object_key] = !this.object_reference[this.object_key]
+    this.setValue(!this.object_reference[this.object_key])
+    // this.object_reference[this.object_key] =
   }
 
   /**
@@ -162,6 +163,7 @@ module.exports = function module(cb){
   */
   this.setValue = function(_){
     this.object_reference[this.object_key] = _
+    this.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:_ } ))
   }
 
   /**
@@ -478,6 +480,7 @@ module.exports = function module(cb){
   this.connect = function(o,k){
     this.object_reference = o
     this.object_key = k
+    return this;
 
     ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
 
@@ -815,6 +818,7 @@ module.exports = function module(cb){
   this.setValue = function(v){
     // update the target value
     this.object_reference[self.object_key] = v
+    this.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
   }
 
   /**
@@ -1213,6 +1217,7 @@ module.exports = function module(cb){
 
     this.object_reference = o
     this.object_key = k
+    return this;
 
     ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
 
@@ -1300,7 +1305,7 @@ module.exports = function module(cb){
       // console.log('value passed', d3.event.detail)
 
       // convert to a slider size
-      //console.log(self._scale.invertExtent(d3.event.detail))
+      // console.log(self._scale.invertExtent(d3.event.detail))
 
       var true_value = d3.event.detail
 
@@ -1503,7 +1508,8 @@ module.exports = function module(cb){
 
       // set the value of the object itself
       // this triggers the callback on g_root.on('changed')
-      self.object_reference[self.object_key] = self._scale(map_scale(use_value))
+      self.setValue(self._scale(map_scale(use_value)))
+      //self.object_reference[self.object_key] = self._scale(map_scale(use_value))
 
     }
 
