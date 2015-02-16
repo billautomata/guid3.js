@@ -3,7 +3,7 @@ var slider = new GUId3.Slider(function(v){
 })
 
 slider.width(300)
-slider.height(20)
+slider.height(50)
 
 slider.roundedRectangle([5,5])
 slider.fixedDecimal(0)
@@ -21,7 +21,7 @@ slider.scale(my_scale)
 // create the container, or select one
 var container = d3.select('div#example2')
   .append('svg')
-  .attr('width', 350)
+  .attr('width', '100%')
   .attr('height', 85)
 
 // create the slider

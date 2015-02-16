@@ -1,7 +1,7 @@
 
 var button = new GUId3.Button()
 button.cssClass('example5')
-button.width(100).height(50)
+button.width(150).height(150)
 button.labelOn('zomgon').labelOff('zomgoff')
 button.callback(function(v){
   if(v){
@@ -13,7 +13,7 @@ button.callback(function(v){
 
 // create the container, or select one
 var container = d3.select('div#example5')
-  .append('svg').attr('width', 500).attr('height', 300)
+  .append('svg').attr('width', '100%').attr('height', 300)
 
 // create the button
 button.create(container.append('g')

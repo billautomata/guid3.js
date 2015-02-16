@@ -10,7 +10,6 @@
   <script src='vendor/jquery-1.11.1.js' charset='utf-8'></script>
   <script src='vendor/jstest.js' charset='utf-8'></script>
 
-  <script src='build/Object-Observe-Shims.js' charset='utf-8'></script>
   <script src='build/guid3.js' charset='utf-8'></script>
 
   <link rel='stylesheet' type='text/css' href="examples/example3.css">
@@ -24,9 +23,9 @@
   <style>
 
     * {
-    	-webkit-user-select: none;
-    	-moz-user-select: none;
-    	 user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+       user-select: none;
     }
 
     body {
@@ -34,9 +33,9 @@
     }
 
     textarea {
-    	-webkit-user-select: text!important;
-    	-moz-user-select: text!important
-    	user-select: text!important
+      -webkit-user-select: text!important;
+      -moz-user-select: text!important
+      user-select: text!important
     }
 
   </style>
@@ -50,7 +49,7 @@
 <!-- example 0 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// create a basic slider that does nothing
 
 var slider = new GUId3.Slider()
@@ -80,14 +79,14 @@ slider.create(container)
 slider.setValue(808.1)</code></pre>
 
 </div>
-<div class='col-md-4' id='example0'></div>
+<div class='col-sm-12 col-md-6' id='example0'></div>
 </div>
 
 
 <!-- example 1 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// create a basic slider that does something!
 // pass a callback into the constructor that does
 // something with the value the slider generates
@@ -126,13 +125,13 @@ slider.setValue(33)
 </code></pre>
 
 </div>
-<div class='col-md-4' id='example1' style='height: 200px;'></div>
+<div class='col-sm-12 col-md-6' id='example1' style='height: 200px;'></div>
 </div>
 
 <!-- example 2 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// create a basic slider using all of the more
 // advanced options
 var slider = new GUId3.Slider(function(v){
@@ -169,14 +168,14 @@ slider.setValue(128)
 </code></pre>
 
 </div>
-<div class='col-md-4' id='example2'></div>
+<div class='col-sm-12 col-md-6' id='example2'></div>
 </div>
 
 
 <!-- example 3 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// style the slider with css
 var slider = new GUId3.Slider(callback)
 
@@ -219,7 +218,7 @@ slider.setValue(808.1)
 
 
 </div>
-<div class='col-md-4' id='example3'></div>
+<div class='col-sm-12 col-md-6' id='example3'></div>
 </div>
 
 
@@ -230,7 +229,7 @@ slider.setValue(808.1)
 <!-- example 4 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// vertical slider type
 var slider = new GUId3.Slider()
 
@@ -280,14 +279,14 @@ slider.setValue(808.1)
 </code></pre>
 
 </div>
-<div class='col-md-4' id='example4'></div>
+<div class='col-sm-12 col-md-6' id='example4'></div>
 </div>
 
 
 <!-- example 5 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// toggle buttons
 var button = new GUId3.Button()
 button.cssClass('example5')
@@ -316,14 +315,14 @@ button.setValue(true)
 </code></pre>
 
 </div>
-<div class='col-md-4' id='example5'></div>
+<div class='col-sm-12 col-md-6' id='example5'></div>
 </div>
 
 
 <!-- example 6 -->
 <hr>
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-sm-12 col-md-6'>
 <pre><code class='javascript'>// momentary buttons
 var button = new GUId3.Button()
 button.cssClass('example6')
@@ -368,7 +367,7 @@ button.setValue(true)
 </code></pre>
 
 </div>
-<div class='col-md-4' id='example6'></div>
+<div class='col-sm-12 col-md-6' id='example6'></div>
 </div>
 
 
@@ -397,5 +396,6 @@ button.setValue(true)
   });
 
 </script>
-
+<!--
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </html>
