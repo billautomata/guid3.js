@@ -14,7 +14,7 @@ button.callback(function(v){
 
 // create the container, or select one
 var container = d3.select('div#example6')
-  .append('svg').attr('width', 500).attr('height', 300)
+  .append('svg').attr('width', '100%').attr('height', 300)
 
 // create the button
 button.create(container.append('g')

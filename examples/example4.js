@@ -11,7 +11,7 @@ slider.scale(my_scale)
 
 // create the container, or select one
 var container = d3.select('div#example4')
-  .append('svg').attr('width', 500).attr('height', 300)
+  .append('svg').attr('width', '100%').attr('height', 300)
 
 // create the slider
 slider.create(container.append('g')
