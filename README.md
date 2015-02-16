@@ -29,7 +29,7 @@ $ browserify lib/GUId3.base.js -o build/guid3.js
 
 Include the javascript in your page.
 ```html
-<script src="build/guid3.js"></script>
+<script src="build/guid3.min.js"></script>
 ```
 
 You style your buttons and sliders with CSS using the appropriate classes.  See the examples for the names of the classes of the ui elements you want to apply styles to.
