@@ -1,5 +1,5 @@
 ![logo](http://billautomata.github.io/GUId3.js/logo.png)
-v1.0.1 (beta) [examples](http://billautomata.github.io/GUId3.js/) [tests](http://billautomata.github.io/GUId3.js/test.html)
+v1.2.0  [examples](http://billautomata.github.io/GUId3.js/) [tests](http://billautomata.github.io/GUId3.js/test.html)
 ========
 A toolkit for SVG UI components with D3.js.  
 
