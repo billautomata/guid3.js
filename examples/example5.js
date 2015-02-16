@@ -1,7 +1,7 @@
 
 var button = new GUId3.Button()
 button.cssClass('example5')
-button.width(100).height(50)
+button.width(150).height(150)
 button.labelOn('zomgon').labelOff('zomgoff')
 button.callback(function(v){
   if(v){

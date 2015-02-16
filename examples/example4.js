@@ -2,7 +2,7 @@ var slider = new GUId3.Slider()
 
 slider.cssClass('example4')
 
-slider.width(30).height(250).label('styled & vertical!')
+slider.width(50).height(250).label('styled & vertical!')
 slider.type('vertical')
 
 // set up the scale using a d3 scale!

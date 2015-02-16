@@ -3,7 +3,7 @@ var slider = new GUId3.Slider(function(v){
 })
 
 slider.width(300)
-slider.height(20)
+slider.height(50)
 
 slider.roundedRectangle([5,5])
 slider.fixedDecimal(0)
