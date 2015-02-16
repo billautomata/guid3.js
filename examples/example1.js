@@ -23,6 +23,7 @@ var container = d3.select('div#example1')
   .append('svg')
   .attr('width', '100%')
   .attr('height', 64)
+  // .attr('viewBox', '0 0 500 100')
 
 // create the slider
 slider.create(container.append('g')

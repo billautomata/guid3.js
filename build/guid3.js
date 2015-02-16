@@ -1234,30 +1234,30 @@ module.exports = function module(cb){
     this.object_key = k
     return this;
 
-    ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
-
-    Object.observe(this.object_reference, function(changes){
-
-      // console.log(self.object_key)
-
-      changes.forEach(function(change,change_index){
-        if(change.name === self.object_key){
-          //console.log(self.object_key, 'new value', change.object[self.object_key])
-
-          // update the slider visual
-          var v = change.object[self.object_key]
-          if(self.g_root === undefined){
-            self._internal_value = v
-          } else {
-            self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
-          }
-
-        }
-      })
-
-    })
-
-    return this;
+    // ObserveUtils.defineObservableProperties(this.object_reference,this.object_key)
+    //
+    // Object.observe(this.object_reference, function(changes){
+    //
+    //   // console.log(self.object_key)
+    //
+    //   changes.forEach(function(change,change_index){
+    //     if(change.name === self.object_key){
+    //       //console.log(self.object_key, 'new value', change.object[self.object_key])
+    //
+    //       // update the slider visual
+    //       var v = change.object[self.object_key]
+    //       if(self.g_root === undefined){
+    //         self._internal_value = v
+    //       } else {
+    //         self.g_root.node().dispatchEvent(new CustomEvent('changed', { detail:v } ))
+    //       }
+    //
+    //     }
+    //   })
+    //
+    // })
+    //
+    // return this;
   }
 
   this.noconnect = function(){
@@ -1317,7 +1317,7 @@ module.exports = function module(cb){
     this.g_root.on('changed', function(){
 
       // console.log('g_root changed fired')
-      // console.log('value passed', d3.event.detail)
+
 
       // convert to a slider size
       // console.log(self._scale.invertExtent(d3.event.detail))
@@ -1329,6 +1329,8 @@ module.exports = function module(cb){
 
       var scaled_inverted_value = 0
       scaled_inverted_value = self._scale.invert(true_value)
+
+      // console.log('value passed', d3.event.detail.toFixed(2),scaled_inverted_value.toFixed(2))
 
       if(self._type === 'horizontal'){
 
@@ -1404,7 +1406,7 @@ module.exports = function module(cb){
       .attr('ry', this._ry)
       .attr('width', this._width)
       .attr('height', this._height-2)
-      .attr('clip-path', 'url(#cp)')
+      //.attr('clip-path', 'url(#cp)')
       .style('pointer-events', 'none')
       .style('fill', 'rgb(200,200,200)')
       .style('stroke', 'none')
@@ -1434,7 +1436,6 @@ module.exports = function module(cb){
       text_label.style('text-anchor', 'middle')
     }
 
-
     // create the value indicator
     var g_root_text_value = this.g_root.append('g')
 
@@ -1453,7 +1454,6 @@ module.exports = function module(cb){
       .attr('y', 0)
       .attr('dy', '0.33em')
       .style('pointer-events', 'none')
-
       .style('font-size', '12px')
       .style('font-family', 'monospace')
 
