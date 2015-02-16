@@ -19,7 +19,3 @@ var container = d3.select('div#example5')
 button.create(container.append('g')
   .attr('transform','translate(10,10)'))
 button.setValue(true)
-
-var msg_center = d3.select('div#example5').append('div').attr('id','msg_center').style('color', 'green')
-
-console.log(msg_center)
