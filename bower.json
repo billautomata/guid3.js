@@ -1,0 +1,29 @@
+{
+  "name": "GUId3.js",
+  "version": "1.2.1",
+  "homepage": "https://github.com/billautomata/GUId3.js",
+  "authors": [
+    "@billautomata"
+  ],
+  "description": "GUI toolkit for d3.js",
+  "main": "build/guid3.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "d3",
+    "d3js",
+    "gui",
+    "svg",
+    "button",
+    "slider"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
