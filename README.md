@@ -3,15 +3,14 @@ v1.2.1  [examples](http://billautomata.github.io/GUId3.js/) [tests](http://billa
 ========
 A toolkit for SVG UI components with D3.js.  
 
-Almost all of the visual aspects of the UI elements can be assigned by associating the UI element with a CSS class, and modifying the CSS for the corresponding component of the UI element.
-
 * uses d3 scales internally
-* pass custom callbacks
+* custom callbacks
+* css styled elements
 
 ```bash
 # build using browserify
-$ npm install -g browserify
-$ browserify lib/GUId3.base.js -o build/guid3.js
+npm install -g browserify
+browserify lib/GUId3.base.js -o build/guid3.js
 ```
 
 #### UI elements
@@ -33,7 +32,6 @@ Include the javascript in your page.
 ```
 
 You style your buttons and sliders with CSS using the appropriate classes.  See the examples for the names of the classes of the ui elements you want to apply styles to.
-
 
 ###slider example
 ```javascript
